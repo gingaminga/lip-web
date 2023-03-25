@@ -1,4 +1,4 @@
-import queryClient from "@/queries/query-client";
+import queryClient from "@/utils/query-client";
 import store from "@/store";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
