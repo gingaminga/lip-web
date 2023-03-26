@@ -40,6 +40,19 @@
       {
         "argsIgnorePattern": "^_" // 사용하지 않는 parameter명은 _ 통상 붙인다
       }
+    ],
+    "react/self-closing-comp": "warn",
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": ["arrow-function", "function-declaration"]
+      }
+    ],
+    "no-param-reassign": [
+      "error",
+      {
+        "props": false
+      }
     ]
   }
 }
