@@ -21,7 +21,7 @@ export default function Main() {
   }, [data]);
 
   if (isFetching) {
-    return <progress className="progress w-16" />;
+    return <progress className="progress progress-primary w-16" />;
   }
 
   return (
