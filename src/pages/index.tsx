@@ -1,19 +1,21 @@
-import Main from "@/components/Main";
+import ActivityMain from "@/components/ActivityMain";
+import ThemeToggle from "@/components/ThemeToggle";
 import Head from "next/head";
 
 export default function Home() {
   return (
-    <div>
+    <>
       <Head>
         <title>Sample</title>
       </Head>
-      <div className="hero min-h-screen bg-base-200">
-        <div className="hero-content text-center">
-          <div className="w-md space-y-4">
-            <Main />
-          </div>
+      <div className="fixed right-5 top-5">
+        <ThemeToggle />
+      </div>
+      <div className="hero h-screen">
+        <div className="hero-content flex-col text-center">
+          <ActivityMain />
         </div>
       </div>
-    </div>
+    </>
   );
 }
