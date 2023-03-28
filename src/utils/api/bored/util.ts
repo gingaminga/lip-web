@@ -1,3 +1,4 @@
+import { timeout } from "@/utils";
 import Bored from "@/utils/api/bored";
 import { URL } from "@/utils/api/url";
 
@@ -18,6 +19,8 @@ export const fetchGetActivity = async () => {
   const endpoint = URL.BORED.PATH.ACTIVITY;
 
   const { data } = await Bored.get<undefined, IResponseActivityData>(endpoint);
+
+  timeout();
 
   return data;
 };
