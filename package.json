@@ -9,7 +9,8 @@
     "lint": "next lint",
     "eslint": "eslint ./src/**/*.{ts,tsx}",
     "eslint:fix": "eslint --fix ./src/**/*.{ts,tsx}",
-    "prettier:write": "prettier --write ./src/**/*.{ts,tsx}"
+    "prettier:write": "prettier --write ./src/**/*.{ts,tsx}",
+    "test:unit": "jest --testMatch \"<rootDir>/src/test/**/*.test.{ts,tsx}\" --detectOpenHandles --forceExit"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
@@ -18,7 +19,7 @@
     "@types/node": "18.15.3",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
-    "axios-classification": "^0.2.0",
+    "axios-classification": "^0.2.1",
     "daisyui": "^2.51.5",
     "lodash": "^4.17.21",
     "next": "13.2.4",
@@ -28,7 +29,10 @@
     "typescript": "4.9.5"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
     "@types/lodash": "^4.14.191",
+    "@types/redux-mock-store": "^1.0.3",
     "@typescript-eslint/eslint-plugin": "^5.55.0",
     "@typescript-eslint/parser": "^5.55.0",
     "autoprefixer": "^10.4.14",
@@ -40,8 +44,11 @@
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
+    "jest": "^29.5.0",
+    "jest-environment-jsdom": "^29.5.0",
     "postcss": "^8.4.21",
     "prettier": "^2.8.4",
+    "redux-mock-store": "^1.5.4",
     "tailwindcss": "^3.2.7"
   }
 }
