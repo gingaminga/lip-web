@@ -2,9 +2,9 @@ import "@/styles/globals.css";
 import ThemeToggle from "@/components/ThemeToggle";
 import store from "@/store";
 import queryClient from "@/utils/query-client";
-import type { AppProps } from "next/app";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import type { AppProps } from "next/app";
 import { Provider } from "react-redux";
 
 /**
