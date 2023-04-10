@@ -64,6 +64,12 @@
         "devDependencies": ["**/*.test.ts", "**/*.test.tsx", "**/jest.*", "**/*.stories.*", "**/.storybook/**/*.*"],
         "peerDependencies": true
       }
-    ]
+    ],
+    "react/require-default-props": [
+      "error",
+      {
+        "ignoreFunctionalComponents": true // functional component는 무시할지 여부
+      }
+    ] // optional props의 경우 default value 여부
   }
 }
