@@ -1,23 +1,15 @@
-import { useMemo } from "react";
-
 interface ILogoButton {
+  buttonClassName?: string; // 버튼 css
   children: JSX.Element; // 로고 컴포넌트
-  buttonClassNames?: string[]; // 버튼 classname 여러개
   value: string; // 버튼 텍스트
 }
 
 /**
  * @description 로고가 있는 버튼 컴포넌트
  */
-export default function LogoButton({
-  children,
-  buttonClassNames = ["btn", "btn-block", "gap-2.5"],
-  value,
-}: ILogoButton) {
-  const className = useMemo(() => buttonClassNames.join(" "), [buttonClassNames]);
-
+export default function LogoButton({ buttonClassName = "btn btn-block gap-2.5", children, value }: ILogoButton) {
   return (
-    <button className={className} type="button">
+    <button className={buttonClassName} type="button">
       {children}
       {value}
     </button>
