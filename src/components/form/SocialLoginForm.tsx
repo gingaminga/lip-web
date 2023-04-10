@@ -7,7 +7,7 @@ import { SOCIAL_LOGIN_CONFIG } from "@/utils/social-login-config";
 export default function SocialLoginForm() {
   return (
     <div className="card shadow-2xl max-w-full w-1/2">
-      <div className="card-body justify-center">
+      <div className="card-body justify-center max-sm:flex-row max-xs:flex-col max-xs:items-center">
         {SOCIAL_LOGIN_CONFIG.map((config) => {
           const { className, LogoComponent, text } = config;
           return (
