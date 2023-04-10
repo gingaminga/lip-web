@@ -1,12 +1,9 @@
-.btn-social {
-  text-transform: none;
-}
-
 .btn-kakao {
   @apply btn;
   background-color: #fee500 !important;
   border-color: #fee500 !important;
   color: #000000;
+  text-transform: none;
 }
 
 .btn-kakao:hover {
@@ -14,6 +11,7 @@
   background-color: #cbb700 !important;
   border-color: #cbb700 !important;
   color: #000000;
+  text-transform: none;
 }
 
 .btn-naver {
@@ -21,6 +19,7 @@
   background-color: #03c75a !important;
   border-color: #03c75a !important;
   color: #ffffff;
+  text-transform: none;
 }
 
 .btn-naver:hover {
@@ -28,6 +27,7 @@
   background-color: #029f48 !important;
   border-color: #029f48 !important;
   color: #ffffff;
+  text-transform: none;
 }
 
 .btn-google {
@@ -36,6 +36,7 @@
   border-color: #ffffff !important;
   box-shadow: 0 0 5px rgb(0, 0, 0, 30%);
   color: #000000;
+  text-transform: none;
 }
 
 .btn-google:hover {
@@ -44,4 +45,5 @@
   border-color: #ffffff !important;
   box-shadow: 0 0 5px rgb(0, 0, 0, 50%);
   color: #000000;
+  text-transform: none;
 }
