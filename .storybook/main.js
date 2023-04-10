@@ -24,6 +24,20 @@ module.exports = {
       ...config.resolve.alias,
       "@": path.resolve(__dirname, "../src/"),
     };
+
+    // @svgr/webpack import 처리 설정
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: [
+        {
+          loader: "@svgr/webpack",
+        },
+      ],
+      type: "javascript/auto",
+      issuer: {
+        and: [/\.(ts|tsx|js|jsx|md|mdx)$/],
+      },
+    });
     return config;
   },
 };
