@@ -20,6 +20,7 @@ module.exports = {
     builder: "@storybook/builder-webpack5",
   },
   webpackFinal: async (config) => {
+    // 절대경로 설정
     config.resolve.alias = {
       ...config.resolve.alias,
       "@": path.resolve(__dirname, "../src/"),
