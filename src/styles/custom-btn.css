@@ -41,9 +41,9 @@
 
 .btn-google:hover {
   @apply btn;
-  background-color: rgba(55, 53, 47, 0.08) !important;
-  border-color: rgba(55, 53, 47, 0.08) !important;
-  box-shadow: 0 0 5px rgb(0, 0, 0, 50%);
+  background-color: #d0d0d0 !important;
+  border-color: #d0d0d0 !important;
+  box-shadow: 0 0 5px rgb(0, 0, 0, 30%);
   color: #000000;
   text-transform: none;
 }
