@@ -1,4 +1,6 @@
+import { RESPONSE_STATUS } from "@/utils/api/lip/response";
+
 export interface IResponseLIPFormat<T> {
   data: T;
-  status: string;
+  status: RESPONSE_STATUS;
 }
