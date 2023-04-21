@@ -1,4 +1,4 @@
-import SocialLoginForm from "@/components/form/SocialLoginForm";
+import OAuthLoginForm from "@/components/form/OAuthLoginForm";
 import Head from "next/head";
 
 export default function Login() {
@@ -9,7 +9,7 @@ export default function Login() {
       </Head>
       <div className="hero h-screen">
         <div className="hero-content flex-col w-full">
-          <SocialLoginForm />
+          <OAuthLoginForm />
         </div>
       </div>
     </>

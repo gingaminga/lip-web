@@ -1,7 +1,7 @@
 import LogoButton from "@/components/common/atoms/LogoButton";
 import MockProvider from "@/stories/MockProvider";
-import { SOCIAL_LOGIN_CONFIG } from "@/utils/social-login-config";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { OAUTH_LOGIN_CONFIG } from "@/utils/config";
 
 export default {
   title: "Atoms/Button/LogoButton",
@@ -16,7 +16,7 @@ Default.args = {
   value: "Logo Button Text",
 };
 
-const [KAKAO_CONFIG, NAVER_CONFIG, GOOGLE_CONFIG] = SOCIAL_LOGIN_CONFIG;
+const [KAKAO_CONFIG, NAVER_CONFIG, GOOGLE_CONFIG] = OAUTH_LOGIN_CONFIG;
 
 export const Kakao = Template.bind({});
 Kakao.args = {
