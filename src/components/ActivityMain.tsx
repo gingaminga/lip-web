@@ -1,9 +1,12 @@
 import ActivityCard from "@/components/ActivityCard";
 import useGetActivityQuery from "@/hooks/queries/useGetActivityQuery";
+import { logger } from "@/utils/logger";
 import _ from "lodash";
 import { useMemo } from "react";
 
 export default function ActivityMain() {
+  logger.log("ActivityMain component render");
+
   const { data, isFetching, refetch } = useGetActivityQuery({
     enabled: false,
   });
