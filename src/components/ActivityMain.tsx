@@ -3,7 +3,7 @@ import useGetActivityQuery from "@/hooks/queries/useGetActivityQuery";
 import _ from "lodash";
 import { useMemo } from "react";
 
-export default function Main() {
+export default function ActivityMain() {
   const { data, isFetching, refetch } = useGetActivityQuery({
     enabled: false,
   });
