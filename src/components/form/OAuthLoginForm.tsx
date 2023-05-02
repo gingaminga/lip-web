@@ -10,8 +10,8 @@ interface IOAuthLoginForm {
  * @description OAuth 로그인 폼 컴포넌트
  */
 export default function OAuthLoginForm({ onClick }: IOAuthLoginForm) {
-  const OAuthButtonView = () => {
-    return OAUTH_LOGIN_CONFIG.map((config) => {
+  const OAuthButtonView = () =>
+    OAUTH_LOGIN_CONFIG.map((config) => {
       const { className, LogoComponent, text, type } = config;
       const handleClick = () => {
         onClick(type);
@@ -23,7 +23,6 @@ export default function OAuthLoginForm({ onClick }: IOAuthLoginForm) {
         </LogoButton>
       );
     });
-  };
 
   return (
     <div className="card shadow-2xl max-w-full w-1/2">
