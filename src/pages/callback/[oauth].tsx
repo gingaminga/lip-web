@@ -1,4 +1,5 @@
 import useOAuthLoginMutation from "@/hooks/queries/useOAuthLoginMutation";
+import useUser from "@/hooks/useUser";
 import { checkOAuthType } from "@/types/guard";
 import { OAUTH_LOGIN_CONFIG } from "@/utils/config";
 import Router from "next/router";
@@ -31,8 +32,11 @@ export default function OAuthCallbackPage() {
     code: "",
     type: "",
   });
+  const { saveUserInfo } = useUser();
   const { mutate } = useOAuthLoginMutation({
-    onSuccess: () => {
+    onSuccess: (userInfo) => {
+      saveUserInfo(userInfo);
+
       Router.push("/");
     },
   });

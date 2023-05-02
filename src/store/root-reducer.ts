@@ -1,4 +1,5 @@
 import themeReducer from "@/store/theme/reducer";
+import userReducer from "@/store/user/reducer";
 import { combineReducers } from "@reduxjs/toolkit";
 
 /**
@@ -6,4 +7,5 @@ import { combineReducers } from "@reduxjs/toolkit";
  */
 export const rootReducer = combineReducers({
   theme: themeReducer,
+  user: userReducer,
 });
