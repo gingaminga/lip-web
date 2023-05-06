@@ -6,7 +6,6 @@ import { LifeIsPlanClient } from "@/utils/api/lip";
 import { LIP_URL } from "@/utils/api/url";
 import constants from "@/utils/constants";
 import Cookie from "@/utils/cookie";
-import { logger } from "@/utils/logger";
 
 export interface IRequestLoginParams {
   code: string; // 인가코드
@@ -33,14 +32,11 @@ export const fetchLogin = async (type: string, code: string) => {
     type,
   };
 
-  logger.log("Request oauth login", endpoint, params);
-
   const { data: axiosData } = await LifeIsPlanClient.post<IRequestLoginParams, IResponseLIPFormat<ILoginData>>(
     endpoint,
     params,
   );
   const { data, status } = axiosData;
-  logger.log("Response oauth login", axiosData);
 
   if (isFetchFailure(status)) {
     throw new Error("Fetch failure get oauth url..");

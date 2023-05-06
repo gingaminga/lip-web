@@ -3,7 +3,6 @@ import { checkOAuthType, isFetchFailure } from "@/types/guard";
 import type { TOAuthType } from "@/types/oauth";
 import { LifeIsPlanClient } from "@/utils/api/lip";
 import { LIP_URL } from "@/utils/api/url";
-import { logger } from "@/utils/logger";
 
 interface IRequestGetOAuthURLParams {
   type: TOAuthType;
@@ -26,14 +25,11 @@ export const fetchGetOAuthURL = async (type: string) => {
     type,
   };
 
-  logger.log("Request get oauth url", endpoint, params);
-
   const { data: axiosData } = await LifeIsPlanClient.get<IRequestGetOAuthURLParams, IResponseLIPFormat<IOAuthURLData>>(
     endpoint,
     params,
   );
   const { data, status } = axiosData;
-  logger.log("Response get oauth url", axiosData);
 
   if (isFetchFailure(status)) {
     throw new Error("Fetch failure get oauth url..");
