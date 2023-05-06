@@ -5,7 +5,9 @@ export const LIP_URL = {
     HOST: constants.LIP.API.HOST,
     OAUTH: {
       GET_URL: "/api/oauth/url",
-      LOGIN: "/api/oauth",
+    },
+    USER: {
+      LOGIN: "/api/user/login",
     },
   },
 };

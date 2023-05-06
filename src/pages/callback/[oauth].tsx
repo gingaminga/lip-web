@@ -1,5 +1,5 @@
 import CircleSpinner from "@/assets/images/circle-spinner.svg";
-import useOAuthLoginMutation from "@/hooks/queries/useOAuthLoginMutation";
+import useLoginMutation from "@/hooks/queries/useLoginMutation";
 import useUser from "@/hooks/useUser";
 import { checkOAuthType } from "@/types/guard";
 import { OAUTH_LOGIN_CONFIG } from "@/utils/config";
@@ -34,7 +34,7 @@ export default function OAuthCallbackPage() {
     type: "",
   });
   const { saveUserInfo } = useUser();
-  const { mutate } = useOAuthLoginMutation({
+  const { mutate } = useLoginMutation({
     onSuccess: (userInfo) => {
       saveUserInfo(userInfo);
 

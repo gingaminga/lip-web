@@ -8,26 +8,26 @@ import constants from "@/utils/constants";
 import Cookie from "@/utils/cookie";
 import { logger } from "@/utils/logger";
 
-export interface IRequestOAuthLoginParams {
+export interface IRequestLoginParams {
   code: string; // 인가코드
   type: TOAuthType;
 }
 
-export interface IOAuthLoginData {
+export interface ILoginData {
   accessToken: string;
   refreshToken: string;
   userInfo: IUserData;
 }
 
 /**
- * @description OAuth 로그인(회원가입)하기
+ * @description 로그인(회원가입)하기
  */
-export const fetchOAuthLogin = async (type: string, code: string) => {
+export const fetchLogin = async (type: string, code: string) => {
   if (!checkOAuthType(type)) {
     throw new Error("OAuth type is valid..");
   }
 
-  const endpoint = LIP_URL.API.OAUTH.LOGIN;
+  const endpoint = LIP_URL.API.USER.LOGIN;
   const params = {
     code,
     type,
@@ -35,10 +35,10 @@ export const fetchOAuthLogin = async (type: string, code: string) => {
 
   logger.log("Request oauth login", endpoint, params);
 
-  const { data: axiosData } = await LifeIsPlanClient.post<
-    IRequestOAuthLoginParams,
-    IResponseLIPFormat<IOAuthLoginData>
-  >(endpoint, params);
+  const { data: axiosData } = await LifeIsPlanClient.post<IRequestLoginParams, IResponseLIPFormat<ILoginData>>(
+    endpoint,
+    params,
+  );
   const { data, status } = axiosData;
   logger.log("Response oauth login", axiosData);
 
