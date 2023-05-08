@@ -32,8 +32,8 @@ export default class Cookie {
    * @description 쿠키 삭제하기
    * @param name
    */
-  static removeCookie(name: string) {
-    Cookies.remove(name);
+  static removeCookie(name: string, options?: CookieAttributes) {
+    Cookies.remove(name, options);
 
     return true;
   }
