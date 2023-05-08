@@ -15,8 +15,6 @@ LifeIsPlanClient.setRequestInterceptor(
     return request;
   },
   (error) => {
-    logger.error(error);
-
     throw error;
   },
 );
@@ -31,8 +29,6 @@ LifeIsPlanClient.setResponseInterceptor(
     return response;
   },
   async (error) => {
-    logger.error(error);
-
     if (!LifeIsPlanClient.isAxiosError<IResponseLIPFormat<string>>(error)) {
       throw error;
     }
