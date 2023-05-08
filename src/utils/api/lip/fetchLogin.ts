@@ -46,8 +46,9 @@ export const fetchLogin = async (type: string, code: string) => {
     domain: constants.LIP.DOMAIN,
   };
 
-  Cookie.setCookie("access_token", data.accessToken, cookieOption);
   Cookie.setCookie("refresh_token", data.refreshToken, cookieOption);
+
+  LifeIsPlanClient.setBearerToken(data.accessToken);
 
   return data.userInfo;
 };

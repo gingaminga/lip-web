@@ -1,4 +1,5 @@
 import "@/styles/globals.css";
+import "@/utils/api/lip/interceptor";
 import ThemeToggle from "@/components/ThemeToggle";
 import store from "@/store";
 import queryClient from "@/utils/query-client";
