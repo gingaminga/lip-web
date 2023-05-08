@@ -3,6 +3,7 @@ import { IResponseLIPFormat } from "@/types/common";
 import { LifeIsPlanClient } from "@/utils/api/lip";
 import { fetchReissueToken } from "@/utils/api/lip/fetchReissueToken";
 import Cookie from "@/utils/cookie";
+import constants from "@/utils/constants";
 import Router from "next/router";
 
 LifeIsPlanClient.setRequestInterceptor(
@@ -55,7 +56,7 @@ LifeIsPlanClient.setResponseInterceptor(
             config.headers.Authorization = LifeIsPlanClient.getDefaultConfigOfInstance().headers.common.Authorization;
 
             // 기존 요청 재처리
-            LifeIsPlanClient.request(config);
+            await LifeIsPlanClient.request(config);
           }
         } catch (error1) {
           /** empty */
@@ -66,10 +67,12 @@ LifeIsPlanClient.setResponseInterceptor(
 
       if (message.includes("refresh")) {
         // 리프레시 토큰일 경우 쿠키 삭제 후 로그인 화면으로 이동
-        Cookie.removeCookie("refresh_token");
-        await Router.push("/login");
+        const cookieOption = {
+          domain: constants.LIP.DOMAIN,
+        };
 
-        return;
+        Cookie.removeCookie("refresh_token", cookieOption);
+        Router.push("/login");
       }
     }
 
