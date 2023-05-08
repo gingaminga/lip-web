@@ -1,4 +1,5 @@
 import ThemeToggle from "@/components/ThemeToggle";
+import useRegisterToken from "@/hooks/useRegisterToken";
 import { AppProps } from "next/app";
 
 /**
@@ -16,6 +17,8 @@ function FixedComponent() {
  * @description 공통적으로 사용될 컴포넌트들을 묶어놓은 컴포넌트
  */
 export default function WrapperCommonComponent({ Component, pageProps }: AppProps) {
+  useRegisterToken();
+
   return (
     <>
       <FixedComponent />
