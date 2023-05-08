@@ -44,5 +44,5 @@ export const fetchReissueToken = async (token: string) => {
 
   LifeIsPlanClient.setBearerToken(data.accessToken);
 
-  return data.accessToken;
+  return data.userInfo;
 };

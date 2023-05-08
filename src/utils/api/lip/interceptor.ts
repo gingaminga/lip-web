@@ -48,11 +48,11 @@ LifeIsPlanClient.setResponseInterceptor(
         try {
           const refreshToken = Cookie.getCookie("refresh_token");
 
-          const token = await fetchReissueToken(refreshToken);
+          await fetchReissueToken(refreshToken);
 
           if (config) {
             // 기존 값을 가지고 있기 때문에, 강제 재설정
-            config.headers.Authorization = `Bearer ${token}`;
+            config.headers.Authorization = LifeIsPlanClient.getDefaultConfigOfInstance().headers.common.Authorization;
 
             // 기존 요청 재처리
             LifeIsPlanClient.request(config);
