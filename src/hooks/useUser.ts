@@ -10,6 +10,11 @@ export default function useUser() {
   const dispatch = useAppDispatch();
 
   /**
+   * @description 로그인 유무
+   */
+  const isLogin = userInfo.id > 0;
+
+  /**
    * @description 유저 정보 저장하기
    * @param info 유저 정보
    */
@@ -18,6 +23,7 @@ export default function useUser() {
   };
 
   return {
+    isLogin,
     saveUserInfo,
     userInfo,
   };

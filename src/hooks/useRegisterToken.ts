@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 export default function useRegisterToken() {
   const router = useRouter();
   const [token, setToken] = useState("");
-  const { saveUserInfo, userInfo } = useUser();
+  const { isLogin, saveUserInfo } = useUser();
   const { mutate } = useReissueTokenMutation({
     onSuccess: (users) => {
       saveUserInfo(users);
@@ -18,11 +18,6 @@ export default function useRegisterToken() {
       router.push("/");
     },
   });
-
-  /**
-   * @description 로그인 유무
-   */
-  const isLogin = userInfo.id > 0;
 
   /**
    * @description access token 발급받기
