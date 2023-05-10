@@ -6,6 +6,12 @@ export default {
   component: OAuthLoginForm,
 } as ComponentMeta<typeof OAuthLoginForm>;
 
-const Template: ComponentStory<typeof OAuthLoginForm> = (args) => <OAuthLoginForm onClick={() => {}} />;
+const Template: ComponentStory<typeof OAuthLoginForm> = (args) => (
+  <OAuthLoginForm
+    onClick={() => {
+      /** empty */
+    }}
+  />
+);
 
 export const Default = Template.bind({});
