@@ -1,10 +1,9 @@
 import useReissueTokenMutation from "@/hooks/queries/useReissueTokenMutation";
 import useUser from "@/hooks/useUser";
+import { NOT_LOGIN_PATH_NAME } from "@/utils/constants";
 import Cookie from "@/utils/cookie";
 import Router, { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-
-const NOT_LOGIN_PATH_NAME = ["/login", "/callback/[oauth]"];
 
 /**
  * @description 토큰 발급받는 hook
