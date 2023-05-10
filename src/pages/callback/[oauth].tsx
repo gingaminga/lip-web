@@ -1,4 +1,4 @@
-import CircleSpinner from "@/assets/images/circle-spinner.svg";
+import LoadingOverlay from "@/components/common/organisms/LoadingOverlay";
 import useLoginMutation from "@/hooks/queries/useLoginMutation";
 import useUser from "@/hooks/useUser";
 import { checkOAuthType } from "@/types/guard";
@@ -68,9 +68,5 @@ export default function OAuthCallbackPage() {
     }
   }, [mutate, oAuthInfo]);
 
-  return (
-    <div className="hero h-screen">
-      <CircleSpinner className="w-20 h-20" />
-    </div>
-  );
+  return <LoadingOverlay />;
 }
