@@ -8,6 +8,12 @@ export default {
   decorators: [(story) => <MockProvider>{story()}</MockProvider>],
 } as ComponentMeta<typeof ThemeToggle>;
 
-const Template: ComponentStory<typeof ThemeToggle> = (args) => <ThemeToggle />;
+const Template: ComponentStory<typeof ThemeToggle> = (args) => <ThemeToggle {...args} />;
 
 export const Default = Template.bind({});
+Default.args = {
+  styles: {
+    height: "h-10",
+    width: "w-10",
+  },
+};
