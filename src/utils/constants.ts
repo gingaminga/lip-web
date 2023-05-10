@@ -8,6 +8,7 @@ const constants = {
     DOMAIN: "lifeisplan.me",
   },
   NODE_ENV: process.env.NODE_ENV,
+  PROJECT_NAME: "LifeIsPlan",
 };
 
 export default constants;
