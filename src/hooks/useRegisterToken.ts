@@ -1,21 +1,24 @@
 import useReissueTokenMutation from "@/hooks/queries/useReissueTokenMutation";
 import useUser from "@/hooks/useUser";
 import Cookie from "@/utils/cookie";
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+
+const NOT_LOGIN_PATH_NAME = ["/login", "/callback/[oauth]"];
 
 /**
  * @description 토큰 발급받는 hook
  */
 export default function useRegisterToken() {
-  const router = useRouter();
+  const { pathname } = useRouter();
   const [token, setToken] = useState("");
   const { isLogin, saveUserInfo } = useUser();
-  const { mutate } = useReissueTokenMutation({
+  const { isLoading, mutate } = useReissueTokenMutation({
     onSuccess: (users) => {
       saveUserInfo(users);
 
-      router.push("/");
+      const path = NOT_LOGIN_PATH_NAME.includes(pathname) ? "/" : pathname;
+      Router.push(path);
     },
   });
 
@@ -37,4 +40,8 @@ export default function useRegisterToken() {
       setToken(refreshToken);
     }
   }, []);
+
+  return {
+    isLoadingReissueToken: isLoading,
+  };
 }
