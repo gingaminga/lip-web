@@ -35,10 +35,10 @@ export default function useRegisterToken() {
   useEffect(() => {
     const refreshToken = Cookie.getCookie("refresh_token");
 
-    if (refreshToken) {
+    if (refreshToken && token !== refreshToken) {
       setToken(refreshToken);
     }
-  }, []);
+  }, [token]);
 
   return {
     isLoadingReissueToken: isLoading,
