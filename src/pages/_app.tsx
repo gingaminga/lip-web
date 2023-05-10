@@ -1,6 +1,6 @@
 import "@/styles/globals.css";
 import "@/utils/api/lip/interceptor";
-import { WrapperCommonComponent } from "@/components/common/organisms";
+import WrapperCommonComponent from "@/components/common/organisms/WrapperCommonComponent";
 import store from "@/store";
 import queryClient from "@/utils/query-client";
 import { QueryClientProvider } from "@tanstack/react-query";
