@@ -23,3 +23,21 @@ export const OAUTH_LOGIN_CONFIG = [
     type: "google" as TOAuthType,
   },
 ];
+
+export const ROUTE_CONFIG = [
+  {
+    route: "/",
+    text: "투두 관리",
+  },
+  {
+    route: "/routine",
+    text: "루틴 관리",
+  },
+  {
+    route: "/setting",
+    text: "설정",
+  },
+  {
+    text: "로그아웃",
+  },
+];
