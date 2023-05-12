@@ -4,3 +4,7 @@ export interface IResponseLIPFormat<T> {
   data: T;
   status: RESPONSE_STATUS;
 }
+
+export interface ICommonProps {
+  isLogin: boolean;
+}

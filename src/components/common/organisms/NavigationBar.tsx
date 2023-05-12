@@ -1,21 +1,26 @@
 import ThemeToggle from "@/components/ThemeToggle";
+import type { ICommonProps } from "@/types/common";
 import { ROUTE_CONFIG } from "@/utils/config";
 import constants from "@/utils/constants";
 import Link from "next/link";
+import { useCallback, useMemo } from "react";
 import { HiMenuAlt2 } from "react-icons/hi";
 
-interface INavigationBar {
+interface INavigationBar extends ICommonProps {
   projectName?: string;
 }
 
 /**
  * @description 네비게이션 바 컴포넌트
  */
-export default function NavigationBar({ projectName = constants.PROJECT_NAME }: INavigationBar) {
-  const ProjectTitleView = (
-    <Link className="btn btn-ghost normal-case text-xl" href="/">
-      {projectName}
-    </Link>
+export default function NavigationBar({ isLogin, projectName = constants.PROJECT_NAME }: INavigationBar) {
+  const ProjectTitleView = useMemo(
+    () => (
+      <Link className="btn btn-ghost normal-case text-xl" href="/">
+        {projectName}
+      </Link>
+    ),
+    [projectName],
   );
 
   /**
@@ -54,52 +59,64 @@ export default function NavigationBar({ projectName = constants.PROJECT_NAME }: 
       );
     });
 
-  const NavigationStartView = (
-    <>
-      <div className="navbar-start max-sm:hidden">
-        {ProjectTitleView}
-        <ThemeToggle />
-      </div>
-      <div className="navbar-start sm:hidden">
-        <div className="dropdown">
-          <button className="btn btn-ghost btn-circle" tabIndex={0} type="button">
-            <HiMenuAlt2 className="h-5 w-5" />
-          </button>
-          <ul className="menu menu-compact dropdown-content p-3 shadow bg-base-200 rounded-box w-40">
-            {MenuListView()}
-          </ul>
+  const NavigationStartView = useCallback(() => {
+    const hiddenWhenNotLogin = isLogin ? "" : "hidden";
+
+    return (
+      <>
+        <div className="navbar-start max-sm:hidden">
+          {ProjectTitleView}
+          <ThemeToggle />
         </div>
-      </div>
-    </>
-  );
+        <div className="navbar-start sm:hidden">
+          <div className={`dropdown ${hiddenWhenNotLogin}`}>
+            <button className="btn btn-ghost btn-circle" tabIndex={0} type="button">
+              <HiMenuAlt2 className="h-5 w-5" />
+            </button>
+            <ul className="menu menu-compact dropdown-content p-3 shadow bg-base-200 rounded-box w-40">
+              {MenuListView()}
+            </ul>
+          </div>
+        </div>
+      </>
+    );
+  }, [ProjectTitleView, isLogin]);
 
-  const NavigationCenterView = (
-    <>
-      <div className="navbar-center max-sm:hidden">
-        <ul className="menu menu-horizontal">{MenuListView(1)}</ul>
-      </div>
-      <div className="navbar-center sm:hidden">{ProjectTitleView}</div>
-    </>
-  );
+  const NavigationCenterView = useCallback(() => {
+    const hiddenWhenNotLogin = isLogin ? "" : "hidden";
 
-  const NavigationEndView = (
-    <>
-      <div className="navbar-end max-sm:hidden">
-        <button className="btn btn-ghost btn-xs" type="button">
-          로그아웃
-        </button>
-      </div>
-      <div className="navbar-end sm:hidden">
-        <ThemeToggle />
-      </div>
-    </>
-  );
+    return (
+      <>
+        <div className="navbar-center max-sm:hidden">
+          <ul className={`menu menu-horizontal ${hiddenWhenNotLogin}`}>{MenuListView(1)}</ul>
+        </div>
+        <div className="navbar-center sm:hidden">{ProjectTitleView}</div>
+      </>
+    );
+  }, [ProjectTitleView, isLogin]);
+
+  const NavigationEndView = useCallback(() => {
+    const hiddenWhenNotLogin = isLogin ? "" : "hidden";
+
+    return (
+      <>
+        <div className="navbar-end max-sm:hidden">
+          <button className={`btn btn-ghost btn-xs ${hiddenWhenNotLogin}`} type="button">
+            로그아웃
+          </button>
+        </div>
+        <div className="navbar-end sm:hidden">
+          <ThemeToggle />
+        </div>
+      </>
+    );
+  }, [isLogin]);
 
   return (
-    <div className="navbar">
-      {NavigationStartView}
-      {NavigationCenterView}
-      {NavigationEndView}
-    </div>
+    <nav className="navbar">
+      {NavigationStartView()}
+      {NavigationCenterView()}
+      {NavigationEndView()}
+    </nav>
   );
 }

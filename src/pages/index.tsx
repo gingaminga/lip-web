@@ -1,14 +1,16 @@
+import MainTemplate from "@/components/common/templates/MainTemplate";
+import type { ICommonProps } from "@/types/common";
 import Head from "next/head";
 
-export default function Home() {
+type THome = ICommonProps;
+
+export default function Home({ isLogin }: THome) {
   return (
     <>
       <Head>
         <title>life is plan</title>
       </Head>
-      <div className="hero h-screen">
-        <div className="hero-content flex-col w-full">main</div>
-      </div>
+      <MainTemplate isLogin={isLogin}>main</MainTemplate>
     </>
   );
 }

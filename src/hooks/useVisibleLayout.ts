@@ -40,6 +40,7 @@ export default function useVisibleLayout() {
   }, [isLogin, pathname]);
 
   return {
+    isLogin,
     isRenderLoadingOverlay,
   };
 }

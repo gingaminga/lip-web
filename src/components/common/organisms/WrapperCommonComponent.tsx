@@ -8,7 +8,7 @@ import { useMemo } from "react";
  * @description 공통적으로 사용될 컴포넌트들을 묶어놓은 컴포넌트
  */
 export default function WrapperCommonComponent({ Component, pageProps }: AppProps) {
-  const { isRenderLoadingOverlay } = useVisibleLayout();
+  const { isLogin, isRenderLoadingOverlay } = useVisibleLayout();
   const { isLoadingReissueToken } = useRegisterToken();
 
   const ComponentView = useMemo(() => {
@@ -16,8 +16,8 @@ export default function WrapperCommonComponent({ Component, pageProps }: AppProp
       return <LoadingOverlay />;
     }
 
-    return <Component {...pageProps} />;
-  }, [Component, isLoadingReissueToken, isRenderLoadingOverlay, pageProps]);
+    return <Component {...pageProps} isLogin={isLogin} />;
+  }, [Component, isLoadingReissueToken, isLogin, isRenderLoadingOverlay, pageProps]);
 
   return ComponentView;
 }

@@ -1,11 +1,15 @@
+import CommonTemplate from "@/components/common/templates/CommonTemplate";
 import OAuthLoginForm from "@/components/form/OAuthLoginForm";
 import useOAuthURLQuery from "@/hooks/queries/useOAuthURLQuery";
+import type { ICommonProps } from "@/types/common";
 import Head from "next/head";
 import { useState } from "react";
 
 export type TChangeOAuthType = (type: string) => void;
 
-export default function LoginPage() {
+type TLoginPage = ICommonProps;
+
+export default function LoginPage({ isLogin }: TLoginPage) {
   const [oAuthType, setOAuthType] = useState<string>("");
   useOAuthURLQuery(oAuthType, {
     enabled: !!oAuthType,
@@ -27,11 +31,11 @@ export default function LoginPage() {
       <Head>
         <title>life is plan</title>
       </Head>
-      <div className="hero h-screen">
+      <CommonTemplate isLogin={isLogin}>
         <div className="hero-content flex-col w-full">
           <OAuthLoginForm onClick={changeOAuthType} />
         </div>
-      </div>
+      </CommonTemplate>
     </>
   );
 }
