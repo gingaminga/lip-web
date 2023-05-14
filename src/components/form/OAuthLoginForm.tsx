@@ -1,3 +1,4 @@
+import Card from "@/components/common/atoms/Card";
 import LogoButton from "@/components/common/atoms/LogoButton";
 import type { TChangeOAuthType } from "@/pages/login";
 import { OAUTH_LOGIN_CONFIG } from "@/utils/config";
@@ -25,10 +26,10 @@ export default function OAuthLoginForm({ onClick }: IOAuthLoginForm) {
     });
 
   return (
-    <div className="card shadow-2xl max-w-full w-1/2">
+    <Card>
       <div className="card-body justify-center max-sm:flex-row max-xs:flex-col max-xs:items-center">
         {OAuthButtonView()}
       </div>
-    </div>
+    </Card>
   );
 }
