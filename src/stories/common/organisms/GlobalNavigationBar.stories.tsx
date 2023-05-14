@@ -1,10 +1,10 @@
-import NavigationBar from "@/components/common/organisms/NavigationBar";
+import GlobalNavigationBar from "@/components/common/organisms/GlobalNavigationBar";
 import MockProvider from "@/stories/MockProvider";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 export default {
-  title: "Organisms/NavigationBar",
-  component: NavigationBar,
+  title: "Organisms/GlobalNavigationBar",
+  component: GlobalNavigationBar,
   decorators: [(story) => <MockProvider>{story()}</MockProvider>],
   args: {
     isLogin: true,
@@ -14,8 +14,8 @@ export default {
       control: "boolean",
     },
   },
-} as ComponentMeta<typeof NavigationBar>;
+} as ComponentMeta<typeof GlobalNavigationBar>;
 
-const Template: ComponentStory<typeof NavigationBar> = (args) => <NavigationBar {...args} />;
+const Template: ComponentStory<typeof GlobalNavigationBar> = (args) => <GlobalNavigationBar {...args} />;
 
 export const Default = Template.bind({});

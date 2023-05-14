@@ -6,14 +6,14 @@ import Link from "next/link";
 import { useCallback, useMemo } from "react";
 import { HiMenuAlt2 } from "react-icons/hi";
 
-interface INavigationBar extends ICommonProps {
+interface IGlobalNavigationBar extends ICommonProps {
   projectName?: string;
 }
 
 /**
- * @description 네비게이션 바 컴포넌트
+ * @description 전역 네비게이션 바 컴포넌트
  */
-export default function NavigationBar({ isLogin, projectName = constants.PROJECT_NAME }: INavigationBar) {
+export default function GlobalNavigationBar({ isLogin, projectName = constants.PROJECT_NAME }: IGlobalNavigationBar) {
   const ProjectTitleView = useMemo(
     () => (
       <Link className="btn btn-ghost normal-case text-xl" href="/">
