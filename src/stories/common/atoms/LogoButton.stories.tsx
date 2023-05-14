@@ -1,12 +1,10 @@
 import LogoButton from "@/components/common/atoms/LogoButton";
-import MockProvider from "@/stories/MockProvider";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { OAUTH_LOGIN_CONFIG } from "@/utils/config";
 
 export default {
   title: "Atoms/Button/LogoButton",
   component: LogoButton,
-  decorators: [(story) => <MockProvider>{story()}</MockProvider>],
 } as ComponentMeta<typeof LogoButton>;
 
 const Template: ComponentStory<typeof LogoButton> = (args) => <LogoButton {...args} />;

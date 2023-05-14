@@ -9,10 +9,8 @@ interface IMainTemplate extends ICommonProps {
 export default function MainTemplate({ children, isLogin }: IMainTemplate) {
   return (
     <CommonTemplate isLogin={isLogin}>
-      <div className="hero h-[calc(100%-4rem)] w-full py-5 px-10 max-sm:p-0">
-        <div className="hero-content max-w-full shadow-xl h-full w-full bg-base-100 rounded-2xl bg-primary-200 max-sm:rounded-none">
-          {children}
-        </div>
+      <div className="hero-content max-w-full shadow-xl h-full w-full bg-base-200 rounded-2xl max-sm:rounded-none">
+        {children}
       </div>
     </CommonTemplate>
   );
