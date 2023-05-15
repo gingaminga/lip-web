@@ -26,7 +26,7 @@ export const OAUTH_LOGIN_CONFIG = [
 
 export const ROUTE_CONFIG = [
   {
-    route: "/",
+    route: "/todo",
     text: "투두 관리",
   },
   {

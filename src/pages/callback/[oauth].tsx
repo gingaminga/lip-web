@@ -38,7 +38,7 @@ export default function OAuthCallbackPage() {
     onSuccess: (userInfo) => {
       saveUserInfo(userInfo);
 
-      Router.push("/");
+      Router.push("/todo");
     },
   });
 

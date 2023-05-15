@@ -26,6 +26,15 @@ const nextConfig = {
 
     return config;
   },
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/todo",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;

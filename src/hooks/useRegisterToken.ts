@@ -16,7 +16,7 @@ export default function useRegisterToken() {
     onSuccess: (users) => {
       saveUserInfo(users);
 
-      const path = NOT_LOGIN_PATH_NAME.includes(pathname) ? "/" : pathname;
+      const path = NOT_LOGIN_PATH_NAME.includes(pathname) ? "/todo" : pathname;
       Router.push(path);
     },
   });
