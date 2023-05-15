@@ -2,15 +2,15 @@ import MainTemplate from "@/components/common/templates/MainTemplate";
 import type { ICommonProps } from "@/types/common";
 import Head from "next/head";
 
-type TTodoPage = ICommonProps;
+type TRoutinePage = ICommonProps;
 
-export default function TodoPage({ isLogin }: TTodoPage) {
+export default function RoutinePage({ isLogin }: TRoutinePage) {
   return (
     <>
       <Head>
         <title>life is plan</title>
       </Head>
-      <MainTemplate isLogin={isLogin}>todo</MainTemplate>
+      <MainTemplate isLogin={isLogin}>routine</MainTemplate>
     </>
   );
 }
