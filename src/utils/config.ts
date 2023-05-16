@@ -34,7 +34,7 @@ export const ROUTE_CONFIG = [
     text: "루틴 관리",
   },
   {
-    route: "/setting",
+    route: "/setting/me",
     text: "설정",
   },
   {
