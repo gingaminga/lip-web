@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
  * @description 토큰 발급받는 hook
  */
 export default function useRegisterToken() {
-  const { pathname } = useRouter();
+  const { pathname, query } = useRouter();
   const [token, setToken] = useState("");
   const { isLogin, saveUserInfo } = useUser();
   const { isLoading, mutate } = useReissueTokenMutation({
@@ -17,7 +17,10 @@ export default function useRegisterToken() {
       saveUserInfo(users);
 
       const path = NOT_LOGIN_PATH_NAME.includes(pathname) ? "/todo" : pathname;
-      Router.push(path);
+      Router.push({
+        pathname: path,
+        query,
+      });
     },
   });
 
