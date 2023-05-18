@@ -3,6 +3,7 @@ import useLoginMutation from "@/hooks/queries/useLoginMutation";
 import useUser from "@/hooks/useUser";
 import { checkOAuthType } from "@/types/guard";
 import { OAUTH_LOGIN_CONFIG } from "@/utils/config";
+import { getYYYYMMDD } from "@/utils/date";
 import Router from "next/router";
 import { useEffect, useState } from "react";
 
@@ -38,7 +39,10 @@ export default function OAuthCallbackPage() {
     onSuccess: (userInfo) => {
       saveUserInfo(userInfo);
 
-      Router.push("/todo");
+      Router.push({
+        pathname: "/todo",
+        query: getYYYYMMDD(""),
+      });
     },
   });
 

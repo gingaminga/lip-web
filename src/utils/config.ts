@@ -2,7 +2,7 @@ import GoogleLogo from "@/assets/images/google-logo.svg";
 import KakaoLogo from "@/assets/images/kakao-logo.svg";
 import NaverLogo from "@/assets/images/naver-logo.svg";
 import type { TOAuthType } from "@/types/oauth";
-import { getYYYYMMDD } from "@/utils";
+import { getYYYYMM, getYYYYMMDD } from "@/utils/date";
 import { BsCalendarHeart } from "react-icons/bs";
 import { IoPersonCircleOutline } from "react-icons/io5";
 import { MdEventRepeat, MdSettings } from "react-icons/md";
@@ -31,6 +31,9 @@ export const OAUTH_LOGIN_CONFIG = [
 
 export const ROUTE_CONFIG = [
   {
+    query: {
+      date: getYYYYMMDD(""),
+    },
     route: "/todo",
     text: "투두 관리",
   },
@@ -50,12 +53,15 @@ export const ROUTE_CONFIG = [
 export const LOCAL_TODO_ROUTE_CONFIG = [
   {
     route: "/todo",
+    query: {
+      date: getYYYYMM(""),
+    },
     IconComponent: RiTodoLine,
   },
   {
     route: "/todo",
     query: {
-      date: getYYYYMMDD(),
+      date: getYYYYMMDD(""),
     },
     IconComponent: BsCalendarHeart,
   },

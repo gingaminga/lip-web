@@ -31,7 +31,7 @@ export default function GlobalNavigationBar({ isLogin, projectName = constants.P
    */
   const MenuListView = (type = 0) =>
     ROUTE_CONFIG.map((config) => {
-      const { route, text } = config;
+      const { route, text, query } = config;
       let className = "normal-case text-md";
 
       className += type === 1 ? "" : "btn btn-ghost";
@@ -39,7 +39,13 @@ export default function GlobalNavigationBar({ isLogin, projectName = constants.P
       if (route) {
         return (
           <li key={`menu-item-${route}-${text}`}>
-            <Link className={`${className}`} href={route}>
+            <Link
+              className={`${className}`}
+              href={{
+                pathname: route,
+                query,
+              }}
+            >
               {text}
             </Link>
           </li>
