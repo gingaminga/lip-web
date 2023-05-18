@@ -59,7 +59,7 @@ export default function OAuthCallbackPage() {
       code,
       type: oAuthType,
     });
-  }, [mutate]);
+  }, []);
 
   useEffect(() => {
     const { code, type } = oAuthInfo;
