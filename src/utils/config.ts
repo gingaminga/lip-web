@@ -2,7 +2,7 @@ import GoogleLogo from "@/assets/images/google-logo.svg";
 import KakaoLogo from "@/assets/images/kakao-logo.svg";
 import NaverLogo from "@/assets/images/naver-logo.svg";
 import type { TOAuthType } from "@/types/oauth";
-import { getYYYYMM, getYYYYMMDD } from "@/utils/date";
+import { getYYYYMMDD } from "@/utils/date";
 import { BsCalendarHeart } from "react-icons/bs";
 import { IoPersonCircleOutline } from "react-icons/io5";
 import { MdEventRepeat, MdSettings } from "react-icons/md";
@@ -53,9 +53,6 @@ export const ROUTE_CONFIG = [
 export const LOCAL_TODO_ROUTE_CONFIG = [
   {
     route: "/todo",
-    query: {
-      date: getYYYYMM(""),
-    },
     IconComponent: RiTodoLine,
   },
   {
