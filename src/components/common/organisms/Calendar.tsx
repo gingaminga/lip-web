@@ -2,11 +2,15 @@ import CalendarDayOfTheWeek from "@/components/common/molecules/CalendarDayOfThe
 import CalendarOfMonth from "@/components/common/molecules/CalendarOfMonth";
 import { getDays } from "@/utils/date";
 
+interface ICalendar {
+  date?: Date;
+}
+
 /**
  * @description 달력 컴포넌트
  */
-export default function Calendar() {
-  const days = getDays();
+export default function Calendar({ date }: ICalendar) {
+  const days = getDays(date);
 
   return (
     <table className="table w-full h-full">

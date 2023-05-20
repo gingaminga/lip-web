@@ -1,4 +1,5 @@
 import MainTemplate from "@/components/common/templates/MainTemplate";
+import CalendarView from "@/components/todo/CalendarView";
 import type { ICommonProps } from "@/types/common";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -13,7 +14,7 @@ export default function TodoPage({ isLogin }: TTodoPage) {
     const { date } = query;
 
     if (!date) {
-      return <div>달력</div>;
+      return <CalendarView />;
     }
 
     return <div>할일</div>;
