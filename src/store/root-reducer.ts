@@ -1,4 +1,5 @@
 import themeReducer from "@/store/theme/reducer";
+import todoReducer from "@/store/todo/reducer";
 import userReducer from "@/store/user/reducer";
 import { combineReducers } from "@reduxjs/toolkit";
 
@@ -7,5 +8,6 @@ import { combineReducers } from "@reduxjs/toolkit";
  */
 export const rootReducer = combineReducers({
   theme: themeReducer,
+  todo: todoReducer,
   user: userReducer,
 });

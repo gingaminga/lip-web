@@ -1,12 +1,12 @@
 import CalendarMoveDate from "@/components/common/molecules/CalendarMoveDate";
 import Calendar from "@/components/common/organisms/Calendar";
-import useDate from "@/hooks/useDate";
+import useToDo from "@/hooks/useToDo";
 import { checkIsCurrentMonth } from "@/utils/date";
 
 export default function CalendarView() {
-  const { changeNextDate, changePrevDate, changeToday, date } = useDate();
+  const { calendarDate, changeNextMonth, changePrevMonth, changeToday } = useToDo();
 
-  const isCurrentMonth = checkIsCurrentMonth(date);
+  const isCurrentMonth = checkIsCurrentMonth(calendarDate);
 
   return (
     <div className="w-full h-full">
@@ -16,10 +16,10 @@ export default function CalendarView() {
             오늘..
           </button>
         )}
-        <CalendarMoveDate changeNextDate={changeNextDate} changePrevDate={changePrevDate} date={date} />
+        <CalendarMoveDate changeNextMonth={changeNextMonth} changePrevMonth={changePrevMonth} date={calendarDate} />
       </div>
       <div className="h-[calc(100%-2.5rem)] flex items-center justify-center">
-        <Calendar date={date} />
+        <Calendar date={calendarDate} />
       </div>
     </div>
   );
