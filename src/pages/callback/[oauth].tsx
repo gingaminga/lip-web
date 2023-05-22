@@ -41,7 +41,9 @@ export default function OAuthCallbackPage() {
 
       Router.push({
         pathname: "/todo",
-        query: getYYYYMMDD(""),
+        query: {
+          date: getYYYYMMDD(""),
+        },
       });
     },
   });

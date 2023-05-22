@@ -53,13 +53,13 @@ export const ROUTE_CONFIG = [
 export const LOCAL_TODO_ROUTE_CONFIG = [
   {
     route: "/todo",
+    query: {
+      date: getYYYYMMDD(""),
+    },
     IconComponent: RiTodoLine,
   },
   {
     route: "/todo",
-    query: {
-      date: getYYYYMMDD(""),
-    },
     IconComponent: BsCalendarHeart,
   },
 ];
