@@ -14,7 +14,7 @@ export default function MainTemplate({ children, isLogin }: IMainTemplate) {
         <div className="hero-content basis-5 w-full h-full rounded-l-[inherit] bg-base-300">
           <LocalNavigationBar />
         </div>
-        <div className="hero-content w-full h-full max-w-full">{children}</div>
+        <main className="hero-content w-full h-full max-w-full">{children}</main>
       </div>
     </CommonTemplate>
   );
