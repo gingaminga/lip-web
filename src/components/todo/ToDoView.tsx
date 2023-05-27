@@ -1,3 +1,4 @@
+import ToDoAdd from "@/components/common/molecules/ToDoAdd";
 import ToDoHeader from "@/components/common/molecules/ToDoHeader";
 import ToDoList from "@/components/common/molecules/ToDoList";
 import { useState } from "react";
@@ -41,7 +42,10 @@ export default function ToDoView({ date }: IToDoView) {
         <div className="h-28">
           <ToDoHeader date={date} successCount={successToDoCount} totalCount={totalToDoCount} />
         </div>
-        <div className="h-[calc(100%-7rem)] overflow-auto">
+        <div className="h-14 max-sm:h-10">
+          <ToDoAdd />
+        </div>
+        <div className="h-[calc(100%-7rem-3.5rem)] max-sm:h-[calc(100%-7rem-2.5rem)] overflow-auto">
           <ToDoList toggleToDoItemEvent={toggleToDoItemEvent} todos={todos} />
         </div>
       </div>
