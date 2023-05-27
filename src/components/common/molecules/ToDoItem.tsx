@@ -1,3 +1,5 @@
+import { BsTrash } from "react-icons/bs";
+
 interface IToDoItem {
   content: string; // 내용
   id: number;
@@ -13,7 +15,7 @@ export default function ToDoItem({ content, id, isChecked, onChange }: IToDoItem
   const contentClassName = `label-text ml-6${isChecked ? " line-through text-neutral-400" : ""}`;
 
   return (
-    <div className="form-control">
+    <div className="flex items-center justify-between">
       <label className="label cursor-pointer justify-start" htmlFor={`checkbox-todo-${id}`}>
         <input
           checked={isChecked}
@@ -24,6 +26,9 @@ export default function ToDoItem({ content, id, isChecked, onChange }: IToDoItem
         />
         <span className={contentClassName}>{content}</span>
       </label>
+      <button className="btn btn-ghost btn-circle btn-sm mr-3" type="button">
+        <BsTrash className="h-4 w-4 text-neutral-400" />
+      </button>
     </div>
   );
 }
