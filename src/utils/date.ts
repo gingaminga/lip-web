@@ -50,7 +50,8 @@ export const DAY_OF_THE_WEEK = [
  * @param date 날짜 객체
  * @returns YYYYMMDD string
  */
-export const getYYYYMMDD = (delim = "-", date = new Date()) => dayjs(date).format(`YYYY${delim}MM${delim}DD`);
+export const getYYYYMMDD = (delim = "-", date: string | Date = new Date()) =>
+  dayjs(date).format(`YYYY${delim}MM${delim}DD`);
 
 /**
  * @description 년월 정보 가져오기
@@ -58,7 +59,26 @@ export const getYYYYMMDD = (delim = "-", date = new Date()) => dayjs(date).forma
  * @param date 날짜 객체
  * @returns YYYYMM string
  */
-export const getYYYYMM = (delim = "-", date = new Date()) => dayjs(date).format(`YYYY${delim}MM`);
+export const getYYYYMM = (delim = "-", date: string | Date = new Date()) => dayjs(date).format(`YYYY${delim}MM`);
+
+/**
+ * @description 요일 정보 가져오기
+ * @param date 날짜 객체
+ * @returns 0 ~ 6 (일~토)
+ */
+export const getDay = (date = new Date()) => dayjs(date).get("day");
+
+/**
+ * @description 요일 문자열 가져오기
+ * @param date 날짜 객체
+ * @returns SUN ~ SAT
+ */
+export const getDayString = (date = new Date()) => {
+  const dayNum = getDay(date);
+  const [days] = DAY_OF_THE_WEEK.filter((day) => day.id === dayNum + 1);
+
+  return days.text;
+};
 
 /**
  * @description 해당 달에 해당하는 날짜 리스트 가져오기

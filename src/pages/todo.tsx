@@ -1,6 +1,8 @@
 import MainTemplate from "@/components/common/templates/MainTemplate";
 import CalendarView from "@/components/todo/CalendarView";
+import ToDoView from "@/components/todo/ToDoView";
 import type { ICommonProps } from "@/types/common";
+import { getYYYYMMDD } from "@/utils/date";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useCallback } from "react";
@@ -17,7 +19,19 @@ export default function TodoPage({ isLogin }: TTodoPage) {
       return <CalendarView />;
     }
 
-    return <div>할일</div>;
+    let yyyymmdd = "";
+
+    if (typeof date === "object") {
+      // 마지막 요소를 기준으로 처리함
+      yyyymmdd = date[date.length - 1];
+    } else {
+      yyyymmdd = date;
+    }
+
+    yyyymmdd = getYYYYMMDD("-", yyyymmdd);
+    const newDate = new Date(yyyymmdd);
+
+    return <ToDoView date={newDate} />;
   }, [query]);
 
   return (
