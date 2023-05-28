@@ -1,6 +1,7 @@
 import ToDoAdd from "@/components/common/molecules/ToDoAdd";
 import ToDoHeader from "@/components/common/molecules/ToDoHeader";
 import ToDoList from "@/components/common/molecules/ToDoList";
+import ArticleTemplate from "@/components/common/templates/ArticleTemplate";
 import { useState } from "react";
 
 interface IToDoView {
@@ -37,18 +38,16 @@ export default function ToDoView({ date }: IToDoView) {
   };
 
   return (
-    <article className="w-full h-full flex justify-center relative">
-      <div className="w-full max-w-3xl h-full absolute">
-        <div className="h-28">
-          <ToDoHeader date={date} successCount={successToDoCount} totalCount={totalToDoCount} />
-        </div>
-        <div className="h-14 max-sm:h-10">
-          <ToDoAdd />
-        </div>
-        <div className="h-[calc(100%-7rem-3.5rem)] max-sm:h-[calc(100%-7rem-2.5rem)] overflow-auto">
-          <ToDoList toggleToDoItemEvent={toggleToDoItemEvent} todos={todos} />
-        </div>
+    <ArticleTemplate>
+      <div className="h-28">
+        <ToDoHeader date={date} successCount={successToDoCount} totalCount={totalToDoCount} />
       </div>
-    </article>
+      <div className="h-14 max-sm:h-10">
+        <ToDoAdd />
+      </div>
+      <div className="h-[calc(100%-7rem-3.5rem)] max-sm:h-[calc(100%-7rem-2.5rem)] overflow-auto">
+        <ToDoList toggleToDoItemEvent={toggleToDoItemEvent} todos={todos} />
+      </div>
+    </ArticleTemplate>
   );
 }
