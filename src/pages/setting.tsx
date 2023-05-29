@@ -1,4 +1,5 @@
 import MainTemplate from "@/components/common/templates/MainTemplate";
+import SettingView from "@/components/setting/SettingView";
 import type { ICommonProps } from "@/types/common";
 import Head from "next/head";
 
@@ -10,7 +11,9 @@ export default function SettingPage({ isLogin }: TSettingPage) {
       <Head>
         <title>life is plan</title>
       </Head>
-      <MainTemplate isLogin={isLogin}>setting</MainTemplate>
+      <MainTemplate isLogin={isLogin}>
+        <SettingView />
+      </MainTemplate>
     </>
   );
 }
