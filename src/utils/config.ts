@@ -4,7 +4,6 @@ import NaverLogo from "@/assets/images/naver-logo.svg";
 import type { TOAuthType } from "@/types/oauth";
 import { getYYYYMMDD } from "@/utils/date";
 import { BsCalendarHeart } from "react-icons/bs";
-import { IoPersonCircleOutline } from "react-icons/io5";
 import { MdEventRepeat, MdSettings } from "react-icons/md";
 import { RiTodoLine } from "react-icons/ri";
 
@@ -42,7 +41,7 @@ export const ROUTE_CONFIG = [
     text: "루틴 관리",
   },
   {
-    route: "/setting/me",
+    route: "/setting",
     text: "설정",
   },
   {
@@ -73,11 +72,7 @@ export const LOCAL_ROUTINE_ROUTE_CONFIG = [
 
 export const LOCAL_SETTING_ROUTE_CONFIG = [
   {
-    route: "/setting/me",
-    IconComponent: IoPersonCircleOutline,
-  },
-  {
-    route: "/setting/system",
+    route: "/setting",
     IconComponent: MdSettings,
   },
 ];

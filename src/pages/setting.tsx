@@ -2,15 +2,15 @@ import MainTemplate from "@/components/common/templates/MainTemplate";
 import type { ICommonProps } from "@/types/common";
 import Head from "next/head";
 
-type TSettingSystemPage = ICommonProps;
+type TSettingPage = ICommonProps;
 
-export default function SettingSystemPage({ isLogin }: TSettingSystemPage) {
+export default function SettingPage({ isLogin }: TSettingPage) {
   return (
     <>
       <Head>
         <title>life is plan</title>
       </Head>
-      <MainTemplate isLogin={isLogin}>setting system</MainTemplate>
+      <MainTemplate isLogin={isLogin}>setting</MainTemplate>
     </>
   );
 }
