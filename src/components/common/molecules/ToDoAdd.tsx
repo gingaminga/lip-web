@@ -3,15 +3,13 @@
  */
 export default function ToDoAdd() {
   return (
-    <div className="w-full h-full flex">
-      <input
-        className="input input-bordered border-2 w-full mr-1 max-sm:input-sm"
-        placeholder="오늘 할 일은?"
-        type="text"
-      />
-      <button className="btn btn-ghost" type="button">
-        추가
-      </button>
+    <div className="form-control">
+      <div className="input-group">
+        <input className="input input-bordered w-full max-sm:input-sm" placeholder="오늘 할 일은?" type="text" />
+        <button className="btn max-sm:btn-sm" type="button">
+          추가
+        </button>
+      </div>
     </div>
   );
 }
