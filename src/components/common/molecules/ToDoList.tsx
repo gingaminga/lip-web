@@ -1,12 +1,8 @@
-import ToDoItem from "./ToDoItem";
-
-interface IToDos {
-  checked: boolean;
-  content: string;
-  id: number;
-}
+import ToDoItem from "@/components/common/molecules/ToDoItem";
+import { IToDos } from "@/types/todo";
 
 interface IToDoList {
+  removeToDoItemEvent: (item: IToDos) => void;
   todos: IToDos[];
   toggleToDoItemEvent: (id: number) => void;
 }
@@ -14,7 +10,7 @@ interface IToDoList {
 /**
  * @description 할 일 리스트 컴포넌트
  */
-export default function ToDoList({ todos, toggleToDoItemEvent }: IToDoList) {
+export default function ToDoList({ removeToDoItemEvent, todos, toggleToDoItemEvent }: IToDoList) {
   return (
     <div className="w-full h-full">
       {todos.map((todo) => {
@@ -24,6 +20,10 @@ export default function ToDoList({ todos, toggleToDoItemEvent }: IToDoList) {
           toggleToDoItemEvent(id);
         };
 
+        const removeItem = () => {
+          removeToDoItemEvent(todo);
+        };
+
         return (
           <ToDoItem
             content={content}
@@ -31,6 +31,7 @@ export default function ToDoList({ todos, toggleToDoItemEvent }: IToDoList) {
             isChecked={checked}
             key={`todo-item-${id}-${checked}-${content}`}
             onChange={onChange}
+            removeItem={removeItem}
           />
         );
       })}

@@ -5,12 +5,13 @@ interface IToDoItem {
   id: number;
   isChecked: boolean; // 체크 유무
   onChange: () => void;
+  removeItem: () => void; // 투두 삭제하기
 }
 
 /**
  * @description 할 일 아이템 컴포넌트
  */
-export default function ToDoItem({ content, id, isChecked, onChange }: IToDoItem) {
+export default function ToDoItem({ content, id, isChecked, onChange, removeItem }: IToDoItem) {
   const checkboxClassName = `checkbox ${isChecked ? " checkbox-success checked:bg-none" : ""}`;
   const contentClassName = `label-text ml-6${isChecked ? " line-through text-neutral-400" : ""}`;
 
@@ -26,7 +27,7 @@ export default function ToDoItem({ content, id, isChecked, onChange }: IToDoItem
         />
         <span className={contentClassName}>{content}</span>
       </label>
-      <button className="btn btn-ghost btn-circle btn-sm mr-3" type="button">
+      <button className="btn btn-ghost btn-circle btn-sm mr-3" onClick={removeItem} type="button">
         <BsTrash className="h-4 w-4 text-neutral-400" />
       </button>
     </div>

@@ -76,3 +76,16 @@ export const LOCAL_SETTING_ROUTE_CONFIG = [
     IconComponent: MdSettings,
   },
 ];
+
+export const REMOVE_CONTENT_CONFIG = [
+  {
+    className: "btn max-sm:btn-sm",
+    text: "할 일 전부 비우기",
+    type: "remove-all-todo",
+  },
+  {
+    className: "btn max-sm:btn-sm",
+    text: "루틴 전부 비우기",
+    type: "remove-all-routine",
+  },
+];
