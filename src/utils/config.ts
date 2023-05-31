@@ -4,6 +4,7 @@ import NaverLogo from "@/assets/images/naver-logo.svg";
 import type { TOAuthType } from "@/types/oauth";
 import { getYYYYMMDD } from "@/utils/date";
 import { BsCalendarHeart } from "react-icons/bs";
+import { IoMdAddCircleOutline } from "react-icons/io";
 import { MdEventRepeat, MdSettings } from "react-icons/md";
 import { RiTodoLine } from "react-icons/ri";
 
@@ -67,6 +68,10 @@ export const LOCAL_ROUTINE_ROUTE_CONFIG = [
   {
     route: "/routine",
     IconComponent: MdEventRepeat,
+  },
+  {
+    route: "/routine/add",
+    IconComponent: IoMdAddCircleOutline,
   },
 ];
 
