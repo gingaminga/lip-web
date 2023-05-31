@@ -10,7 +10,7 @@ export default function LocalNavigationBar() {
   const { pathname } = useRouter();
 
   const MenuListView = useCallback(() => {
-    if (pathname === "/todo") {
+    if (pathname.startsWith("/todo")) {
       return LOCAL_TODO_ROUTE_CONFIG.map((config) => {
         const { IconComponent, route, query } = config;
 
@@ -30,7 +30,7 @@ export default function LocalNavigationBar() {
       });
     }
 
-    if (pathname === "/routine") {
+    if (pathname.startsWith("/routine")) {
       return LOCAL_ROUTINE_ROUTE_CONFIG.map((config) => {
         const { IconComponent, route } = config;
 
@@ -49,7 +49,7 @@ export default function LocalNavigationBar() {
       });
     }
 
-    if (pathname.includes("/setting")) {
+    if (pathname.startsWith("/setting")) {
       return LOCAL_SETTING_ROUTE_CONFIG.map((config) => {
         const { IconComponent, route } = config;
 
