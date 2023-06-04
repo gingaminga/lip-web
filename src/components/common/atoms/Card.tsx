@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 
 interface ICardStyle {
+  height?: string;
   maxWidth?: string;
   shadow?: string;
   width?: string;
@@ -12,7 +13,9 @@ interface ICard {
 }
 
 export default function Card({ children, styles }: ICard) {
-  const { maxWidth = "max-w-full", shadow = "shadow-2xl", width = "w-1/2" } = styles || {};
+  const { height, maxWidth = "max-w-full", shadow = "shadow-2xl", width = "w-1/2" } = styles || {};
 
-  return <div className={`card ${shadow} ${maxWidth} ${width}`}>{children}</div>;
+  const className = `card card-compact ${shadow} ${maxWidth} ${width}${height ? ` ${height}` : ""}`;
+
+  return <div className={className}>{children}</div>;
 }
