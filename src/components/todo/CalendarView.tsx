@@ -1,5 +1,6 @@
 import CalendarMoveDate from "@/components/common/molecules/CalendarMoveDate";
 import Calendar from "@/components/common/organisms/Calendar";
+import ArticleTemplate from "@/components/common/templates/ArticleTemplate";
 import useToDo from "@/hooks/useToDo";
 import { checkIsCurrentMonth } from "@/utils/date";
 
@@ -9,7 +10,11 @@ export default function CalendarView() {
   const isCurrentMonth = checkIsCurrentMonth(calendarDate);
 
   return (
-    <div className="w-full h-full">
+    <ArticleTemplate
+      contentStyles={{
+        maxWidth: "max-w-full",
+      }}
+    >
       <div className="h-10 flex items-center justify-end">
         {!isCurrentMonth && (
           <button className="btn btn-ghost btn-sm" onClick={changeToday} type="button">
@@ -21,6 +26,6 @@ export default function CalendarView() {
       <div className="h-[calc(100%-2.5rem)] flex items-center justify-center">
         <Calendar date={calendarDate} />
       </div>
-    </div>
+    </ArticleTemplate>
   );
 }
