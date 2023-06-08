@@ -1,28 +1,19 @@
 import ArticleTemplate from "@/components/common/templates/ArticleTemplate";
-import RoutineCard, { TBackgroundColor } from "@/components/routine/RoutineCard";
-
-const backgroundColor: TBackgroundColor[] = [
-  "slate",
-  "rose",
-  "stone",
-  "orange",
-  "amber",
-  "lime",
-  "emerald",
-  "sky",
-  "indigo",
-  "violet",
-  "purple",
-];
+import RoutineCard from "@/components/routine/RoutineCard";
+import { ROUTINE_THEME_COLOR } from "@/utils/color";
 
 /**
- * @deprecated 샘플 할일 배열
+ * @deprecated 샘플 루틴 배열
  */
-const TEMP_ROUTINES = [...Array(30)].map((value, index) => ({
-  themeColor: backgroundColor[Math.floor(Math.random() * 1000) % backgroundColor.length],
-  id: index + 1,
-  title: "Temp title",
-}));
+const TEMP_ROUTINES = [...Array(30)].map((value, index) => {
+  const randomIndex = Math.floor(Math.random() * 1000) % ROUTINE_THEME_COLOR.length;
+
+  return {
+    id: index + 1,
+    themeColor: ROUTINE_THEME_COLOR[randomIndex].backgroundColor,
+    title: "Temp title",
+  };
+});
 
 export default function RoutineView() {
   return (
@@ -40,7 +31,7 @@ export default function RoutineView() {
               path={`routine/${id}`}
               key={`routine-card-${id}-${title}`}
               styles={{
-                backgroundColor: themeColor,
+                themeColor,
               }}
               title={title}
             />
