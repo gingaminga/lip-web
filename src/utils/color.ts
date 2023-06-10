@@ -4,12 +4,12 @@ export const ROUTINE_THEME_COLOR = [
     checkedBackgroundColor: "checked:bg-slate-300",
   },
   {
-    backgroundColor: "bg-rose-300",
-    checkedBackgroundColor: "checked:bg-rose-300",
-  },
-  {
     backgroundColor: "bg-stone-300",
     checkedBackgroundColor: "checked:bg-stone-300",
+  },
+  {
+    backgroundColor: "bg-rose-300",
+    checkedBackgroundColor: "checked:bg-rose-300",
   },
   {
     backgroundColor: "bg-orange-300",
