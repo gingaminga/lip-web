@@ -2,7 +2,9 @@ import { ChangeEvent, useState } from "react";
 import ColorRadioButtonGroup from "@/components/common/molecules/ColorRadioButtonGroup";
 import DayOfWeekToggleButtonGroup from "@/components/common/molecules/DayOfWeekToggleButtonGroup";
 import SubTitle from "@/components/common/molecules/SubTitle";
+import TimePicker from "@/components/common/organisms/TimePicker";
 import useDayOfWeek from "@/hooks/useDayOfWeek";
+import useTimePicker from "@/hooks/useTimePicker";
 
 /**
  * @description 상세 루틴 form 컴포넌트
@@ -11,6 +13,7 @@ export default function DetailRoutineForm() {
   const [content, setContent] = useState("");
   const [color, setColor] = useState<string>("");
   const { daysOfWeek, toggleDayOfWeek } = useDayOfWeek();
+  const { changeHours, changeMinutes, hours, minutes } = useTimePicker();
 
   /**
    * @description 닉네임 입력하기
@@ -65,6 +68,13 @@ export default function DetailRoutineForm() {
           titleStyles={{
             size: ["text-lg", "max-sm:text-sm"],
           }}
+        />
+        <TimePicker
+          changeHours={changeHours}
+          changeMinutes={changeMinutes}
+          hours={hours}
+          isUseSeconds={false}
+          minutes={minutes}
         />
       </section>
       <section className="mb-5">
