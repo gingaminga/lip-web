@@ -1,4 +1,5 @@
 import MainTemplate from "@/components/common/templates/MainTemplate";
+import DetailRoutineView from "@/components/routine/DetailRoutineView";
 import type { ICommonProps } from "@/types/common";
 import Head from "next/head";
 
@@ -10,7 +11,9 @@ export default function RoutinePage({ isLogin }: TRoutinePage) {
       <Head>
         <title>life is plan</title>
       </Head>
-      <MainTemplate isLogin={isLogin}>add routine</MainTemplate>
+      <MainTemplate isLogin={isLogin}>
+        <DetailRoutineView />
+      </MainTemplate>
     </>
   );
 }
