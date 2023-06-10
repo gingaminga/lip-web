@@ -17,7 +17,7 @@ export default function DayOfWeekToggleButtonGroup({ daysOfWeek, toggleEvent }: 
         const lowerDay = text.toLowerCase() as TDaysOfWeek;
 
         const isClicked = daysOfWeek[lowerDay];
-        const className = `btn btn-md${isClicked ? " btn-accent" : " btn-outline"}`;
+        const className = `btn btn-md${isClicked ? " btn-accent text-white" : " btn-outline"}`;
 
         const onClick = () => {
           toggleEvent(lowerDay);
