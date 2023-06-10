@@ -60,7 +60,7 @@ export default function TimePicker({
   );
 
   return (
-    <div className="flex gap-5">
+    <div className="flex justify-center gap-3">
       {isUseHours && <ScrollablePicker data={HOURS} getNewContent={getNewHours} />}
       {isUseMinutes && <ScrollablePicker data={MINUTES} getNewContent={getNewMinutes} />}
       {isUseSeconds && <ScrollablePicker data={SECONDS} getNewContent={getNewSeconds} />}
