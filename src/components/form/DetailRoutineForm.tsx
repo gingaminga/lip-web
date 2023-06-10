@@ -89,6 +89,15 @@ export default function DetailRoutineForm() {
         />
         <ColorRadioButtonGroup changeEvent={changeColor} currentColor={color} />
       </section>
+      <div className="divider" />
+      <div className="flex justify-end gap-3">
+        <button className="btn max-sm:btn-sm" type="button">
+          확인
+        </button>
+        <button className="btn max-sm:btn-sm" type="button">
+          취소
+        </button>
+      </div>
     </div>
   );
 }
