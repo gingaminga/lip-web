@@ -37,7 +37,7 @@ export default function DetailRoutineForm() {
     <div className="w-full h-full">
       <section className="mb-5">
         <SubTitle
-          title="루틴 내용"
+          title="루틴 이름"
           titleStyles={{
             size: ["text-lg", "max-sm:text-sm"],
           }}
@@ -55,6 +55,7 @@ export default function DetailRoutineForm() {
       </section>
       <section className="mb-5">
         <SubTitle
+          description="무슨 요일에 알려줄까요?"
           title="요일"
           titleStyles={{
             size: ["text-lg", "max-sm:text-sm"],
@@ -64,6 +65,7 @@ export default function DetailRoutineForm() {
       </section>
       <section className="mb-5">
         <SubTitle
+          description="몇 시에 알려줄까요?"
           title="알람"
           titleStyles={{
             size: ["text-lg", "max-sm:text-sm"],
@@ -79,7 +81,7 @@ export default function DetailRoutineForm() {
       </section>
       <section className="mb-5">
         <SubTitle
-          description="색을 선택해 루틴을 기억해요. :)"
+          description="루틴을 기억해요. :)"
           title="색상"
           titleStyles={{
             size: ["text-lg", "max-sm:text-sm"],
