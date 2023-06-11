@@ -7,10 +7,10 @@ export const LIP_URL = {
       REISSUE_TOKEN: "/api/auth/token",
     },
     OAUTH: {
-      GET_URL: "/api/oauth/url",
+      GET_URL: "/api/auth/url",
     },
     USER: {
-      LOGIN: "/api/user/login",
+      LOGIN: "/api/user/in",
     },
   },
 };
