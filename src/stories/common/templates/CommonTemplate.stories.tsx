@@ -3,17 +3,13 @@ import MockProvider from "@/stories/MockProvider";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 export default {
-  title: "Templates/CommonTemplate",
-  component: CommonTemplate,
-  decorators: [(story) => <MockProvider>{story()}</MockProvider>],
   args: {
+    children: <div>Content</div>,
     isLogin: true,
   },
-  argTypes: {
-    isLogin: {
-      control: "boolean",
-    },
-  },
+  component: CommonTemplate,
+  decorators: [(story) => <MockProvider>{story()}</MockProvider>],
+  title: "common/templates/CommonTemplate",
 } as ComponentMeta<typeof CommonTemplate>;
 
 const Template: ComponentStory<typeof CommonTemplate> = (args) => <CommonTemplate {...args} />;

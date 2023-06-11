@@ -1,5 +1,5 @@
 import ScrollablePicker from "@/components/common/molecules/ScrollablePicker";
-import _ from "lodash";
+import { HOURS, MINUTES, SECONDS } from "@/utils/date";
 import { useCallback } from "react";
 
 interface ITimePicker {
@@ -13,10 +13,6 @@ interface ITimePicker {
   minutes?: number;
   seconds?: number;
 }
-
-const HOURS = [...Array(24)].map((value, index) => _.padStart(String(index), 2, "0"));
-const MINUTES = [...Array(60)].map((value, index) => _.padStart(String(index), 2, "0"));
-const SECONDS = [...Array(60)].map((value, index) => _.padStart(String(index), 2, "0"));
 
 /**
  * @description 시간 선택 컴포넌트
@@ -60,7 +56,7 @@ export default function TimePicker({
   );
 
   return (
-    <div className="flex justify-center gap-3">
+    <div className="flex gap-3">
       {isUseHours && <ScrollablePicker data={HOURS} getNewContent={getNewHours} />}
       {isUseMinutes && <ScrollablePicker data={MINUTES} getNewContent={getNewMinutes} />}
       {isUseSeconds && <ScrollablePicker data={SECONDS} getNewContent={getNewSeconds} />}

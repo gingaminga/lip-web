@@ -11,7 +11,7 @@ interface IDayOfWeekToggleButtonGroup {
  */
 export default function DayOfWeekToggleButtonGroup({ daysOfWeek, toggleEvent }: IDayOfWeekToggleButtonGroup) {
   return (
-    <div className="flex flex-wrap justify-center w-full gap-5">
+    <div className="flex flex-wrap gap-5">
       {DAY_OF_THE_WEEK.map((days) => {
         const { id, text } = days;
         const lowerDay = text.toLowerCase() as TDaysOfWeek;

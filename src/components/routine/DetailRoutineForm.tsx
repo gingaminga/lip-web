@@ -61,7 +61,9 @@ export default function DetailRoutineForm() {
             size: ["text-lg", "max-sm:text-sm"],
           }}
         />
-        <DayOfWeekToggleButtonGroup daysOfWeek={daysOfWeek} toggleEvent={toggleDayOfWeek} />
+        <div className="w-full flex justify-center">
+          <DayOfWeekToggleButtonGroup daysOfWeek={daysOfWeek} toggleEvent={toggleDayOfWeek} />
+        </div>
       </section>
       <section className="mb-5">
         <SubTitle
@@ -71,13 +73,15 @@ export default function DetailRoutineForm() {
             size: ["text-lg", "max-sm:text-sm"],
           }}
         />
-        <TimePicker
-          changeHours={changeHours}
-          changeMinutes={changeMinutes}
-          hours={hours}
-          isUseSeconds={false}
-          minutes={minutes}
-        />
+        <div className="w-full flex justify-center">
+          <TimePicker
+            changeHours={changeHours}
+            changeMinutes={changeMinutes}
+            hours={hours}
+            isUseSeconds={false}
+            minutes={minutes}
+          />
+        </div>
       </section>
       <section className="mb-5">
         <SubTitle
@@ -87,7 +91,9 @@ export default function DetailRoutineForm() {
             size: ["text-lg", "max-sm:text-sm"],
           }}
         />
-        <ColorRadioButtonGroup changeEvent={changeColor} currentColor={color} />
+        <div className="w-full flex justify-center">
+          <ColorRadioButtonGroup changeEvent={changeColor} currentColor={color} />
+        </div>
       </section>
       <div className="divider" />
       <div className="flex justify-end gap-3">

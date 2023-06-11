@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import _ from "lodash";
 
 export interface IDateOption {
   date: number; // 일
@@ -7,6 +8,21 @@ export interface IDateOption {
   month: number;
   year: number;
 }
+
+/**
+ * @description 시간 리스트
+ */
+export const HOURS = [...Array(24)].map((value, index) => _.padStart(String(index), 2, "0"));
+
+/**
+ * @description 분 리스트
+ */
+export const MINUTES = [...Array(60)].map((value, index) => _.padStart(String(index), 2, "0"));
+
+/**
+ * @description 초 리스트
+ */
+export const SECONDS = [...Array(60)].map((value, index) => _.padStart(String(index), 2, "0"));
 
 /**
  * @description 한 주의 요일 정보

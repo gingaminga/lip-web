@@ -23,7 +23,7 @@ export default function ScrollablePicker({ data, getNewContent, styles }: IScrol
   const scrollRef = useRef<HTMLDivElement>(null);
   const timeoutRef = useRef<number>(0); // 부모로 업데이트되는 처리를 위한 ref
 
-  const wrapperClassName = `overflow-auto scrollbar-hide ${height} ${width}`;
+  const wrapperClassName = `w-full overflow-auto scrollbar-hide ${height}`;
 
   /**
    * @description data list 부분 스크롤 이벤트
@@ -107,7 +107,7 @@ export default function ScrollablePicker({ data, getNewContent, styles }: IScrol
   }, [data, focusIndex, getNewContent]);
 
   return (
-    <div className="flex flex-col max-sm:flex-row">
+    <div className={`${width} flex flex-col max-sm:flex-row`}>
       <div className="self-center">
         <button className="btn btn-ghost btn-circle btn-sm" onClick={moveUpOneBlock} type="button">
           <MdArrowDropUp className="h-5 w-5" />

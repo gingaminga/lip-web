@@ -1,18 +1,13 @@
-import LogoButton from "@/components/common/atoms/LogoButton";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import LogoButton from "@/components/common/atoms/buttons/LogoButton";
 import { OAUTH_LOGIN_CONFIG } from "@/utils/config";
+import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 export default {
-  title: "Atoms/Button/LogoButton",
   component: LogoButton,
+  title: "common/atoms/buttons/LogoButton",
 } as ComponentMeta<typeof LogoButton>;
 
 const Template: ComponentStory<typeof LogoButton> = (args) => <LogoButton {...args} />;
-
-export const Default = Template.bind({});
-Default.args = {
-  value: "Logo Button Text",
-};
 
 const [KAKAO_CONFIG, NAVER_CONFIG, GOOGLE_CONFIG] = OAUTH_LOGIN_CONFIG;
 

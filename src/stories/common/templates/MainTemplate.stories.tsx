@@ -1,19 +1,13 @@
 import MainTemplate from "@/components/common/templates/MainTemplate";
-import MockProvider from "@/stories/MockProvider";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 export default {
-  title: "Templates/MainTemplate",
-  component: MainTemplate,
-  decorators: [(story) => <MockProvider>{story()}</MockProvider>],
   args: {
+    children: <div>Content</div>,
     isLogin: true,
   },
-  argTypes: {
-    isLogin: {
-      control: "boolean",
-    },
-  },
+  component: MainTemplate,
+  title: "common/templates/MainTemplate",
 } as ComponentMeta<typeof MainTemplate>;
 
 const Template: ComponentStory<typeof MainTemplate> = (args) => <MainTemplate {...args} />;

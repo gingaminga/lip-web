@@ -3,17 +3,13 @@ import MockProvider from "@/stories/MockProvider";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 export default {
-  title: "Organisms/GlobalNavigationBar",
-  component: GlobalNavigationBar,
-  decorators: [(story) => <MockProvider>{story()}</MockProvider>],
   args: {
     isLogin: true,
+    projectName: "Project Name",
   },
-  argTypes: {
-    isLogin: {
-      control: "boolean",
-    },
-  },
+  component: GlobalNavigationBar,
+  decorators: [(story) => <MockProvider>{story()}</MockProvider>],
+  title: "common/organisms/GlobalNavigationBar",
 } as ComponentMeta<typeof GlobalNavigationBar>;
 
 const Template: ComponentStory<typeof GlobalNavigationBar> = (args) => <GlobalNavigationBar {...args} />;
