@@ -1,4 +1,4 @@
-import ToDoItem from "@/components/common/molecules/ToDoItem";
+import ToDoItem from "@/components/todo/ToDoItem";
 import { IToDos } from "@/types/todo";
 
 interface IToDoList {

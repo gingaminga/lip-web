@@ -1,5 +1,5 @@
 import CommonTemplate from "@/components/common/templates/CommonTemplate";
-import OAuthLoginForm from "@/components/form/OAuthLoginForm";
+import OAuthLoginForm from "@/components/login/OAuthLoginForm";
 import useOAuthURLQuery from "@/hooks/queries/useOAuthURLQuery";
 import type { ICommonProps } from "@/types/common";
 import Head from "next/head";

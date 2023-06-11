@@ -1,5 +1,5 @@
+import LogoButton from "@/components/common/atoms/buttons/LogoButton";
 import Card from "@/components/common/atoms/Card";
-import LogoButton from "@/components/common/atoms/LogoButton";
 import type { TChangeOAuthType } from "@/pages/login";
 import { OAUTH_LOGIN_CONFIG } from "@/utils/config";
 

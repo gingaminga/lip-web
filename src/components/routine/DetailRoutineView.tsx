@@ -1,5 +1,5 @@
 import ArticleTemplate from "@/components/common/templates/ArticleTemplate";
-import DetailRoutine from "@/components/form/DetailRoutineForm";
+import DetailRoutine from "@/components/routine/DetailRoutineForm";
 
 interface IDetailRoutineView {
   routineID?: number; // 루틴 id

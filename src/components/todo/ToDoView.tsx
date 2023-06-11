@@ -1,8 +1,8 @@
-import ToDoAdd from "@/components/common/molecules/ToDoAdd";
-import ToDoHeader from "@/components/common/molecules/ToDoHeader";
-import ToDoList from "@/components/common/molecules/ToDoList";
 import ConfirmModal from "@/components/common/organisms/ConfirmModal";
 import ArticleTemplate from "@/components/common/templates/ArticleTemplate";
+import ToDoAdd from "@/components/todo/ToDoAdd";
+import ToDoHeader from "@/components/todo/ToDoHeader";
+import ToDoList from "@/components/todo/ToDoList";
 import useModal from "@/hooks/useModal";
 import { IToDos } from "@/types/todo";
 import { useState } from "react";

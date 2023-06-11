@@ -1,4 +1,4 @@
-import ThemeToggle from "@/components/ThemeToggle";
+import ThemeToggle from "@/components/common/organisms/ThemeToggle";
 import type { ICommonProps } from "@/types/common";
 import { ROUTE_CONFIG } from "@/utils/config";
 import constants from "@/utils/constants";

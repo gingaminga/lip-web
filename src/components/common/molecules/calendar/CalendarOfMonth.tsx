@@ -1,4 +1,4 @@
-import CalendarOfOnceWeek from "@/components/common/molecules/CalendarOfOnceWeek";
+import CalendarOfOnceWeek from "@/components/common/molecules/calendar/CalendarOfOnceWeek";
 import { IDateOption, getDaysOfWeek } from "@/utils/date";
 
 interface ICalendarMonth {

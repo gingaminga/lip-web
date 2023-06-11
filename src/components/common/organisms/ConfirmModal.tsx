@@ -1,4 +1,4 @@
-import Modal, { IModal } from "@/components/common/atoms/Modal";
+import Modal, { IModal } from "@/components/common/molecules/Modal";
 import { createPortal } from "react-dom";
 
 type TConfirmModal = IModal;

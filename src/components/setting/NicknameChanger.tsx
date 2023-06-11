@@ -1,5 +1,5 @@
 import SubTitle from "@/components/common/molecules/SubTitle";
-import NicknameChangerForm from "@/components/form/NicknameChangerForm";
+import NicknameChangerForm from "@/components/setting/NicknameChangerForm";
 
 interface INicknameChanger {
   onCancleEvent: () => void;

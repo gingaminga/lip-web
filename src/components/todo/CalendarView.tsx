@@ -1,4 +1,4 @@
-import CalendarMoveDate from "@/components/common/molecules/CalendarMoveDate";
+import CalendarMoveDate from "@/components/common/molecules/calendar/CalendarMoveDate";
 import Calendar from "@/components/common/organisms/Calendar";
 import ArticleTemplate from "@/components/common/templates/ArticleTemplate";
 import useToDo from "@/hooks/useToDo";

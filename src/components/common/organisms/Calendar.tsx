@@ -1,5 +1,5 @@
-import CalendarDayOfTheWeek from "@/components/common/molecules/CalendarDayOfTheWeek";
-import CalendarOfMonth from "@/components/common/molecules/CalendarOfMonth";
+import CalendarDayOfTheWeek from "@/components/common/molecules/calendar/CalendarDayOfTheWeek";
+import CalendarOfMonth from "@/components/common/molecules/calendar/CalendarOfMonth";
 import { getDays } from "@/utils/date";
 
 interface ICalendar {

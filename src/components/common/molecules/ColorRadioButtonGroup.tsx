@@ -10,7 +10,7 @@ interface IColorRadioButtonGroup {
  */
 export default function ColorRadioButtonGroup({ changeEvent, currentColor }: IColorRadioButtonGroup) {
   return (
-    <div className="flex flex-wrap justify-center w-full gap-5">
+    <div className="flex flex-wrap gap-5">
       {ROUTINE_THEME_COLOR.map((config) => {
         const { backgroundColor, checkedBackgroundColor } = config;
         const className = `radio ${backgroundColor} ${checkedBackgroundColor}`;
