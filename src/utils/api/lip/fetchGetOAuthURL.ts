@@ -20,7 +20,7 @@ export const fetchGetOAuthURL = async (type: string) => {
     throw new Error("OAuth type is valid..");
   }
 
-  const endpoint = LIP_URL.API.OAUTH.GET_URL;
+  const endpoint = LIP_URL.API.AUTH.GET_URL;
   const params = {
     type,
   };
