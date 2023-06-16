@@ -2,8 +2,7 @@ import { logger } from "@/utils/logger";
 import { IResponseLIPFormat } from "@/types/common";
 import { LifeIsPlanClient } from "@/utils/api/lip";
 import { fetchReissueToken } from "@/utils/api/lip/fetchReissueToken";
-import Cookie from "@/utils/cookie";
-import constants from "@/utils/constants";
+import Cookie, { REFRESH_TOKEN_COOKIE_OPTION } from "@/utils/cookie";
 import Router from "next/router";
 
 LifeIsPlanClient.setRequestInterceptor(
@@ -63,11 +62,7 @@ LifeIsPlanClient.setResponseInterceptor(
 
       if (message.includes("refresh")) {
         // 리프레시 토큰일 경우 쿠키 삭제 후 로그인 화면으로 이동
-        const cookieOption = {
-          domain: constants.LIP.DOMAIN,
-        };
-
-        Cookie.removeCookie("refresh_token", cookieOption);
+        Cookie.removeCookie("refresh_token", REFRESH_TOKEN_COOKIE_OPTION);
         Router.push("/login");
       }
     }

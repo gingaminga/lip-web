@@ -1,4 +1,11 @@
+import constants from "@/utils/constants";
+import dayjs from "dayjs";
 import Cookies, { CookieAttributes } from "js-cookie";
+
+export const REFRESH_TOKEN_COOKIE_OPTION = {
+  domain: constants.LIP.DOMAIN,
+  expires: dayjs().add(3, "day").toDate(),
+};
 
 export default class Cookie {
   /**

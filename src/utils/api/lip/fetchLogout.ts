@@ -2,8 +2,7 @@ import type { IResponseLIPFormat } from "@/types/common";
 import { isFetchFailure } from "@/types/guard";
 import { LifeIsPlanClient } from "@/utils/api/lip";
 import { LIP_URL } from "@/utils/api/url";
-import constants from "@/utils/constants";
-import Cookie from "@/utils/cookie";
+import Cookie, { REFRESH_TOKEN_COOKIE_OPTION } from "@/utils/cookie";
 
 /**
  * @description 로그아웃하기
@@ -18,11 +17,7 @@ export const fetchLogout = async () => {
     throw new Error("Fetch failure logout..");
   }
 
-  const cookieOption = {
-    domain: constants.LIP.DOMAIN,
-  };
-
-  Cookie.removeCookie("refresh_token", cookieOption);
+  Cookie.removeCookie("refresh_token", REFRESH_TOKEN_COOKIE_OPTION);
 
   return true;
 };

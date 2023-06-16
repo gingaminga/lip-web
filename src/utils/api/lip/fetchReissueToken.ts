@@ -3,8 +3,7 @@ import { isFetchFailure } from "@/types/guard";
 import type { IUserData } from "@/types/user";
 import { LifeIsPlanClient } from "@/utils/api/lip";
 import { LIP_URL } from "@/utils/api/url";
-import constants from "@/utils/constants";
-import Cookie from "@/utils/cookie";
+import Cookie, { REFRESH_TOKEN_COOKIE_OPTION } from "@/utils/cookie";
 
 export interface IRequestReissueTokenParams {
   refreshToken: string;
@@ -36,11 +35,7 @@ export const fetchReissueToken = async (token: string) => {
     throw new Error("Fetch failure reissue token..");
   }
 
-  const cookieOption = {
-    domain: constants.LIP.DOMAIN,
-  };
-
-  Cookie.setCookie("refresh_token", data.refreshToken, cookieOption);
+  Cookie.setCookie("refresh_token", data.refreshToken, REFRESH_TOKEN_COOKIE_OPTION);
 
   LifeIsPlanClient.setBearerToken(data.accessToken);
 
