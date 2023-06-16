@@ -9,6 +9,7 @@ export const LIP_URL = {
     },
     USER: {
       LOGIN: "/api/user/in",
+      LOGOUT: "/api/user/out",
     },
   },
 };

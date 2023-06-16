@@ -1,8 +1,10 @@
 import ThemeToggle from "@/components/common/organisms/ThemeToggle";
+import useLogoutMutation from "@/hooks/queries/useLogoutMutation";
 import type { ICommonProps } from "@/types/common";
 import { ROUTE_CONFIG } from "@/utils/config";
 import constants from "@/utils/constants";
 import Link from "next/link";
+import Router from "next/router";
 import { useCallback, useMemo } from "react";
 import { HiMenuAlt2 } from "react-icons/hi";
 
@@ -14,6 +16,16 @@ interface IGlobalNavigationBar extends ICommonProps {
  * @description 전역 네비게이션 바 컴포넌트
  */
 export default function GlobalNavigationBar({ isLogin, projectName = constants.PROJECT_NAME }: IGlobalNavigationBar) {
+  const { mutate } = useLogoutMutation({
+    onSuccess: () => {
+      Router.reload();
+    },
+  });
+
+  const logout = useCallback(() => {
+    mutate();
+  }, [mutate]);
+
   const ProjectTitleView = useMemo(
     () => (
       <Link className="btn btn-ghost normal-case text-xl" href="/">
@@ -107,7 +119,7 @@ export default function GlobalNavigationBar({ isLogin, projectName = constants.P
     return (
       <>
         <div className="navbar-end max-sm:hidden">
-          <button className={`btn btn-ghost btn-xs ${hiddenWhenNotLogin}`} type="button">
+          <button className={`btn btn-ghost btn-xs ${hiddenWhenNotLogin}`} onClick={logout} type="button">
             로그아웃
           </button>
         </div>
@@ -116,7 +128,7 @@ export default function GlobalNavigationBar({ isLogin, projectName = constants.P
         </div>
       </>
     );
-  }, [isLogin]);
+  }, [isLogin, logout]);
 
   return (
     <nav className="navbar">
