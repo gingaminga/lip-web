@@ -1,5 +1,6 @@
 import ScrollablePicker from "@/components/common/molecules/ScrollablePicker";
 import { HOURS, MINUTES, SECONDS } from "@/utils/date";
+import _ from "lodash";
 import { useCallback } from "react";
 
 interface ITimePicker {
@@ -28,6 +29,10 @@ export default function TimePicker({
   minutes,
   seconds,
 }: ITimePicker) {
+  const defaultHourValue = _.padStart(String(hours), 2, "0");
+  const defaultMinuteValue = _.padStart(String(minutes), 2, "0");
+  const defaultSecondValue = _.padStart(String(seconds), 2, "0");
+
   const getNewHours = useCallback(
     (content: string) => {
       if (isUseHours && changeHours) {
@@ -57,9 +62,13 @@ export default function TimePicker({
 
   return (
     <div className="flex gap-3">
-      {isUseHours && <ScrollablePicker data={HOURS} getNewContent={getNewHours} />}
-      {isUseMinutes && <ScrollablePicker data={MINUTES} getNewContent={getNewMinutes} />}
-      {isUseSeconds && <ScrollablePicker data={SECONDS} getNewContent={getNewSeconds} />}
+      {isUseHours && <ScrollablePicker data={HOURS} getNewContent={getNewHours} defaultValue={defaultHourValue} />}
+      {isUseMinutes && (
+        <ScrollablePicker data={MINUTES} getNewContent={getNewMinutes} defaultValue={defaultMinuteValue} />
+      )}
+      {isUseSeconds && (
+        <ScrollablePicker data={SECONDS} getNewContent={getNewSeconds} defaultValue={defaultSecondValue} />
+      )}
     </div>
   );
 }

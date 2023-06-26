@@ -10,6 +10,7 @@ interface IScrollablePickerStyle {
 
 interface IScrollPicker {
   data: string[];
+  defaultValue: string; // 초기 선택되어야할 값
   getNewContent?: (content: string) => void;
   styles?: IScrollablePickerStyle;
 }
@@ -17,11 +18,19 @@ interface IScrollPicker {
 /**
  * @description 스크롤이 되는 선택 컴포넌트
  */
-export default function ScrollablePicker({ data, getNewContent, styles }: IScrollPicker) {
+export default function ScrollablePicker({ data, defaultValue, getNewContent, styles }: IScrollPicker) {
+  let initIndex = data.findIndex((item) => item === defaultValue); // 초기값의 index 찾기
+
+  if (initIndex < 0) {
+    // 초기 데이터가 없으면 맨 첫 데이터를 초기값으로 지정
+    initIndex = 0;
+  }
+
   const { height = "h-32", width = "w-20" } = styles || {};
-  const [focusIndex, setFocusIndex] = useState(0);
+  const [focusIndex, setFocusIndex] = useState(initIndex);
   const scrollRef = useRef<HTMLDivElement>(null);
   const timeoutRef = useRef<number>(0); // 부모로 업데이트되는 처리를 위한 ref
+  const initScrollRef = useRef<boolean>(false); // 초기 데이터로 스크롤을 이동하기 위한 ref
 
   const wrapperClassName = `w-full overflow-auto scrollbar-hide ${height}`;
 
@@ -105,6 +114,16 @@ export default function ScrollablePicker({ data, getNewContent, styles }: IScrol
       }, 500);
     }
   }, [data, focusIndex, getNewContent]);
+
+  /**
+   * @description 최초 한 번 전달받은 초기값으로 스크롤 이동하기
+   */
+  useEffect(() => {
+    if (!initScrollRef.current) {
+      moveScroll(focusIndex * 40);
+      initScrollRef.current = true;
+    }
+  }, [focusIndex]);
 
   return (
     <div className={`${width} flex flex-col max-sm:flex-row`}>
