@@ -1,10 +1,19 @@
 import ConfirmModal from "@/components/common/organisms/ConfirmModal";
+import useWithdrawalMutation from "@/hooks/queries/useWithdrawalMutation";
 import useModal from "@/hooks/useModal";
+import Router from "next/router";
 
 /**
  * @description 그 외 컴포넌트
  */
 export default function ETC() {
+  const { mutate } = useWithdrawalMutation({
+    onSuccess: async () => {
+      await Router.push("/login");
+
+      Router.reload();
+    },
+  });
   const { closeModal, isOpenModal, openModal } = useModal();
 
   const openWithdrawalModal = () => {
@@ -12,7 +21,7 @@ export default function ETC() {
   };
 
   const withdrawalOfMembership = () => {
-    console.log("withdrawal");
+    mutate();
   };
 
   return (
