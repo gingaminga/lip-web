@@ -1,4 +1,5 @@
 import { RESPONSE_STATUS } from "@/utils/api/lip/response";
+import { RefObject } from "react";
 
 export interface IResponseLIPFormat<T> {
   data: T;
@@ -8,3 +9,5 @@ export interface IResponseLIPFormat<T> {
 export interface ICommonProps {
   isLogin: boolean;
 }
+
+export type TElementRefItem<T> = ((instance: T | null) => void) | RefObject<T>;

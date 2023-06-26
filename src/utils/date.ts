@@ -1,3 +1,4 @@
+import { TActvieStatusByDay } from "@/types/date";
 import dayjs from "dayjs";
 import _ from "lodash";
 
@@ -179,4 +180,72 @@ export const checkIsCurrentMonth = (date = new Date()) => {
   }
 
   return true;
+};
+
+/**
+ * @description 요일 정보로 텍스트 가져오기
+ * @param days 요일
+ * @returns 요일 텍스트 정보
+ */
+export const getDayOfText = (days: TActvieStatusByDay) => {
+  const { fri, mon, sat, sun, thu, tue, wed } = days;
+
+  let daysOfText = "";
+
+  const isActiveWeekday = mon && tue && wed && thu && fri; // 평일 활성화 여부
+  const isActiveWeekend = sat && sun; // 주말 활성화 여부
+
+  if (isActiveWeekday && isActiveWeekend) {
+    daysOfText = "매일";
+  } else if (isActiveWeekday) {
+    daysOfText = "평일";
+    if (sat) {
+      daysOfText += "+토";
+    }
+    if (sun) {
+      daysOfText += "+일";
+    }
+  } else if (isActiveWeekend) {
+    if (mon) {
+      daysOfText += "월";
+    }
+    if (tue) {
+      daysOfText += "화";
+    }
+    if (wed) {
+      daysOfText += "수";
+    }
+    if (thu) {
+      daysOfText += "목";
+    }
+    if (fri) {
+      daysOfText += "금";
+    }
+
+    daysOfText += "+주말";
+  } else {
+    if (mon) {
+      daysOfText += "월";
+    }
+    if (tue) {
+      daysOfText += "화";
+    }
+    if (wed) {
+      daysOfText += "수";
+    }
+    if (thu) {
+      daysOfText += "목";
+    }
+    if (fri) {
+      daysOfText += "금";
+    }
+    if (sat) {
+      daysOfText += "토";
+    }
+    if (sun) {
+      daysOfText += "일";
+    }
+  }
+
+  return daysOfText;
 };

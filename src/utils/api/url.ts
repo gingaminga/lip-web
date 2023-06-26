@@ -7,6 +7,9 @@ export const LIP_URL = {
       GET_URL: "/api/auth/url",
       REISSUE_TOKEN: "/api/auth/token",
     },
+    ROUTINE: {
+      GET_ROUTINES: "/api/routine/all",
+    },
     USER: {
       LOGIN: "/api/user/in",
       LOGOUT: "/api/user/out",
