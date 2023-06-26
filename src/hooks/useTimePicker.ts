@@ -52,8 +52,8 @@ const reducer = (state: IState, action: IAction) => {
 /**
  * @description 시간 선택 hook
  */
-export default function useTimePicker() {
-  const [time, dispatch] = useReducer(reducer, initialState);
+export default function useTimePicker(state = initialState) {
+  const [time, dispatch] = useReducer(reducer, state);
 
   const changeHours = useCallback((hours: number) => {
     dispatch({

@@ -35,8 +35,8 @@ const reducer = (state: TActvieStatusByDay, action: IAction) => {
 /**
  * @description 요일 관련 hook
  */
-export default function useDayOfWeek() {
-  const [daysOfWeek, dispatch] = useReducer(reducer, initialState);
+export default function useDayOfWeek(state = initialState) {
+  const [daysOfWeek, dispatch] = useReducer(reducer, state);
 
   /**
    * @description 요일 클릭 상태 변경하기
