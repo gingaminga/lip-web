@@ -7,9 +7,9 @@ import Router from "next/router";
 
 LifeIsPlanClient.setRequestInterceptor(
   (request) => {
-    const { baseURL, data, url } = request;
+    const { baseURL, params, url } = request;
 
-    logger.log(`Request ${baseURL}${url}`, data);
+    logger.log(`Request ${baseURL}${url}`, params);
 
     return request;
   },
