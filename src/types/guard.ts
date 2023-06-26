@@ -1,3 +1,4 @@
+import { TRoutineColor } from "@/types/color";
 import type { TOAuthType } from "@/types/oauth";
 import { RESPONSE_STATUS } from "@/utils/api/lip/response";
 
@@ -15,4 +16,25 @@ export function isFetchFailure(status: RESPONSE_STATUS) {
  */
 export function checkOAuthType(type: string): type is TOAuthType {
   return !!type;
+}
+
+/**
+ * @description 루틴 색상 종류인지 체크
+ * @param color
+ */
+export function checkRoutineColor(color: string): color is TRoutineColor {
+  const routineColors = [
+    "bg-slate-300",
+    "bg-stone-300",
+    "bg-rose-300",
+    "bg-orange-300",
+    "bg-amber-300",
+    "bg-lime-300",
+    "bg-emerald-300",
+    "bg-sky-300",
+    "bg-indigo-300",
+    "bg-violet-300",
+    "bg-purple-300",
+  ];
+  return routineColors.includes(color);
 }

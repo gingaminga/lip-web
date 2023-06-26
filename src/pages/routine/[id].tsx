@@ -9,7 +9,7 @@ type TDetailRoutinePage = ICommonProps;
 export default function DetailRoutinePage({ isLogin }: TDetailRoutinePage) {
   const { asPath } = useRouter();
 
-  const [id] = asPath.split("/routine/");
+  const [, id] = asPath.split("/routine/");
 
   return (
     <>

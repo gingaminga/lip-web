@@ -249,3 +249,38 @@ export const getDayOfText = (days: TActvieStatusByDay) => {
 
   return daysOfText;
 };
+
+/**
+ * @description 요일정보로 숫자형 요일 가져오기
+ * @param days 요일 정보
+ * @returns 숫자형 요일(0123456)
+ */
+export const getNumberDaysFromActiveByDay = (days: TActvieStatusByDay) => {
+  const { fri, mon, sat, sun, thu, tue, wed } = days;
+
+  let numberDays = "";
+
+  if (sun) {
+    numberDays += "0";
+  }
+  if (mon) {
+    numberDays += "1";
+  }
+  if (tue) {
+    numberDays += "2";
+  }
+  if (wed) {
+    numberDays += "3";
+  }
+  if (thu) {
+    numberDays += "4";
+  }
+  if (fri) {
+    numberDays += "5";
+  }
+  if (sat) {
+    numberDays += "6";
+  }
+
+  return numberDays;
+};
