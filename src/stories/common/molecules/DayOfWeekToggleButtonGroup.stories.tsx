@@ -6,7 +6,7 @@ const initDaysOfWeek = {
   mon: false,
   sat: false,
   sun: false,
-  thr: false,
+  thu: false,
   tue: false,
   wed: false,
 };
