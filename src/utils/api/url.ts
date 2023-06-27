@@ -7,11 +7,15 @@ export const LIP_URL = {
       GET_URL: "/api/auth/url",
       REISSUE_TOKEN: "/api/auth/token",
     },
+    TODO: {
+      REMOVE_ALL_TODO: "/api/todo/all",
+    },
     ROUTINE: {
       ADD_ROUTINE: "/api/routine",
       GET_DETAIL_ROUTINE: "/api/routine",
       GET_ROUTINES: "/api/routine/all",
       MODIFY_ROUTINE: "/api/routine",
+      REMOVE_ALL_ROUTINE: "/api/routine/all",
       REMOVE_ROUTINE: "/api/routine",
     },
     USER: {

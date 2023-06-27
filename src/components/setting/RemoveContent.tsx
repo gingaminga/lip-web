@@ -1,5 +1,7 @@
 import SubTitle from "@/components/common/molecules/SubTitle";
 import ConfirmModal from "@/components/common/organisms/ConfirmModal";
+import useRemoveAllRoutineMutation from "@/hooks/queries/useRemoveAllRoutineMutation";
+import useRemoveAllToDoMutation from "@/hooks/queries/useRemoveAllToDoMutation";
 import useModal from "@/hooks/useModal";
 import { REMOVE_CONTENT_CONFIG } from "@/utils/config";
 
@@ -8,13 +10,21 @@ import { REMOVE_CONTENT_CONFIG } from "@/utils/config";
  */
 export default function RemoveContent() {
   const { closeModal, isOpenModal, modalItem, openModal } = useModal<string>();
+  const { mutate: fetchRemoveAllToDo } = useRemoveAllToDoMutation({
+    onError: closeModal, // 에러 발생해도 모달 닫기 (추후 토스트메시지 처리)
+    onSuccess: closeModal,
+  });
+  const { mutate: fetchRemoveAllRoutine } = useRemoveAllRoutineMutation({
+    onError: closeModal, // 에러 발생해도 모달 닫기 (추후 토스트메시지 처리)
+    onSuccess: closeModal,
+  });
 
   const removeAllToDo = () => {
-    console.log("remove all todo");
+    fetchRemoveAllToDo();
   };
 
   const removeAllRoutine = () => {
-    console.log("remove all routine");
+    fetchRemoveAllRoutine();
   };
 
   const handleRemoveAllItem = () => {
