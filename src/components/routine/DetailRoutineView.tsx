@@ -3,6 +3,7 @@ import DetailRoutine from "@/components/routine/DetailRoutineForm";
 import useAddRoutineMutation from "@/hooks/queries/useAddRoutineMutation";
 import useDetailRoutineQuery from "@/hooks/queries/useDetailRoutineQuery";
 import useModifyRoutineMutation from "@/hooks/queries/useModifyRoutineMutation";
+import useRemoveRoutineMutation from "@/hooks/queries/useRemoveRoutineMutation";
 import { TRoutineColor } from "@/types/color";
 import Router from "next/router";
 
@@ -21,6 +22,11 @@ export default function DetailRoutineView({ routineID = -1 }: IDetailRoutineView
     },
   });
   const { mutate: fetchModifyRoutine } = useModifyRoutineMutation({
+    onSuccess: () => {
+      Router.push("/routine");
+    },
+  });
+  const { mutate: fetchRemoveRoutine } = useRemoveRoutineMutation({
     onSuccess: () => {
       Router.push("/routine");
     },
@@ -56,13 +62,25 @@ export default function DetailRoutineView({ routineID = -1 }: IDetailRoutineView
     fetchModifyRoutine(params);
   };
 
+  const removeRoutine = (id: number) => {
+    const params = {
+      id,
+    };
+    fetchRemoveRoutine(params);
+  };
+
   if (isFetching) {
     return <div>loading..</div>;
   }
 
   return (
     <ArticleTemplate>
-      <DetailRoutine addRoutine={addRoutine} modifyRoutine={modifyRoutine} routine={data} />
+      <DetailRoutine
+        addRoutine={addRoutine}
+        modifyRoutine={modifyRoutine}
+        removeRoutine={removeRoutine}
+        routine={data}
+      />
     </ArticleTemplate>
   );
 }

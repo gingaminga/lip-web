@@ -2,8 +2,10 @@ import { ChangeEvent, useState } from "react";
 import ColorRadioButtonGroup from "@/components/common/molecules/ColorRadioButtonGroup";
 import DayOfWeekToggleButtonGroup from "@/components/common/molecules/DayOfWeekToggleButtonGroup";
 import SubTitle from "@/components/common/molecules/SubTitle";
+import ConfirmModal from "@/components/common/organisms/ConfirmModal";
 import TimePicker from "@/components/common/organisms/TimePicker";
 import useDayOfWeek from "@/hooks/useDayOfWeek";
+import useModal from "@/hooks/useModal";
 import useTimePicker from "@/hooks/useTimePicker";
 import { IRoutineData } from "@/types/routine";
 import { TRoutineColor } from "@/types/color";
@@ -22,13 +24,14 @@ interface IDetailRoutineForm {
     alarmHour: number,
     alarmMinute: number,
   ) => void;
+  removeRoutine: (id: number) => void;
   routine?: IRoutineData;
 }
 
 /**
  * @description 상세 루틴 form 컴포넌트
  */
-export default function DetailRoutineForm({ addRoutine, modifyRoutine, routine }: IDetailRoutineForm) {
+export default function DetailRoutineForm({ addRoutine, modifyRoutine, removeRoutine, routine }: IDetailRoutineForm) {
   const {
     id: routineID = -1,
     alarm,
@@ -65,6 +68,25 @@ export default function DetailRoutineForm({ addRoutine, modifyRoutine, routine }
   const { daysOfWeek, toggleDayOfWeek } = useDayOfWeek(defaultDays);
   const { changeHours, changeMinutes, hours, minutes } = useTimePicker(defaultTime);
   const { push } = useRouter();
+  const { closeModal, isOpenModal, openModal } = useModal();
+
+  const isAddForm = routineID < 1; // 추가 화면 형식인지 여부
+
+  /**
+   * @description 팝업 오픈 이벤트
+   */
+  const openWithdrawalModal = () => {
+    openModal();
+  };
+
+  /**
+   * @description 삭제 확인 버튼 이벤트
+   */
+  const confirmRemoveButtonEvent = () => {
+    if (!isAddForm) {
+      removeRoutine(routineID);
+    }
+  };
 
   /**
    * @description 루틴 내용 입력하기
@@ -101,87 +123,119 @@ export default function DetailRoutineForm({ addRoutine, modifyRoutine, routine }
     }
     const days = getNumberDaysFromActiveByDay(daysOfWeek);
 
-    if (routineID > 0) {
-      // 수정
-
-      modifyRoutine(routineID, content, days, color, hours, minutes);
+    if (isAddForm) {
+      // 추가
+      addRoutine(content, days, color, hours, minutes);
       return;
     }
 
-    addRoutine(content, days, color, hours, minutes);
+    modifyRoutine(routineID, content, days, color, hours, minutes);
+  };
+
+  /**
+   * @description 삭제 버튼 뷰 (추가 화면인 경우 삭제 버튼 안 보임)
+   */
+  const removeButtonView = () => {
+    if (isAddForm) {
+      return null;
+    }
+
+    return (
+      <button className="btn btn-ghost btn-xs text-neutral-400" onClick={openWithdrawalModal} type="button">
+        삭제
+      </button>
+    );
   };
 
   return (
-    <div className="w-full h-full">
-      <section className="mb-5">
-        <SubTitle
-          title="루틴 이름"
-          titleStyles={{
-            size: ["text-lg", "max-sm:text-sm"],
-          }}
-        />
-        <label className="label" htmlFor="change-content">
-          <input
-            className="input input-bordered w-full"
-            id="change-content"
-            placeholder="어떤 일을 반복할까요?"
-            type="text"
-            onChange={enterContent}
-            value={content}
+    <>
+      <div className="w-full h-full">
+        <section className="mb-5">
+          <SubTitle
+            title="루틴 이름"
+            titleStyles={{
+              size: ["text-lg", "max-sm:text-sm"],
+            }}
           />
-        </label>
-      </section>
-      <section className="mb-5">
-        <SubTitle
-          description="무슨 요일에 알려줄까요?"
-          title="요일"
-          titleStyles={{
-            size: ["text-lg", "max-sm:text-sm"],
-          }}
-        />
-        <div className="w-full flex justify-center">
-          <DayOfWeekToggleButtonGroup daysOfWeek={daysOfWeek} toggleEvent={toggleDayOfWeek} />
-        </div>
-      </section>
-      <section className="mb-5">
-        <SubTitle
-          description="몇 시에 알려줄까요?"
-          title="알람"
-          titleStyles={{
-            size: ["text-lg", "max-sm:text-sm"],
-          }}
-        />
-        <div className="w-full flex justify-center">
-          <TimePicker
-            changeHours={changeHours}
-            changeMinutes={changeMinutes}
-            hours={hours}
-            isUseSeconds={false}
-            minutes={minutes}
+          <label className="label" htmlFor="change-content">
+            <input
+              className="input input-bordered w-full"
+              id="change-content"
+              placeholder="어떤 일을 반복할까요?"
+              type="text"
+              onChange={enterContent}
+              value={content}
+            />
+          </label>
+        </section>
+        <section className="mb-5">
+          <SubTitle
+            description="무슨 요일에 알려줄까요?"
+            title="요일"
+            titleStyles={{
+              size: ["text-lg", "max-sm:text-sm"],
+            }}
           />
+          <div className="w-full flex justify-center">
+            <DayOfWeekToggleButtonGroup daysOfWeek={daysOfWeek} toggleEvent={toggleDayOfWeek} />
+          </div>
+        </section>
+        <section className="mb-5">
+          <SubTitle
+            description="몇 시에 알려줄까요?"
+            title="알람"
+            titleStyles={{
+              size: ["text-lg", "max-sm:text-sm"],
+            }}
+          />
+          <div className="w-full flex justify-center">
+            <TimePicker
+              changeHours={changeHours}
+              changeMinutes={changeMinutes}
+              hours={hours}
+              isUseSeconds={false}
+              minutes={minutes}
+            />
+          </div>
+        </section>
+        <section className="mb-5">
+          <SubTitle
+            description="루틴을 기억해요. :)"
+            title="색상"
+            titleStyles={{
+              size: ["text-lg", "max-sm:text-sm"],
+            }}
+          />
+          <div className="w-full flex justify-center">
+            <ColorRadioButtonGroup changeEvent={changeColor} currentColor={color} />
+          </div>
+        </section>
+        <div className="divider" />
+        <div className={`flex ${isAddForm ? "justify-end" : "justify-between"}`}>
+          {removeButtonView()}
+          <div className="flex gap-3">
+            <button className="btn max-sm:btn-sm" onClick={_.debounce(resultButtonEvent, 800)} type="button">
+              {isAddForm ? "추가" : "수정"}
+            </button>
+            <button className="btn max-sm:btn-sm" onClick={_.debounce(cancleButtonEvent, 800)} type="button">
+              취소
+            </button>
+          </div>
         </div>
-      </section>
-      <section className="mb-5">
-        <SubTitle
-          description="루틴을 기억해요. :)"
-          title="색상"
-          titleStyles={{
-            size: ["text-lg", "max-sm:text-sm"],
-          }}
-        />
-        <div className="w-full flex justify-center">
-          <ColorRadioButtonGroup changeEvent={changeColor} currentColor={color} />
-        </div>
-      </section>
-      <div className="divider" />
-      <div className="flex justify-end gap-3">
-        <button className="btn max-sm:btn-sm" onClick={_.debounce(resultButtonEvent, 800)} type="button">
-          {routineID > 0 ? "수정" : "추가"}
-        </button>
-        <button className="btn max-sm:btn-sm" onClick={_.debounce(cancleButtonEvent, 800)} type="button">
-          취소
-        </button>
       </div>
-    </div>
+      <ConfirmModal
+        isOpen={isOpenModal}
+        isShowCancleButton
+        isShowConfirmButton
+        onCloseEvent={closeModal}
+        onConfirmEvent={confirmRemoveButtonEvent}
+      >
+        <p className="p-4">
+          작성했던 루틴은 전부 삭제되며 복구할 수 없어요.
+          <br />
+          정말 삭제할까요?
+        </p>
+      </ConfirmModal>
+    </>
   );
 }
