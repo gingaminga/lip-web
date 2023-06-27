@@ -12,6 +12,7 @@ interface IDetailRoutineView {
 
 export default function DetailRoutineView({ routineID = -1 }: IDetailRoutineView) {
   const { data, isFetching } = useDetailRoutineQuery(routineID, {
+    cacheTime: 0,
     enabled: routineID > 0,
   });
   const { mutate: fetchAddRoutine } = useAddRoutineMutation({
