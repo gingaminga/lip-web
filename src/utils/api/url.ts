@@ -19,6 +19,8 @@ export const LIP_URL = {
       REMOVE_ROUTINE: "/api/routine",
     },
     USER: {
+      CHANGE_NICKNAME: "/api/user/nickname",
+      DUPLICATE_NICKNAME: "/api/user/nickname/dup",
       LOGIN: "/api/user/in",
       LOGOUT: "/api/user/out",
       WITHDRAWAL: "/api/user",
