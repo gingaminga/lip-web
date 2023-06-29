@@ -11,3 +11,12 @@ export interface ICommonProps {
 }
 
 export type TElementRefItem<T> = ((instance: T | null) => void) | RefObject<T>;
+
+export interface IDynamicJSON<T> {
+  [key: string]: T;
+}
+
+export interface IValidationData {
+  message: string;
+  status: boolean;
+}

@@ -1,11 +1,12 @@
-import { validateNickname } from "@/utils/validator";
-import { ChangeEvent, FocusEvent, useState } from "react";
+import { FocusEvent, useRef } from "react";
 
 interface INicknameChangerForm {
   onCancleEvent: () => void;
   onConfirmEvent: (nickname: string) => void;
   onFocusOutEvent: (nickname: string) => void;
   placeholder?: string;
+  validateMessage: string;
+  validateStatus: boolean;
 }
 
 /**
@@ -16,37 +17,33 @@ export default function NicknameChangerForm({
   onConfirmEvent,
   onFocusOutEvent,
   placeholder,
+  validateMessage,
+  validateStatus,
 }: INicknameChangerForm) {
-  const [nickname, setNickname] = useState("");
-  const { message, status } = validateNickname(nickname);
+  const nicknameInputRef = useRef<HTMLInputElement>(null);
 
-  const validatorLabelClassName = `label label-text-alt justify-end${status ? "" : " text-error"}`;
-
-  /**
-   * @description 닉네임 입력하기
-   * @param e 변경 이벤트
-   */
-  const enterNickname = (e: ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-
-    setNickname(value);
-  };
+  const validatorLabelClassName = `h-8 label label-text-alt font-bold justify-end ${
+    validateStatus ? "text-success" : "text-error"
+  }`;
 
   /**
-   * @description 닉네임 입력하기
+   * @description 닉네임 중복검사하기
    * @param e 포커스 이벤트
    */
   const duplicateNickname = (e: FocusEvent<HTMLInputElement>) => {
-    if (!status) return;
-
-    onFocusOutEvent(nickname);
+    const { value } = e.target;
+    onFocusOutEvent(value);
   };
 
   /**
    * @description 닉네임 변경하기
    */
   const changeNickname = () => {
-    if (!status) return;
+    const nickname = nicknameInputRef.current?.value || "";
+
+    if (!nickname) {
+      return;
+    }
 
     onConfirmEvent(nickname);
   };
@@ -58,16 +55,14 @@ export default function NicknameChangerForm({
           <input
             className="input input-bordered w-full"
             id="change-nickname"
+            onBlur={duplicateNickname}
             placeholder={placeholder}
             type="text"
-            onBlur={duplicateNickname}
-            onChange={enterNickname}
-            value={nickname}
           />
         </label>
-        <span className={validatorLabelClassName}>{message}</span>
+        <span className={validatorLabelClassName}>{validateMessage}</span>
         <div className="flex justify-end gap-3">
-          <button className="btn max-sm:btn-sm" type="button" onClick={changeNickname}>
+          <button className="btn max-sm:btn-sm" onClick={changeNickname} type="button">
             확인
           </button>
           <button className="btn max-sm:btn-sm" onClick={onCancleEvent} type="button">

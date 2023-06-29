@@ -28,5 +28,6 @@ export const validateNickname = (nickname: string) => {
   }
 
   result.status = true;
+  result.message = "어울리는 닉네임이예요. :)";
   return result;
 };
