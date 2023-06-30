@@ -8,21 +8,20 @@ export const validateNickname = (nickname: string) => {
     message: "",
   };
 
-  const defaultRegexr = /[^가-힣0-9a-zA-z]/;
-  const spaceRegexr = /[\s]/;
+  const defaultRegexr = /^[a-zA-Z0-9가-힣]*$/;
 
   if (!nickname) {
     return result;
   }
 
-  if (defaultRegexr.test(nickname) || spaceRegexr.test(nickname)) {
+  if (!defaultRegexr.test(nickname)) {
     result.message = "허용되지 않은 문자가 있어요. :(";
 
     return result;
   }
 
-  if (nickname.length < 3 || nickname.length > 20) {
-    result.message = "닉네임 길이를 확인해주세요. :(";
+  if (nickname.length < 2 || nickname.length > 20) {
+    result.message = "닉네임은 최소 2자리부터 20자리까지 돼요. :(";
 
     return result;
   }
