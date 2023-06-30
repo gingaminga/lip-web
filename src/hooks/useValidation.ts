@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { IDynamicJSON, IValidationData } from "@/types/common";
 
 /**
@@ -7,7 +7,7 @@ import { IDynamicJSON, IValidationData } from "@/types/common";
 export default function useValidation(initialValues: IDynamicJSON<IValidationData>) {
   const [validations, setValidations] = useState(initialValues);
 
-  const handleValidation = (name: string, status: boolean, message: string) => {
+  const handleValidation = useCallback((name: string, status: boolean, message: string) => {
     setValidations((currentValidations) => ({
       ...currentValidations,
       [name]: {
@@ -15,7 +15,7 @@ export default function useValidation(initialValues: IDynamicJSON<IValidationDat
         message,
       },
     }));
-  };
+  }, []);
 
   return {
     handleValidation,
