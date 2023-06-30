@@ -3,17 +3,20 @@ import NicknameChangerForm from "@/components/setting/NicknameChangerForm";
 import useChangeNicknameMutation from "@/hooks/queries/useChangeNicknameMutation";
 import useDuplicateNicknameQuery from "@/hooks/queries/useDuplicateNicknameQuery";
 import useValidation from "@/hooks/useValidation";
+import Cookie, { REFRESH_TOKEN_COOKIE_OPTION } from "@/utils/cookie";
 import { validateNickname } from "@/utils/validator";
+import Router from "next/router";
 import { useEffect, useState } from "react";
 
 interface INicknameChanger {
+  currentNickname: string;
   onCancleEvent: () => void;
 }
 
 /**
  * @description 닉네임 변경 컴포넌트
  */
-export default function NicknameChanger({ onCancleEvent }: INicknameChanger) {
+export default function NicknameChanger({ currentNickname, onCancleEvent }: INicknameChanger) {
   const [confirmNickname, setConfirmNickname] = useState("");
   const { handleValidation, validations } = useValidation({
     nickname: {
@@ -21,17 +24,31 @@ export default function NicknameChanger({ onCancleEvent }: INicknameChanger) {
       status: false,
     },
   });
-
   const { data: isDuplicateNickname = false } = useDuplicateNicknameQuery(confirmNickname, {
     enabled: confirmNickname.length > 0,
   });
-  const { mutate: fetchChangeNickname } = useChangeNicknameMutation();
+  const { mutate: fetchChangeNickname } = useChangeNicknameMutation({
+    onSuccess: async (isSuccess) => {
+      if (isSuccess) {
+        await Router.push("/login");
+        Cookie.removeCookie("refresh_token", REFRESH_TOKEN_COOKIE_OPTION);
+
+        Router.reload();
+      }
+    },
+  });
 
   /**
    * @description 닉네임 중복 검사
    * @param nickname 닉네임
    */
   const duplicateNickname = (nickname: string) => {
+    if (currentNickname === nickname) {
+      handleValidation("nickname", false, `같은 닉네임은 안 바꿔도 돼요. :)`);
+
+      return;
+    }
+
     const { message, status } = validateNickname(nickname);
 
     handleValidation("nickname", status, message);
@@ -68,7 +85,7 @@ export default function NicknameChanger({ onCancleEvent }: INicknameChanger) {
 
   return (
     <section className="mb-36">
-      <SubTitle title="닉네임 변경" />
+      <SubTitle title="닉네임 변경" description="닉네임을 변경하면 재로그인 해야해요." />
       <NicknameChangerForm
         onCancleEvent={onCancleEvent}
         onConfirmEvent={changeNickname}

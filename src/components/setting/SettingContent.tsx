@@ -6,17 +6,21 @@ import RemoveContent from "@/components/setting/RemoveContent";
 import useToggle from "@/hooks/useToggle";
 import { useCallback } from "react";
 
+interface ISettingContent {
+  nickname: string;
+}
+
 /**
  * @description 설정 내용 컴포넌트
  */
-export default function SettingContent() {
+export default function SettingContent({ nickname }: ISettingContent) {
   const { handleToggleActive: handleActiveNicknameChanger, isToggleActive: isActiveNicknameChanger } = useToggle();
 
   const className = isActiveNicknameChanger ? "h-full flex flex-col justify-center w-full" : "";
 
   const SettingContentView = useCallback(() => {
     if (isActiveNicknameChanger) {
-      return <NicknameChanger onCancleEvent={handleActiveNicknameChanger} />;
+      return <NicknameChanger currentNickname={nickname} onCancleEvent={handleActiveNicknameChanger} />;
     }
 
     return (
@@ -30,7 +34,7 @@ export default function SettingContent() {
         <ETC />
       </>
     );
-  }, [handleActiveNicknameChanger, isActiveNicknameChanger]);
+  }, [handleActiveNicknameChanger, isActiveNicknameChanger, nickname]);
 
   return <div className={className}>{SettingContentView()}</div>;
 }

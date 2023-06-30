@@ -10,7 +10,7 @@ export default function SettingView() {
     <ArticleTemplate>
       <div className="flex flex-col gap-10 w-full h-full overflow-auto max-sm:gap-6">
         <SettingTitle nickname={userInfo.nickname} />
-        <SettingContent />
+        <SettingContent nickname={userInfo.nickname} />
       </div>
     </ArticleTemplate>
   );
