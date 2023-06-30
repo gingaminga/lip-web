@@ -57,6 +57,7 @@ export default function NicknameChangerForm({
             id="change-nickname"
             onBlur={duplicateNickname}
             placeholder={placeholder}
+            ref={nicknameInputRef}
             type="text"
           />
         </label>
