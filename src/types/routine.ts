@@ -1,13 +1,8 @@
+import { IAlarmData } from "@/types/alarm";
 import { TRoutineColor } from "@/types/color";
 
 export interface IRoutineData {
-  alarm: {
-    createdAt: string;
-    hour: number;
-    id: number;
-    minute: number;
-    updatedAt: string;
-  };
+  alarm: IAlarmData;
   content: string;
   color: TRoutineColor;
   createdAt: string;
