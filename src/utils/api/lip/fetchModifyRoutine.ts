@@ -5,8 +5,8 @@ import { LifeIsPlanClient } from "@/utils/api/lip";
 import { LIP_URL } from "@/utils/api/url";
 
 export interface IRequestModifyRoutineParams {
-  alarm_hour: number;
-  alarm_minute: number;
+  alarmHour: number;
+  alarmMinute: number;
   color: TRoutineColor;
   content: string;
   days: string;
@@ -33,8 +33,8 @@ export const fetchModifyRoutine = async (
 ) => {
   const endpoint = LIP_URL.API.ROUTINE.MODIFY_ROUTINE;
   const params = {
-    alarm_hour: alarmHour,
-    alarm_minute: alarmMinute,
+    alarmHour,
+    alarmMinute,
     color,
     content,
     days,

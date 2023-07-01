@@ -7,8 +7,7 @@ export default function useAddRoutineMutation(
   options?: UseMutationOptions<IRoutineData, TAxiosError, IRequestAddRoutineParams, unknown>,
 ) {
   return useMutation<IRoutineData, TAxiosError, IRequestAddRoutineParams>(
-    ({ alarm_hour: alarmHour, alarm_minute: alarmMinute, color, content, days }) =>
-      fetchAddRoutine(content, days, color, alarmHour, alarmMinute),
+    ({ alarmHour, alarmMinute, color, content, days }) => fetchAddRoutine(content, days, color, alarmHour, alarmMinute),
     options,
   );
 }

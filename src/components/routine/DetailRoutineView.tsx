@@ -34,8 +34,8 @@ export default function DetailRoutineView({ routineID = -1 }: IDetailRoutineView
 
   const addRoutine = (content: string, days: string, color: TRoutineColor, alarmHour: number, alarmMinute: number) => {
     const params = {
-      alarm_hour: alarmHour,
-      alarm_minute: alarmMinute,
+      alarmHour,
+      alarmMinute,
       color,
       content,
       days,
@@ -52,8 +52,8 @@ export default function DetailRoutineView({ routineID = -1 }: IDetailRoutineView
     alarmMinute: number,
   ) => {
     const params = {
-      alarm_hour: alarmHour,
-      alarm_minute: alarmMinute,
+      alarmHour,
+      alarmMinute,
       color,
       content,
       days,

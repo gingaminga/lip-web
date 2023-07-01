@@ -6,7 +6,7 @@ export default function useModifyRoutineMutation(
   options?: UseMutationOptions<boolean, TAxiosError, IRequestModifyRoutineParams, unknown>,
 ) {
   return useMutation<boolean, TAxiosError, IRequestModifyRoutineParams>(
-    ({ alarm_hour: alarmHour, alarm_minute: alarmMinute, color, content, days, id }) =>
+    ({ alarmHour, alarmMinute, color, content, days, id }) =>
       fetchModifyRoutine(id, content, days, color, alarmHour, alarmMinute),
     options,
   );
