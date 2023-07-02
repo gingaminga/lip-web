@@ -1,5 +1,5 @@
 import { TActvieStatusByDay } from "@/types/date";
-import dayjs from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
 import _ from "lodash";
 
 export interface IDateOption {
@@ -283,4 +283,43 @@ export const getNumberDaysFromActiveByDay = (days: TActvieStatusByDay) => {
   }
 
   return numberDays;
+};
+
+/**
+ * @description 첫번째, 마지막번째 날짜 가져오기
+ * @param date 원하는 날짜
+ * @param pad 공백에 붙일 단어
+ * @returns
+ */
+export const getFirstAndLastDay = (date: Dayjs | Date | string = new Date(), pad = "") => {
+  const targetDate = dayjs(date);
+
+  const first = `${pad}1`;
+  const final = targetDate.daysInMonth();
+
+  return {
+    final,
+    first,
+  };
+};
+
+/**
+ * @description yyyymmdd 형식 파싱하기
+ * @param yyyymmdd 년월일
+ * @returns 요일에 대한 정보
+ */
+export const getParsingYYYYMMDD = (yyyymmdd: string) => {
+  const dateInfo = dayjs(yyyymmdd);
+
+  const year = dateInfo.get("year");
+  const month = dateInfo.get("month") + 1;
+  const date = dateInfo.get("date");
+  const day = dateInfo.get("day");
+
+  return {
+    date,
+    day,
+    month,
+    year,
+  };
 };
