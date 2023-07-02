@@ -35,9 +35,9 @@ function Day({ achievementRate, date, month, styles, year }: IDay) {
       return <div className="flex flex-col w-full h-full justify-between">{date}</div>;
     }
 
-    let achievementRateTextColor = "";
-    let progressBacgroundColor = "";
-    let progressBarColor = "";
+    let achievementRateTextColor = "text-success";
+    let progressBacgroundColor = "bg-success-200";
+    let progressBarColor = "progress-success";
 
     if (achievementRate < 1) {
       achievementRateTextColor = "text-neutral-400";
@@ -55,10 +55,6 @@ function Day({ achievementRate, date, month, styles, year }: IDay) {
       achievementRateTextColor = "text-accent";
       progressBacgroundColor = "bg-accent-200";
       progressBarColor = "progress-accent";
-    } else {
-      achievementRateTextColor = "text-success";
-      progressBacgroundColor = "bg-success-200";
-      progressBarColor = "progress-success";
     }
 
     return (
