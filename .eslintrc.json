@@ -75,6 +75,12 @@
       {
         "ignoreFunctionalComponents": true // functional component는 무시할지 여부
       }
-    ] // optional props의 경우 default value 여부
+    ], // optional props의 경우 default value 여부
+    "no-plusplus": [
+      "error",
+      {
+        "allowForLoopAfterthoughts": true
+      }
+    ] // 반복문의 경우는 증감연산자 사용 가능
   }
 }
