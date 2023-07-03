@@ -1,72 +1,112 @@
 import ConfirmModal from "@/components/common/organisms/ConfirmModal";
+import TimePicker from "@/components/common/organisms/TimePicker";
 import ArticleTemplate from "@/components/common/templates/ArticleTemplate";
 import ToDoAdd from "@/components/todo/ToDoAdd";
 import ToDoHeader from "@/components/todo/ToDoHeader";
 import ToDoList from "@/components/todo/ToDoList";
+import useToDosQuery from "@/hooks/queries/useToDosQuery";
 import useModal from "@/hooks/useModal";
-import { IToDos } from "@/types/todo";
-import { useState } from "react";
+import useTimePicker from "@/hooks/useTimePicker";
+import { IRouTineToDoData, IToDoData } from "@/types/todo";
+import { getYYYYMMDD } from "@/utils/date";
 
 interface IToDoView {
   date: Date;
 }
 
-/**
- * @deprecated 샘플 할일 배열
- */
-const TEMP_TODOS = [...Array(30)].map((value, index) => ({
-  checked: false,
-  content: `${Math.random() * 1000}`,
-  id: index + 1,
-}));
-
 export default function ToDoView({ date }: IToDoView) {
-  const [todos, setTodos] = useState(TEMP_TODOS);
-  const { closeModal, isOpenModal, modalItem, openModal } = useModal<IToDos>();
+  const {
+    closeModal: closeRemoveModal,
+    isOpenModal: isOpenRemoveModal,
+    modalItem: removeModalItem,
+    openModal: openRemoveModal,
+  } = useModal<IToDoData | IRouTineToDoData>();
+  const {
+    closeModal: closeAlarmModal,
+    isOpenModal: isOpenAlarmModal,
+    modalItem: alarmModalItem,
+    openModal: openAlarmModal,
+  } = useModal<IToDoData | IRouTineToDoData>();
+  const { changeHours, changeMinutes, hours, minutes } = useTimePicker();
 
+  const currentDate = getYYYYMMDD("", date);
+  const { data: allToDos } = useToDosQuery(currentDate);
+  const { routineTodos = [], todos = [] } = allToDos || {};
+
+  // 완료 todo count
+  const successRoutineToDoCount = routineTodos.filter((routineToDo) => routineToDo.checked).length;
   const successToDoCount = todos.filter((todo) => todo.checked).length;
+  const successAllToDoCount = successRoutineToDoCount + successToDoCount;
+
+  // 전체 todo count
+  const totalRoutineToDoCount = routineTodos.length;
   const totalToDoCount = todos.length;
+  const totalAllToDoCount = totalRoutineToDoCount + totalToDoCount;
 
-  const toggleToDoItemEvent = (id: number) => {
-    setTodos((currentTodos) =>
-      currentTodos.map((todo) => {
-        if (id === todo.id) {
-          return {
-            ...todo,
-            checked: !todo.checked,
-          };
-        }
+  const toggleToDoItemEvent = (item: IToDoData) => {
+    console.log("check todo", item);
+  };
 
-        return todo;
-      }),
-    );
+  const toggleRoutineToDoItemEvent = (item: IRouTineToDoData) => {
+    console.log("check routine todo", item);
   };
 
   const removeToDoItem = () => {
-    console.log("remove todo", modalItem);
+    console.log("remove todo", removeModalItem);
   };
 
   return (
     <>
       <ArticleTemplate>
         <div className="h-28">
-          <ToDoHeader date={date} successCount={successToDoCount} totalCount={totalToDoCount} />
+          <ToDoHeader date={date} successCount={successAllToDoCount} totalCount={totalAllToDoCount} />
         </div>
         <div className="h-14 max-sm:h-10">
           <ToDoAdd />
         </div>
         <div className="h-[calc(100%-7rem-3.5rem)] max-sm:h-[calc(100%-7rem-2.5rem)] overflow-auto">
-          <ToDoList removeToDoItemEvent={openModal} toggleToDoItemEvent={toggleToDoItemEvent} todos={todos} />
+          <ToDoList<IToDoData>
+            removeToDoItemEvent={openRemoveModal}
+            setAlarmToDoEvent={openAlarmModal}
+            title="할 일"
+            toggleToDoItemEvent={toggleToDoItemEvent}
+            todos={todos}
+          />
+          <ToDoList<IRouTineToDoData>
+            emptyDescription="오늘은 쉬는 날!"
+            setAlarmToDoEvent={openAlarmModal}
+            title="루틴 할 일"
+            toggleToDoItemEvent={toggleRoutineToDoItemEvent}
+            todos={routineTodos}
+            useRemoveButton={false}
+          />
         </div>
       </ArticleTemplate>
       <ConfirmModal
-        isOpen={isOpenModal}
+        isOpen={isOpenRemoveModal}
         isShowCancleButton
         isShowConfirmButton
-        onCloseEvent={closeModal}
+        onCloseEvent={closeRemoveModal}
         onConfirmEvent={removeToDoItem}
       >
         <p className="p-2">정말 삭제할까요?</p>
+      </ConfirmModal>
+      <ConfirmModal
+        isOpen={isOpenAlarmModal}
+        isShowCancleButton
+        isShowConfirmButton
+        onCloseEvent={closeAlarmModal}
+        onConfirmEvent={removeToDoItem}
+      >
+        <div className="flex justify-center">
+          <TimePicker
+            changeHours={changeHours}
+            changeMinutes={changeMinutes}
+            hours={hours}
+            isUseSeconds={false}
+            minutes={minutes}
+          />
+        </div>
       </ConfirmModal>
     </>
   );

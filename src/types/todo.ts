@@ -1,14 +1,5 @@
 import { IAlarmData } from "@/types/alarm";
 
-/**
- * @deprecated 샘플용
- */
-export interface IToDos {
-  checked: boolean;
-  content: string;
-  id: number;
-}
-
 export interface IToDoData {
   alarm: IAlarmData | null;
   checked: boolean;
