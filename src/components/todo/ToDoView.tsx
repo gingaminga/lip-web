@@ -4,6 +4,7 @@ import ArticleTemplate from "@/components/common/templates/ArticleTemplate";
 import ToDoAdd from "@/components/todo/ToDoAdd";
 import ToDoHeader from "@/components/todo/ToDoHeader";
 import ToDoList from "@/components/todo/ToDoList";
+import useAddToDoMutation from "@/hooks/queries/useAddToDoMutation";
 import useRemoveToDoMutation from "@/hooks/queries/useRemoveToDoMutation";
 import useToDosQuery from "@/hooks/queries/useToDosQuery";
 import useModal from "@/hooks/useModal";
@@ -45,6 +46,15 @@ export default function ToDoView({ date }: IToDoView) {
       queryCache.invalidateQueries(QUERY_KEY.LIP.GET_TODOS(currentDate)); // 재요청
     },
   });
+  const {
+    isLoading: isLoadingAddToDo,
+    mutate: addToDo,
+    isSuccess: isSuccessAddToDo,
+  } = useAddToDoMutation({
+    onSuccess: () => {
+      queryCache.invalidateQueries(QUERY_KEY.LIP.GET_TODOS(currentDate)); // 재요청
+    },
+  });
 
   // 완료 todo count
   const successRoutineToDoCount = routineTodos.filter((routineToDo) => routineToDo.checked).length;
@@ -62,6 +72,19 @@ export default function ToDoView({ date }: IToDoView) {
 
   const toggleRoutineToDoItemEvent = (item: IRouTineToDoData) => {
     console.log("check routine todo", item);
+  };
+
+  /**
+   * @description 할 일 추가하기
+   * @param content 내용
+   */
+  const addToDoItem = (content: string) => {
+    const params = {
+      content,
+      date: currentDate,
+    };
+
+    addToDo(params);
   };
 
   /**
@@ -85,7 +108,11 @@ export default function ToDoView({ date }: IToDoView) {
           <ToDoHeader date={date} successCount={successAllToDoCount} totalCount={totalAllToDoCount} />
         </div>
         <div className="h-14 max-sm:h-10">
-          <ToDoAdd />
+          <ToDoAdd
+            addToDoItemEvent={addToDoItem}
+            isLoadingAddToDo={isLoadingAddToDo}
+            isSuccessAddToDo={isSuccessAddToDo}
+          />
         </div>
         <div className="h-[calc(100%-7rem-3.5rem)] max-sm:h-[calc(100%-7rem-2.5rem)] overflow-auto">
           <ToDoList<IToDoData>
