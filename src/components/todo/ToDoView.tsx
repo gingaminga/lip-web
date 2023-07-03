@@ -4,17 +4,22 @@ import ArticleTemplate from "@/components/common/templates/ArticleTemplate";
 import ToDoAdd from "@/components/todo/ToDoAdd";
 import ToDoHeader from "@/components/todo/ToDoHeader";
 import ToDoList from "@/components/todo/ToDoList";
+import useRemoveToDoMutation from "@/hooks/queries/useRemoveToDoMutation";
 import useToDosQuery from "@/hooks/queries/useToDosQuery";
 import useModal from "@/hooks/useModal";
 import useTimePicker from "@/hooks/useTimePicker";
 import { IRouTineToDoData, IToDoData } from "@/types/todo";
 import { getYYYYMMDD } from "@/utils/date";
+import { QUERY_KEY } from "@/utils/query-key";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface IToDoView {
   date: Date;
 }
 
 export default function ToDoView({ date }: IToDoView) {
+  const queryCache = useQueryClient();
+
   const {
     closeModal: closeRemoveModal,
     isOpenModal: isOpenRemoveModal,
@@ -32,6 +37,14 @@ export default function ToDoView({ date }: IToDoView) {
   const currentDate = getYYYYMMDD("", date);
   const { data: allToDos } = useToDosQuery(currentDate);
   const { routineTodos = [], todos = [] } = allToDos || {};
+
+  const { mutate: removeToDo } = useRemoveToDoMutation({
+    onSuccess: () => {
+      closeRemoveModal(); // 팝업 닫기
+
+      queryCache.invalidateQueries(QUERY_KEY.LIP.GET_TODOS(currentDate)); // 재요청
+    },
+  });
 
   // 완료 todo count
   const successRoutineToDoCount = routineTodos.filter((routineToDo) => routineToDo.checked).length;
@@ -51,8 +64,18 @@ export default function ToDoView({ date }: IToDoView) {
     console.log("check routine todo", item);
   };
 
+  /**
+   * @description 할 일 삭제하기
+   */
   const removeToDoItem = () => {
-    console.log("remove todo", removeModalItem);
+    if (removeModalItem) {
+      const { id } = removeModalItem;
+      const params = {
+        id,
+      };
+
+      removeToDo(params);
+    }
   };
 
   return (

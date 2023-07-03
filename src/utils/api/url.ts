@@ -10,6 +10,7 @@ export const LIP_URL = {
     TODO: {
       GET_TODO: "/api/todo",
       REMOVE_ALL_TODO: "/api/todo/all",
+      REMOVE_TODO: "/api/todo",
     },
     ROUTINE: {
       ADD_ROUTINE: "/api/routine",
