@@ -16,6 +16,7 @@ export const LIP_URL = {
     },
     ROUTINE: {
       ADD_ROUTINE: "/api/routine",
+      CHECK_ROUTINE_TODO: "/api/routine/yn",
       GET_DETAIL_ROUTINE: "/api/routine",
       GET_ROUTINES: "/api/routine/all",
       MODIFY_ROUTINE: "/api/routine",
