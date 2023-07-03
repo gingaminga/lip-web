@@ -1,3 +1,4 @@
+import _ from "lodash";
 import { BiTrashAlt } from "react-icons/bi";
 import { CiAlarmOn } from "react-icons/ci";
 
@@ -33,7 +34,7 @@ export default function ToDoItem({
           checked={isChecked}
           className={checkboxClassName}
           id={`checkbox-todo-${id}`}
-          onChange={onChange}
+          onChange={_.debounce(onChange, 500)}
           type="checkbox"
         />
         <span className={contentClassName}>{content}</span>

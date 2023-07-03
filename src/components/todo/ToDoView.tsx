@@ -5,6 +5,7 @@ import ToDoAdd from "@/components/todo/ToDoAdd";
 import ToDoHeader from "@/components/todo/ToDoHeader";
 import ToDoList from "@/components/todo/ToDoList";
 import useAddToDoMutation from "@/hooks/queries/useAddToDoMutation";
+import useCheckToDoMutation from "@/hooks/queries/useCheckToDoMutation";
 import useRemoveToDoMutation from "@/hooks/queries/useRemoveToDoMutation";
 import useToDosQuery from "@/hooks/queries/useToDosQuery";
 import useModal from "@/hooks/useModal";
@@ -55,6 +56,11 @@ export default function ToDoView({ date }: IToDoView) {
       queryCache.invalidateQueries(QUERY_KEY.LIP.GET_TODOS(currentDate)); // 재요청
     },
   });
+  const { mutate: checkToDo } = useCheckToDoMutation({
+    onSuccess: () => {
+      queryCache.invalidateQueries(QUERY_KEY.LIP.GET_TODOS(currentDate)); // 재요청
+    },
+  });
 
   // 완료 todo count
   const successRoutineToDoCount = routineTodos.filter((routineToDo) => routineToDo.checked).length;
@@ -66,8 +72,18 @@ export default function ToDoView({ date }: IToDoView) {
   const totalToDoCount = todos.length;
   const totalAllToDoCount = totalRoutineToDoCount + totalToDoCount;
 
-  const toggleToDoItemEvent = (item: IToDoData) => {
-    console.log("check todo", item);
+  /**
+   * @description 할 일 완료 유무 체크하기
+   * @param item 할 일 정보
+   */
+  const checkToDoItem = (item: IToDoData) => {
+    const { checked, id } = item;
+    const params = {
+      checked: checked ? 0 : 1, // 변경하는 작업이기 때문에 기존 정보의 반대로 전달
+      id,
+    };
+
+    checkToDo(params);
   };
 
   const toggleRoutineToDoItemEvent = (item: IRouTineToDoData) => {
@@ -119,7 +135,7 @@ export default function ToDoView({ date }: IToDoView) {
             removeToDoItemEvent={openRemoveModal}
             setAlarmToDoEvent={openAlarmModal}
             title="할 일"
-            toggleToDoItemEvent={toggleToDoItemEvent}
+            toggleToDoItemEvent={checkToDoItem}
             todos={todos}
           />
           <ToDoList<IRouTineToDoData>
