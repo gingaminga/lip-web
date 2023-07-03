@@ -1,4 +1,5 @@
 import { getDayString, getYYYYMMDD } from "@/utils/date";
+import { useCallback } from "react";
 
 interface IToDoHeader {
   date: Date;
@@ -10,13 +11,17 @@ interface IToDoHeader {
  * @description 할 일에 대한 제목 컴포넌트
  */
 export default function ToDoHeader({ date, successCount, totalCount }: IToDoHeader) {
-  const achievementRate = Math.floor((successCount / totalCount) * 100); // 비율
+  let achievementRate = 0;
+
+  if (totalCount) {
+    achievementRate = Math.floor((successCount / totalCount) * 100); // 비율
+  }
 
   let achievementRateTextColor = "text-success";
   let smileText = ":)";
 
   if (achievementRate < 1) {
-    achievementRateTextColor = "text-neutral-400";
+    achievementRateTextColor = "";
     smileText = "";
   } else if (achievementRate < 40) {
     achievementRateTextColor = "text-rose-400";
@@ -28,6 +33,21 @@ export default function ToDoHeader({ date, successCount, totalCount }: IToDoHead
     achievementRateTextColor = "text-accent";
     smileText = ":)";
   }
+
+  /**
+   * @description 응원 문구 텍스트 부분
+   */
+  const CheeringTextView = useCallback(() => {
+    if (totalCount < 1) {
+      return <span>여유로운 것도 좋아요.</span>;
+    }
+
+    return (
+      <span>
+        {totalCount}개 중 <span className={`${achievementRateTextColor}`}>{successCount}개</span> 끝냈어요. {smileText}
+      </span>
+    );
+  }, [achievementRateTextColor, smileText, successCount, totalCount]);
 
   return (
     <hgroup className="flex flex-col flex-wrap w-full">
@@ -46,9 +66,7 @@ export default function ToDoHeader({ date, successCount, totalCount }: IToDoHead
           <span className="text-sm">{achievementRate}%</span>
         </div>
       </div>
-      <h5 className="text-sm font-semibold mt-3 max-xs:hidden">
-        {totalCount}개 중 <span className={`${achievementRateTextColor}`}>{successCount}개</span> 끝냈어요. {smileText}
-      </h5>
+      <h5 className="text-sm font-semibold mt-3 max-xs:hidden">{CheeringTextView()}</h5>
     </hgroup>
   );
 }
