@@ -8,6 +8,7 @@ import useAddToDoMutation from "@/hooks/queries/useAddToDoMutation";
 import useCheckRoutineToDoMutation from "@/hooks/queries/useCheckRoutineToDoMutation";
 import useCheckToDoMutation from "@/hooks/queries/useCheckToDoMutation";
 import useRemoveToDoMutation from "@/hooks/queries/useRemoveToDoMutation";
+import useSetAlarmInToDoMutation from "@/hooks/queries/useSetAlarmInToDoMutation";
 import useToDosQuery from "@/hooks/queries/useToDosQuery";
 import useModal from "@/hooks/useModal";
 import useTimePicker from "@/hooks/useTimePicker";
@@ -35,7 +36,11 @@ export default function ToDoView({ date }: IToDoView) {
     modalItem: alarmModalItem,
     openModal: openAlarmModal,
   } = useModal<IToDoData | IRouTineToDoData>();
-  const { changeHours, changeMinutes, hours, minutes } = useTimePicker();
+  const { changeHours, changeMinutes, hours, minutes } = useTimePicker({
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
 
   const currentDate = getYYYYMMDD("", date);
   const { data: allToDos } = useToDosQuery(currentDate);
@@ -67,7 +72,13 @@ export default function ToDoView({ date }: IToDoView) {
       queryCache.invalidateQueries(QUERY_KEY.LIP.GET_TODOS(currentDate)); // 재요청
     },
   });
+  const { mutate: setAlarmInToDo } = useSetAlarmInToDoMutation({
+    onSuccess: () => {
+      closeAlarmModal(); // 팝업 닫기
 
+      queryCache.invalidateQueries(QUERY_KEY.LIP.GET_TODOS(currentDate)); // 재요청
+    },
+  });
   // 완료 todo count
   const successRoutineToDoCount = routineTodos.filter((routineToDo) => routineToDo.checked).length;
   const successToDoCount = todos.filter((todo) => todo.checked).length;
@@ -134,6 +145,42 @@ export default function ToDoView({ date }: IToDoView) {
     }
   };
 
+  /**
+   * @description 할 일의 알람 설정하기
+   */
+  const setAlarmInToDoItem = () => {
+    if (setAlarmInToDo && alarmModalItem) {
+      const params = {
+        alarmHour: hours,
+        alarmMinute: minutes,
+        id: alarmModalItem.id,
+      };
+
+      setAlarmInToDo(params);
+    }
+  };
+
+  /**
+   * @description 할 일의 기본 알람 정보 설정하기
+   * @param items 할 일 정보
+   */
+  const setDefaultAlarmInToDo = (items?: IToDoData) => {
+    if (items) {
+      const { alarm } = items;
+      const { hour = 0, minute = 0 } = alarm || {};
+
+      if (hour !== hours) {
+        changeHours(hour);
+      }
+
+      if (minute !== minutes) {
+        changeMinutes(minute);
+      }
+
+      openAlarmModal(items);
+    }
+  };
+
   return (
     <>
       <ArticleTemplate>
@@ -150,17 +197,17 @@ export default function ToDoView({ date }: IToDoView) {
         <div className="h-[calc(100%-7rem-3.5rem)] max-sm:h-[calc(100%-7rem-2.5rem)] overflow-auto">
           <ToDoList<IToDoData>
             removeToDoItemEvent={openRemoveModal}
-            setAlarmToDoEvent={openAlarmModal}
+            setAlarmToDoEvent={setDefaultAlarmInToDo}
             title="할 일"
             toggleToDoItemEvent={checkToDoItem}
             todos={todos}
           />
           <ToDoList<IRouTineToDoData>
             emptyDescription="오늘은 쉬는 날!"
-            setAlarmToDoEvent={openAlarmModal}
             title="루틴 할 일"
             toggleToDoItemEvent={checkRoutineToDoItem}
             todos={routineTodos}
+            useAlarmButton={false}
             useRemoveButton={false}
           />
         </div>
@@ -179,17 +226,19 @@ export default function ToDoView({ date }: IToDoView) {
         isShowCancleButton
         isShowConfirmButton
         onCloseEvent={closeAlarmModal}
-        onConfirmEvent={removeToDoItem}
+        onConfirmEvent={setAlarmInToDoItem}
       >
-        <div className="flex justify-center">
-          <TimePicker
-            changeHours={changeHours}
-            changeMinutes={changeMinutes}
-            hours={hours}
-            isUseSeconds={false}
-            minutes={minutes}
-          />
-        </div>
+        {isOpenAlarmModal && (
+          <div className="flex justify-center">
+            <TimePicker
+              changeHours={changeHours}
+              changeMinutes={changeMinutes}
+              hours={hours}
+              isUseSeconds={false}
+              minutes={minutes}
+            />
+          </div>
+        )}
       </ConfirmModal>
     </>
   );

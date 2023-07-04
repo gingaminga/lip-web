@@ -9,6 +9,7 @@ interface IToDoItem {
   onChange: () => void;
   removeItem?: () => void; // 투두 삭제하기
   setAlarm?: () => void; // 알람 설정하기
+  useAlarmButton?: boolean;
   useRemoveButton?: boolean;
 }
 
@@ -22,6 +23,7 @@ export default function ToDoItem({
   onChange,
   removeItem,
   setAlarm,
+  useAlarmButton = false,
   useRemoveButton = false,
 }: IToDoItem) {
   const checkboxClassName = `checkbox ${isChecked ? " checkbox-success checked:bg-none" : ""}`;
@@ -40,9 +42,11 @@ export default function ToDoItem({
         <span className={contentClassName}>{content}</span>
       </label>
       <div className="flex items-center h-full  justify-end">
-        <button className="btn btn-ghost btn-circle btn-sm mr-2" onClick={setAlarm} type="button">
-          <CiAlarmOn className="h-4 w-4 text-neutral-400" />
-        </button>
+        {useAlarmButton && (
+          <button className="btn btn-ghost btn-circle btn-sm mr-2" onClick={setAlarm} type="button">
+            <CiAlarmOn className="h-4 w-4 text-neutral-400" />
+          </button>
+        )}
         {useRemoveButton && (
           <button className="btn btn-ghost btn-circle btn-sm mr-2" onClick={removeItem} type="button">
             <BiTrashAlt className="h-4 w-4 text-neutral-400" />

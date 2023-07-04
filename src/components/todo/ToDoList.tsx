@@ -5,10 +5,11 @@ import { ImTongue2 } from "react-icons/im";
 interface IToDoList<T extends IToDoData> {
   emptyDescription?: string;
   removeToDoItemEvent?: (item: T) => void;
-  setAlarmToDoEvent: (item: T) => void;
+  setAlarmToDoEvent?: (item: T) => void;
   title?: string;
   todos: T[];
   toggleToDoItemEvent: (item: T) => void;
+  useAlarmButton?: boolean;
   useRemoveButton?: boolean;
 }
 
@@ -22,6 +23,7 @@ export default function ToDoList<T extends IToDoData>({
   title,
   todos,
   toggleToDoItemEvent,
+  useAlarmButton = true,
   useRemoveButton = true,
 }: IToDoList<T>) {
   return (
@@ -47,7 +49,9 @@ export default function ToDoList<T extends IToDoData>({
         };
 
         const setAlarm = () => {
-          setAlarmToDoEvent(todo);
+          if (setAlarmToDoEvent) {
+            setAlarmToDoEvent(todo);
+          }
         };
 
         return (
@@ -59,6 +63,7 @@ export default function ToDoList<T extends IToDoData>({
             onChange={onChange}
             removeItem={removeItem}
             setAlarm={setAlarm}
+            useAlarmButton={useAlarmButton}
             useRemoveButton={useRemoveButton}
           />
         );
