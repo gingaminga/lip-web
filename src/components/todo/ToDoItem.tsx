@@ -1,7 +1,7 @@
 import _ from "lodash";
 import { BiTrashAlt } from "react-icons/bi";
 import { BsPencilSquare } from "react-icons/bs";
-import { CiAlarmOn } from "react-icons/ci";
+import { MdAlarm } from "react-icons/md";
 
 interface IToDoItem {
   content: string; // 내용
@@ -54,7 +54,7 @@ export default function ToDoItem({
         )}
         {useAlarmButton && (
           <button className="btn btn-ghost btn-circle btn-sm mr-2" onClick={setAlarm} type="button">
-            <CiAlarmOn className="h-4 w-4 text-neutral-400" />
+            <MdAlarm className="h-4 w-4 text-neutral-400" />
           </button>
         )}
         {useRemoveButton && (
