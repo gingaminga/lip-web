@@ -4,12 +4,14 @@ import { ImTongue2 } from "react-icons/im";
 
 interface IToDoList<T extends IToDoData> {
   emptyDescription?: string;
+  modifyToDoItemEvent?: (item: T) => void;
   removeToDoItemEvent?: (item: T) => void;
   setAlarmToDoEvent?: (item: T) => void;
   title?: string;
   todos: T[];
   toggleToDoItemEvent: (item: T) => void;
   useAlarmButton?: boolean;
+  useModifyButton?: boolean;
   useRemoveButton?: boolean;
 }
 
@@ -18,12 +20,14 @@ interface IToDoList<T extends IToDoData> {
  */
 export default function ToDoList<T extends IToDoData>({
   emptyDescription = "오늘은 무얼 해볼까요?",
+  modifyToDoItemEvent,
   removeToDoItemEvent,
   setAlarmToDoEvent,
   title,
   todos,
   toggleToDoItemEvent,
   useAlarmButton = true,
+  useModifyButton = true,
   useRemoveButton = true,
 }: IToDoList<T>) {
   return (
@@ -40,6 +44,12 @@ export default function ToDoList<T extends IToDoData>({
 
         const onChange = () => {
           toggleToDoItemEvent(todo);
+        };
+
+        const modifyItem = () => {
+          if (modifyToDoItemEvent) {
+            modifyToDoItemEvent(todo);
+          }
         };
 
         const removeItem = () => {
@@ -60,10 +70,12 @@ export default function ToDoList<T extends IToDoData>({
             id={id}
             isChecked={checked}
             key={`todo-item-${id}-${checked}-${content}`}
+            modifyItem={modifyItem}
             onChange={onChange}
             removeItem={removeItem}
             setAlarm={setAlarm}
             useAlarmButton={useAlarmButton}
+            useModifyButton={useModifyButton}
             useRemoveButton={useRemoveButton}
           />
         );

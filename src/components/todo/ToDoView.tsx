@@ -4,9 +4,11 @@ import ArticleTemplate from "@/components/common/templates/ArticleTemplate";
 import ToDoAdd from "@/components/todo/ToDoAdd";
 import ToDoHeader from "@/components/todo/ToDoHeader";
 import ToDoList from "@/components/todo/ToDoList";
+import ToDoModifyInputForm from "@/components/todo/ToDoModifyInputForm";
 import useAddToDoMutation from "@/hooks/queries/useAddToDoMutation";
 import useCheckRoutineToDoMutation from "@/hooks/queries/useCheckRoutineToDoMutation";
 import useCheckToDoMutation from "@/hooks/queries/useCheckToDoMutation";
+import useModifyToDoMutation from "@/hooks/queries/useModifyToDoMutation";
 import useRemoveToDoMutation from "@/hooks/queries/useRemoveToDoMutation";
 import useSetAlarmInToDoMutation from "@/hooks/queries/useSetAlarmInToDoMutation";
 import useToDosQuery from "@/hooks/queries/useToDosQuery";
@@ -16,6 +18,7 @@ import { IRouTineToDoData, IToDoData } from "@/types/todo";
 import { getYYYYMMDD } from "@/utils/date";
 import { QUERY_KEY } from "@/utils/query-key";
 import { useQueryClient } from "@tanstack/react-query";
+import { useState } from "react";
 
 interface IToDoView {
   date: Date;
@@ -41,6 +44,15 @@ export default function ToDoView({ date }: IToDoView) {
     minutes: 0,
     seconds: 0,
   });
+
+  const [selectedToDoItem, setSelectedToDoItem] = useState<IToDoData>(); // 할 일 수정 시 정보 저장
+  /**
+   * @description 할 일 수정하는 정보 저장하기
+   * @param items 할 일 정보
+   */
+  const saveSelectedModifyToDoItem = (items?: IToDoData) => {
+    setSelectedToDoItem(items);
+  };
 
   const currentDate = getYYYYMMDD("", date);
   const { data: allToDos } = useToDosQuery(currentDate);
@@ -79,6 +91,14 @@ export default function ToDoView({ date }: IToDoView) {
       queryCache.invalidateQueries(QUERY_KEY.LIP.GET_TODOS(currentDate)); // 재요청
     },
   });
+  const { isLoading: isLoadingModifyToDo, mutate: modifyToDo } = useModifyToDoMutation({
+    onSuccess: () => {
+      saveSelectedModifyToDoItem(); // 수정 데이터 초기화
+
+      queryCache.invalidateQueries(QUERY_KEY.LIP.GET_TODOS(currentDate)); // 재요청
+    },
+  });
+
   // 완료 todo count
   const successRoutineToDoCount = routineTodos.filter((routineToDo) => routineToDo.checked).length;
   const successToDoCount = todos.filter((todo) => todo.checked).length;
@@ -129,6 +149,20 @@ export default function ToDoView({ date }: IToDoView) {
     };
 
     addToDo(params);
+  };
+
+  /**
+   * @description 할 일 수정하기
+   * @param id 할 일 ID
+   * @param content 내용
+   */
+  const modifyToDoItem = (id: number, content: string) => {
+    const params = {
+      content,
+      id,
+    };
+
+    modifyToDo(params);
   };
 
   /**
@@ -188,14 +222,24 @@ export default function ToDoView({ date }: IToDoView) {
           <ToDoHeader date={date} successCount={successAllToDoCount} totalCount={totalAllToDoCount} />
         </div>
         <div className="h-14 max-sm:h-10">
-          <ToDoAdd
-            addToDoItemEvent={addToDoItem}
-            isLoadingAddToDo={isLoadingAddToDo}
-            isSuccessAddToDo={isSuccessAddToDo}
-          />
+          {selectedToDoItem ? (
+            <ToDoModifyInputForm
+              cancleButtonEvent={saveSelectedModifyToDoItem}
+              isLoadingModifyToDo={isLoadingModifyToDo}
+              modifyToDoItemEvent={modifyToDoItem}
+              todoItem={selectedToDoItem}
+            />
+          ) : (
+            <ToDoAdd
+              addToDoItemEvent={addToDoItem}
+              isLoadingAddToDo={isLoadingAddToDo}
+              isSuccessAddToDo={isSuccessAddToDo}
+            />
+          )}
         </div>
         <div className="h-[calc(100%-7rem-3.5rem)] max-sm:h-[calc(100%-7rem-2.5rem)] overflow-auto">
           <ToDoList<IToDoData>
+            modifyToDoItemEvent={saveSelectedModifyToDoItem}
             removeToDoItemEvent={openRemoveModal}
             setAlarmToDoEvent={setDefaultAlarmInToDo}
             title="할 일"
@@ -208,6 +252,7 @@ export default function ToDoView({ date }: IToDoView) {
             toggleToDoItemEvent={checkRoutineToDoItem}
             todos={routineTodos}
             useAlarmButton={false}
+            useModifyButton={false}
             useRemoveButton={false}
           />
         </div>
