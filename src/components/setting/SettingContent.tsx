@@ -1,6 +1,7 @@
 import DeveloperContact from "@/components/setting/DeveloperContact";
 import ETC from "@/components/setting/ETC";
 import MyInfo from "@/components/setting/MyInfo";
+import MyStatus from "@/components/setting/MyStatus";
 import NicknameChanger from "@/components/setting/NicknameChanger";
 import RemoveContent from "@/components/setting/RemoveContent";
 import useToggle from "@/hooks/useToggle";
@@ -26,6 +27,8 @@ export default function SettingContent({ nickname }: ISettingContent) {
     return (
       <>
         <MyInfo nicknameChangerEvent={handleActiveNicknameChanger} />
+        <div className="divider" />
+        <MyStatus />
         <div className="divider" />
         <RemoveContent />
         <div className="divider" />
