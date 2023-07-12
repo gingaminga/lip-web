@@ -7,6 +7,9 @@ export const LIP_URL = {
       GET_URL: "/api/auth/url",
       REISSUE_TOKEN: "/api/auth/token",
     },
+    NOTIFICATION: {
+      ADD_FCM_TOKEN: "/api/notification/fcm/token",
+    },
     TODO: {
       ADD_TODO: "/api/todo",
       CHECK_TODO: "/api/todo/yn",

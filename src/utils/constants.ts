@@ -9,6 +9,9 @@ const constants = {
   },
   NODE_ENV: process.env.NODE_ENV,
   PROJECT_NAME: "LifeIsPlan",
+  FIREBASE: {
+    VAPID_KEY: process.env.NEXT_PUBLIC_VAPID_KEY,
+  },
 };
 
 export default constants;

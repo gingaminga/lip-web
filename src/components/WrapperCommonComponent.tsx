@@ -1,4 +1,5 @@
 import LoadingOverlay from "@/components/common/organisms/LoadingOverlay";
+import useFirebase from "@/hooks/useFirebase";
 import useRegisterToken from "@/hooks/useRegisterToken";
 import useVisibleLayout from "@/hooks/useVisibleLayout";
 import { AppProps } from "next/app";
@@ -10,6 +11,7 @@ import { useMemo } from "react";
 export default function WrapperCommonComponent({ Component, pageProps }: AppProps) {
   const { isLogin, isRenderLoadingOverlay } = useVisibleLayout();
   const { isLoadingReissueToken } = useRegisterToken();
+  useFirebase();
 
   const ComponentView = useMemo(() => {
     if (isRenderLoadingOverlay || isLoadingReissueToken) {
