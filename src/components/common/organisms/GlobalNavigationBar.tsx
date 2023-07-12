@@ -1,5 +1,6 @@
 import ThemeToggle from "@/components/common/organisms/ThemeToggle";
 import useLogoutMutation from "@/hooks/queries/useLogoutMutation";
+import useUser from "@/hooks/useUser";
 import type { ICommonProps } from "@/types/common";
 import { ROUTE_CONFIG } from "@/utils/config";
 import constants from "@/utils/constants";
@@ -21,10 +22,15 @@ export default function GlobalNavigationBar({ isLogin, projectName = constants.P
       Router.reload();
     },
   });
+  const { deviceToken } = useUser();
 
   const logout = useCallback(() => {
-    mutate();
-  }, [mutate]);
+    const params = {
+      deviceToken,
+    };
+
+    mutate(params);
+  }, [deviceToken, mutate]);
 
   const ProjectTitleView = useMemo(
     () => (

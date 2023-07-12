@@ -1,5 +1,7 @@
 import useAddFCMTokenMutation from "@/hooks/queries/useAddFCMTokenMutation";
 import useUser from "@/hooks/useUser";
+import { useAppDispatch } from "@/store/hooks";
+import { setDeviceToken } from "@/store/user/reducer";
 import { processFirebaseCloudMessaging } from "@/utils/firebase";
 import { useCallback, useEffect } from "react";
 
@@ -9,6 +11,7 @@ let isInit = false; // 최초 한 번만 동작하기 위한 플래그
  * @description firebase hook
  */
 export default function useFirebase() {
+  const dispatch = useAppDispatch();
   const { isLogin } = useUser();
   const { mutate: fetchAddFCMToken } = useAddFCMTokenMutation();
 
@@ -29,8 +32,9 @@ export default function useFirebase() {
   const setFirebase = useCallback(async () => {
     const token = await processFirebaseCloudMessaging();
 
+    dispatch(setDeviceToken(token));
     addFCMToken(token);
-  }, [addFCMToken]);
+  }, [addFCMToken, dispatch]);
 
   /**
    * @description 로그인이 되어있을 때, 최초 한 번 firebase 설정하기

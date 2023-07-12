@@ -6,6 +6,7 @@ import { IUserData } from "@/types/user";
  * @description 유저 관련 처리 hook
  */
 export default function useUser() {
+  const deviceToken = useAppSelector((state) => state.user.deviceToken);
   const userInfo = useAppSelector((state) => state.user.userInfo);
   const dispatch = useAppDispatch();
 
@@ -23,6 +24,7 @@ export default function useUser() {
   };
 
   return {
+    deviceToken,
     isLogin,
     saveUserInfo,
     userInfo,

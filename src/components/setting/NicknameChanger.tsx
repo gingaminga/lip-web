@@ -2,6 +2,7 @@ import SubTitle from "@/components/common/molecules/SubTitle";
 import NicknameChangerForm from "@/components/setting/NicknameChangerForm";
 import useChangeNicknameMutation from "@/hooks/queries/useChangeNicknameMutation";
 import useDuplicateNicknameQuery from "@/hooks/queries/useDuplicateNicknameQuery";
+import useUser from "@/hooks/useUser";
 import useValidation from "@/hooks/useValidation";
 import Cookie, { REFRESH_TOKEN_COOKIE_OPTION } from "@/utils/cookie";
 import { validateNickname } from "@/utils/validator";
@@ -24,6 +25,7 @@ export default function NicknameChanger({ currentNickname, onCancleEvent }: INic
       status: false,
     },
   });
+  const { deviceToken } = useUser();
   const { data: isDuplicateNickname = false } = useDuplicateNicknameQuery(confirmNickname, {
     enabled: confirmNickname.length > 0,
   });
@@ -68,6 +70,7 @@ export default function NicknameChanger({ currentNickname, onCancleEvent }: INic
     }
 
     const params = {
+      deviceToken,
       nickname,
     };
 

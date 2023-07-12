@@ -11,10 +11,12 @@ const INIT_USER_INFO: IUserData = {
 };
 
 interface IInitialState {
+  deviceToken: string;
   userInfo: IUserData;
 }
 
 const initialState: IInitialState = {
+  deviceToken: "",
   userInfo: INIT_USER_INFO,
 };
 
@@ -22,12 +24,15 @@ const userSlice = createSlice({
   name: "user", // 액션 타입 prefix
   initialState,
   reducers: {
+    setDeviceToken: (state, { payload }: PayloadAction<string>) => {
+      state.deviceToken = payload;
+    },
     setUserInfo: (state, { payload }: PayloadAction<IUserData>) => {
       state.userInfo = payload;
     },
   },
 });
 
-export const { setUserInfo } = userSlice.actions;
+export const { setDeviceToken, setUserInfo } = userSlice.actions;
 
 export default userSlice.reducer;

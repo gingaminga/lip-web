@@ -6,7 +6,7 @@ export default function useChangeNicknameMutation(
   options?: UseMutationOptions<boolean, TAxiosError, IRequestChangeNicknameParams, unknown>,
 ) {
   return useMutation<boolean, TAxiosError, IRequestChangeNicknameParams>(
-    ({ nickname }) => fetchChangeNickname(nickname),
+    ({ deviceToken, nickname }) => fetchChangeNickname(nickname, deviceToken),
     options,
   );
 }

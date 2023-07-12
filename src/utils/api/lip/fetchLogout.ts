@@ -4,13 +4,25 @@ import { LifeIsPlanClient } from "@/utils/api/lip";
 import { LIP_URL } from "@/utils/api/url";
 import Cookie, { REFRESH_TOKEN_COOKIE_OPTION } from "@/utils/cookie";
 
+export interface IRequestLogoutParams {
+  deviceToken: string;
+}
+
 /**
  * @description 로그아웃하기
+ * @param token 디바이스 토큰
  */
-export const fetchLogout = async () => {
+export const fetchLogout = async (token: string) => {
   const endpoint = LIP_URL.API.USER.LOGOUT;
 
-  const { data: axiosData } = await LifeIsPlanClient.post<undefined, IResponseLIPFormat<boolean>>(endpoint);
+  const params = {
+    deviceToken: token,
+  };
+
+  const { data: axiosData } = await LifeIsPlanClient.post<IRequestLogoutParams, IResponseLIPFormat<boolean>>(
+    endpoint,
+    params,
+  );
   const { status } = axiosData;
 
   if (isFetchFailure(status)) {
