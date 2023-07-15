@@ -61,14 +61,14 @@ export default function ToDoAdd({ addToDoItemEvent, isLoadingAddToDo, isSuccessA
     <div className="form-control">
       <div className="input-group">
         <input
-          className="input input-bordered w-full max-sm:input-sm"
+          className="input input-bordered w-full max-lg:input-sm"
           placeholder="오늘 할 일은?"
           ref={inputRef}
           type="text"
           onKeyUp={_.debounce(inputBoxKeyUpEvent, 500)}
         />
         <button
-          className={`btn ${isLoadingAddToDo ? "loading" : ""} max-sm:btn-sm`}
+          className={`btn ${isLoadingAddToDo ? "loading" : ""} max-lg:btn-sm`}
           onClick={_.debounce(addButtonClickEvent, 500)}
           type="button"
         >

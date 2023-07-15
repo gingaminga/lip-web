@@ -221,7 +221,7 @@ export default function ToDoView({ date }: IToDoView) {
         <div className="h-28">
           <ToDoHeader date={date} successCount={successAllToDoCount} totalCount={totalAllToDoCount} />
         </div>
-        <div className="h-14 max-sm:h-10">
+        <div className="h-14 max-lg:h-10">
           {selectedToDoItem ? (
             <ToDoModifyInputForm
               cancleButtonEvent={saveSelectedModifyToDoItem}
@@ -237,7 +237,7 @@ export default function ToDoView({ date }: IToDoView) {
             />
           )}
         </div>
-        <div className="h-[calc(100%-7rem-3.5rem)] max-sm:h-[calc(100%-7rem-2.5rem)] overflow-auto">
+        <div className="h-[calc(100%-7rem-3.5rem)] max-lg:h-[calc(100%-7rem-2.5rem)] overflow-auto">
           <ToDoList<IToDoData>
             modifyToDoItemEvent={saveSelectedModifyToDoItem}
             removeToDoItemEvent={openRemoveModal}

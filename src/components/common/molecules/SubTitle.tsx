@@ -18,12 +18,12 @@ export default function SubTitle({ description, descriptionStyles, title, titleS
   const {
     fontWeight: titleFontWeight = "font-bold",
     marginBottom: titleMarginBottom = description ? "mb-0" : "mb-2",
-    size: titleSize = ["text-xl", "max-sm:text-base"],
+    size: titleSize = ["text-xl", "max-lg:text-base"],
   } = titleStyles || {};
   const {
     fontWeight: descriptionFontWeight = "font-medium",
     marginBottom: descriptionMarginBottom = "mb-4",
-    size: descriptionSize = ["text-sm", "max-sm:text-xs"],
+    size: descriptionSize = ["text-sm", "max-lg:text-xs"],
   } = descriptionStyles || {};
 
   const titleSizes = titleSize.join(" ");

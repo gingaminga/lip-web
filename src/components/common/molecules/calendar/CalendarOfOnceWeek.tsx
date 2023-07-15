@@ -60,10 +60,10 @@ function Day({ achievementRate, date, month, styles, year }: IDay) {
     return (
       <div className="flex flex-col w-full h-full justify-between">
         {date}
-        <div className="flex flex-col justify-center items-center max-sm:justify-end">
+        <div className="flex flex-col justify-center items-center max-lg:justify-end">
           <span className={`text-xs ${achievementRateTextColor}`}>{achievementRate}%</span>
           <progress
-            className={`progress ${progressBarColor} ${progressBacgroundColor}  w-full h-3 max-sm:hidden`}
+            className={`progress ${progressBarColor} ${progressBacgroundColor}  w-full h-3 max-lg:hidden`}
             value={achievementRate}
             max="100"
           />

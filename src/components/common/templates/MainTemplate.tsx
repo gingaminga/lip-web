@@ -10,7 +10,7 @@ interface IMainTemplate extends ICommonProps {
 export default function MainTemplate({ children, isLogin }: IMainTemplate) {
   return (
     <CommonTemplate isLogin={isLogin}>
-      <div className="flex justify-start h-full w-full max-w-full border border-base-200 shadow-inset rounded-2xl max-sm:bg-base-100 max-sm:rounded-none max-sm:flex-col-reverse max-sm:border-none">
+      <div className="flex justify-start h-full w-full max-w-full border border-base-200 shadow-inset rounded-2xl max-lg:bg-base-100 max-lg:rounded-none max-lg:flex-col-reverse max-lg:border-none">
         <div className="hero-content basis-5 w-full h-full rounded-l-[inherit] bg-base-300">
           <LocalNavigationBar />
         </div>

@@ -63,10 +63,10 @@ export default function NicknameChangerForm({
         </label>
         <span className={validatorLabelClassName}>{validateMessage}</span>
         <div className="flex justify-end gap-3">
-          <button className="btn max-sm:btn-sm" onClick={changeNickname} type="button">
+          <button className="btn max-lg:btn-sm" onClick={changeNickname} type="button">
             확인
           </button>
-          <button className="btn max-sm:btn-sm" onClick={onCancleEvent} type="button">
+          <button className="btn max-lg:btn-sm" onClick={onCancleEvent} type="button">
             취소
           </button>
         </div>

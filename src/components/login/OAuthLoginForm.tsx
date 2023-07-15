@@ -27,7 +27,7 @@ export default function OAuthLoginForm({ onClick }: IOAuthLoginForm) {
 
   return (
     <Card>
-      <div className="card-body justify-center max-sm:flex-row max-xs:flex-col max-xs:items-center">
+      <div className="card-body justify-center max-lg:flex-row max-xs:flex-col max-xs:items-center">
         {OAuthButtonView()}
       </div>
     </Card>

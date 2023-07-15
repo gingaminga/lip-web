@@ -12,7 +12,7 @@ export default function CommonTemplate({ children, isLogin }: ICommonTemplate) {
       <header className="top-0">
         <GlobalNavigationBar isLogin={isLogin} />
       </header>
-      <div className="hero h-[calc(100%-4rem)] py-10 px-20 max-sm:p-0">{children}</div>
+      <div className="hero h-[calc(100%-4rem)] py-10 px-20 max-lg:p-0">{children}</div>
     </div>
   );
 }

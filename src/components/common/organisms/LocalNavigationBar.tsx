@@ -73,7 +73,7 @@ export default function LocalNavigationBar() {
 
   return (
     <nav className="rounded-inherit">
-      <ul className="menu max-sm:menu-horizontal">{MenuListView()}</ul>
+      <ul className="menu max-lg:menu-horizontal">{MenuListView()}</ul>
     </nav>
   );
 }

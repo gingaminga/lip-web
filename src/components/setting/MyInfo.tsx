@@ -11,7 +11,7 @@ export default function MyInfo({ nicknameChangerEvent }: IMyInfo) {
   return (
     <section>
       <SubTitle title="내 정보" />
-      <button className="btn max-sm:btn-sm" onClick={nicknameChangerEvent} type="button">
+      <button className="btn max-lg:btn-sm" onClick={nicknameChangerEvent} type="button">
         닉네임 변경하기
       </button>
     </section>

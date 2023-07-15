@@ -154,7 +154,7 @@ export default function DetailRoutineForm({ addRoutine, modifyRoutine, removeRou
           <SubTitle
             title="루틴 이름"
             titleStyles={{
-              size: ["text-lg", "max-sm:text-sm"],
+              size: ["text-lg", "max-lg:text-sm"],
             }}
           />
           <label className="label" htmlFor="change-content">
@@ -173,7 +173,7 @@ export default function DetailRoutineForm({ addRoutine, modifyRoutine, removeRou
             description="무슨 요일에 알려줄까요?"
             title="요일"
             titleStyles={{
-              size: ["text-lg", "max-sm:text-sm"],
+              size: ["text-lg", "max-lg:text-sm"],
             }}
           />
           <div className="w-full flex justify-center">
@@ -185,7 +185,7 @@ export default function DetailRoutineForm({ addRoutine, modifyRoutine, removeRou
             description="몇 시에 알려줄까요?"
             title="알람"
             titleStyles={{
-              size: ["text-lg", "max-sm:text-sm"],
+              size: ["text-lg", "max-lg:text-sm"],
             }}
           />
           <div className="w-full flex justify-center">
@@ -203,7 +203,7 @@ export default function DetailRoutineForm({ addRoutine, modifyRoutine, removeRou
             description="루틴을 기억해요. :)"
             title="색상"
             titleStyles={{
-              size: ["text-lg", "max-sm:text-sm"],
+              size: ["text-lg", "max-lg:text-sm"],
             }}
           />
           <div className="w-full flex justify-center">
@@ -214,10 +214,10 @@ export default function DetailRoutineForm({ addRoutine, modifyRoutine, removeRou
         <div className={`flex ${isAddForm ? "justify-end" : "justify-between"}`}>
           {removeButtonView()}
           <div className="flex gap-3">
-            <button className="btn max-sm:btn-sm" onClick={_.debounce(resultButtonEvent, 800)} type="button">
+            <button className="btn max-lg:btn-sm" onClick={_.debounce(resultButtonEvent, 800)} type="button">
               {isAddForm ? "추가" : "수정"}
             </button>
-            <button className="btn max-sm:btn-sm" onClick={_.debounce(cancleButtonEvent, 800)} type="button">
+            <button className="btn max-lg:btn-sm" onClick={_.debounce(cancleButtonEvent, 800)} type="button">
               취소
             </button>
           </div>

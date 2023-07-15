@@ -88,11 +88,11 @@ export default function GlobalNavigationBar({ isLogin, projectName = constants.P
 
     return (
       <>
-        <div className="navbar-start max-sm:hidden">
+        <div className="navbar-start max-lg:hidden">
           {ProjectTitleView}
           <ThemeToggle />
         </div>
-        <div className="navbar-start sm:hidden">
+        <div className="navbar-start lg:hidden">
           <div className={`dropdown ${hiddenWhenNotLogin}`}>
             <button className="btn btn-ghost btn-circle" tabIndex={0} type="button">
               <HiMenuAlt2 className="h-5 w-5" />
@@ -111,10 +111,10 @@ export default function GlobalNavigationBar({ isLogin, projectName = constants.P
 
     return (
       <>
-        <div className="navbar-center max-sm:hidden">
+        <div className="navbar-center max-lg:hidden">
           <ul className={`menu menu-horizontal ${hiddenWhenNotLogin}`}>{MenuListView(1)}</ul>
         </div>
-        <div className="navbar-center sm:hidden">{ProjectTitleView}</div>
+        <div className="navbar-center lg:hidden">{ProjectTitleView}</div>
       </>
     );
   }, [ProjectTitleView, isLogin]);
@@ -124,12 +124,12 @@ export default function GlobalNavigationBar({ isLogin, projectName = constants.P
 
     return (
       <>
-        <div className="navbar-end max-sm:hidden">
+        <div className="navbar-end max-lg:hidden">
           <button className={`btn btn-ghost btn-xs ${hiddenWhenNotLogin}`} onClick={logout} type="button">
             로그아웃
           </button>
         </div>
-        <div className="navbar-end sm:hidden">
+        <div className="navbar-end lg:hidden">
           <ThemeToggle />
         </div>
       </>

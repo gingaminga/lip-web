@@ -67,20 +67,20 @@ export default function ToDoModifyInputForm({
     <div className="form-control">
       <div className="input-group">
         <input
-          className="input input-bordered w-full max-sm:input-sm"
+          className="input input-bordered w-full max-lg:input-sm"
           placeholder="오늘 할 일은?"
           ref={inputRef}
           type="text"
           onKeyUp={_.debounce(inputBoxKeyUpEvent, 500)}
         />
         <button
-          className={`btn ${isLoadingModifyToDo ? "loading" : ""} max-sm:btn-sm`}
+          className={`btn ${isLoadingModifyToDo ? "loading" : ""} max-lg:btn-sm`}
           onClick={_.debounce(modifyButtonClickEvent, 500)}
           type="button"
         >
           {isLoadingModifyToDo ? "" : "수정"}
         </button>
-        <button className="btn max-sm:btn-sm" onClick={cancleButtonClickEvent} type="button">
+        <button className="btn max-lg:btn-sm" onClick={cancleButtonClickEvent} type="button">
           취소
         </button>
       </div>

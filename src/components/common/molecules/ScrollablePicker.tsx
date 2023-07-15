@@ -126,7 +126,7 @@ export default function ScrollablePicker({ data, defaultValue, getNewContent, st
   }, [focusIndex]);
 
   return (
-    <div className={`${width} flex flex-col max-sm:flex-row`}>
+    <div className={`${width} flex flex-col max-lg:flex-row`}>
       <div className="self-center">
         <button className="btn btn-ghost btn-circle btn-sm" onClick={moveUpOneBlock} type="button">
           <MdArrowDropUp className="h-5 w-5" />
