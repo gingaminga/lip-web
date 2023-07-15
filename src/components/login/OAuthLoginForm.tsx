@@ -27,10 +27,8 @@ export default function OAuthLoginForm({ onClick }: IOAuthLoginForm) {
 
   return (
     <Card>
-      <h2 className="card-title justify-center pt-4 text-base max-lg:text-sm max-xs:text-xs">로그인 / 회원가입</h2>
-      <div className="card-body justify-center max-lg:flex-row max-xs:flex-col max-xs:items-center">
-        {OAuthButtonView()}
-      </div>
+      <h2 className="card-title justify-center pt-4 text-base max-lg:text-sm">로그인 / 회원가입</h2>
+      <div className="card-body justify-center max-lg:flex-row">{OAuthButtonView()}</div>
     </Card>
   );
 }
