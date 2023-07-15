@@ -17,7 +17,7 @@ export default function LogoButton({
   value,
 }: ILogoButton) {
   return (
-    <button className={`${buttonClassName} max-lg:btn-circle`} onClick={onClick} type="button">
+    <button className={`${buttonClassName} max-lg:btn-circle max-lg:hover:btn-circle`} onClick={onClick} type="button">
       {children}
       <span className="max-lg:hidden">{value}</span>
     </button>
