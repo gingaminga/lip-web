@@ -32,9 +32,13 @@ export default function ToDoList<T extends IToDoData>({
 }: IToDoList<T>) {
   return (
     <div className="w-full">
-      {title && <h2 className="w-full bg-base-300 p-4 font-bold sticky top-0 opacity-90 backdrop-blur-xl">{title}</h2>}
+      {title && (
+        <h2 className="w-full bg-base-300 p-4 font-bold sticky top-0 opacity-90 backdrop-blur-xl max-lg:p-3 max-lg:text-sm max-sm:p-2 max-sm:text-xs">
+          {title}
+        </h2>
+      )}
       {todos.length < 1 && (
-        <span className="flex justify-center items-center p-4 text-neutral-400 text-sm">
+        <span className="flex justify-center items-center p-4 text-neutral-400 max-lg:p-3 max-lg:text-sm max-sm:p-2 max-sm:text-xs">
           {emptyDescription}&nbsp;
           <ImTongue2 className="text-yellow-400" />
         </span>

@@ -53,20 +53,20 @@ export default function ToDoHeader({ date, successCount, totalCount }: IToDoHead
     <hgroup className="flex flex-col flex-wrap w-full">
       <div className="flex justify-between">
         <div>
-          <h1 className="text-3xl font-bold">{getYYYYMMDD(". ", date)}</h1>
-          <h3 className="text-xl">{getDayString(date)}.</h3>
+          <h1 className="text-3xl font-bold max-lg:text-xl">{getYYYYMMDD(". ", date)}</h1>
+          <h3 className="text-xl max-lg:text-lg">{getDayString(date)}.</h3>
         </div>
         <div
           className={`radial-progress ${achievementRateTextColor} mt-2 max-xs:hidden`}
           style={{
             "--value": achievementRate,
-            "--size": "4rem",
+            "--size": "3rem",
           }}
         >
-          <span className="text-sm">{achievementRate}%</span>
+          <span className="text-xs">{achievementRate}%</span>
         </div>
       </div>
-      <h5 className="text-sm font-semibold mt-3 max-xs:hidden">{CheeringTextView()}</h5>
+      <h5 className="text-sm font-semibold mt-6">{CheeringTextView()}</h5>
     </hgroup>
   );
 }
