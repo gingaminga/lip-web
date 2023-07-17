@@ -12,11 +12,11 @@ interface ICalendarMoveDate {
  */
 export default function CalendarMoveDate({ changeNextMonth, changePrevMonth, date }: ICalendarMoveDate) {
   return (
-    <div className="flex">
+    <div className="flex items-center">
       <button className="btn btn-ghost btn-circle btn-sm" onClick={changePrevMonth} type="button">
         <IoMdArrowDropleft className="h-5 w-5" />
       </button>
-      <h2 className="text-xl">{getYYYYMM(". ", date)}</h2>
+      <h2 className="text-xl max-lg:text-base">{getYYYYMM(". ", date)}</h2>
       <button className="btn btn-ghost btn-circle btn-sm" onClick={changeNextMonth} type="button">
         <IoMdArrowDropright className="h-5 w-5" />
       </button>

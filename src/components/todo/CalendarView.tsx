@@ -25,7 +25,7 @@ export default function CalendarView() {
         maxWidth: "max-w-full",
       }}
     >
-      <div className="h-10 flex items-center justify-end">
+      <div className="h-10 pb-3 flex items-center justify-end">
         {!isCurrentMonth && (
           <button className="btn btn-ghost btn-sm" onClick={changeToday} type="button">
             오늘..
