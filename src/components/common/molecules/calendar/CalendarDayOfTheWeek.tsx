@@ -1,5 +1,4 @@
 import { DAY_OF_THE_WEEK } from "@/utils/date";
-import { useCallback } from "react";
 
 interface IDayOfTheWeekStyle {
   color?: string;
@@ -16,15 +15,7 @@ interface IDayOfTheWeek {
 function DayOfTheWeek({ styles, text }: IDayOfTheWeek) {
   const { color = "" } = styles || {};
 
-  const TextView = useCallback(() => {
-    if (color) {
-      return <span className={`${color}`}>{text}</span>;
-    }
-
-    return <span>{text}</span>;
-  }, [color, text]);
-
-  return <td>{TextView()}</td>;
+  return <td className={`${color} text-xs text-center p-0 pt-2 pb-2`}>{text}</td>;
 }
 
 /**

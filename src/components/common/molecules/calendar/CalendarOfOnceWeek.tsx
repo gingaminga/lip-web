@@ -32,7 +32,7 @@ function Day({ achievementRate, date, month, styles, year }: IDay) {
 
   const InfoView = useMemo(() => {
     if (achievementRate === undefined) {
-      return <div className="flex flex-col w-full h-full justify-between">{date}</div>;
+      return <div className="w-full h-full">{date}</div>;
     }
 
     let achievementRateTextColor = "text-success";
@@ -58,17 +58,19 @@ function Day({ achievementRate, date, month, styles, year }: IDay) {
     }
 
     return (
-      <div className="flex flex-col w-full h-full justify-between">
-        {date}
-        <div className="flex flex-col justify-center items-center max-lg:justify-end">
-          <span className={`text-xs ${achievementRateTextColor}`}>{achievementRate}%</span>
+      <>
+        <div className="w-full h-1/2">{date}</div>
+        <div className="flex flex-col justify-end w-full h-1/2">
+          <div className="flex w-full justify-center">
+            <span className={`text-xs text-center ${achievementRateTextColor}`}>{achievementRate}%</span>
+          </div>
           <progress
-            className={`progress ${progressBarColor} ${progressBacgroundColor}  w-full h-3 max-lg:hidden`}
+            className={`progress ${progressBarColor} ${progressBacgroundColor} h-2 max-sm:hidden`}
             value={achievementRate}
             max="100"
           />
         </div>
-      </div>
+      </>
     );
   }, [achievementRate, date]);
 
