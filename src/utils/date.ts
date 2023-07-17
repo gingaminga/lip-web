@@ -222,7 +222,12 @@ export const getDayOfText = (days: TActvieStatusByDay) => {
       daysOfText += "금";
     }
 
-    daysOfText += "+주말";
+    if (daysOfText.length > 0) {
+      // 요일이 있을 경우
+      daysOfText += "+";
+    }
+
+    daysOfText += "주말";
   } else {
     if (mon) {
       daysOfText += "월";
