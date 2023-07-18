@@ -75,12 +75,14 @@ export default function DetailRoutineView({ routineID = -1 }: IDetailRoutineView
 
   return (
     <ArticleTemplate>
-      <DetailRoutine
-        addRoutine={addRoutine}
-        modifyRoutine={modifyRoutine}
-        removeRoutine={removeRoutine}
-        routine={data}
-      />
+      <div className="h-full w-full overflow-auto overflow-x-hidden">
+        <DetailRoutine
+          addRoutine={addRoutine}
+          modifyRoutine={modifyRoutine}
+          removeRoutine={removeRoutine}
+          routine={data}
+        />
+      </div>
     </ArticleTemplate>
   );
 }

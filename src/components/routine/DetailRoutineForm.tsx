@@ -149,17 +149,17 @@ export default function DetailRoutineForm({ addRoutine, modifyRoutine, removeRou
 
   return (
     <>
-      <div className="w-full h-full">
-        <section className="mb-5">
+      <div className="w-full h-full pt-3 pr-2">
+        <section className="mb-5 max-sm:mb-3">
           <SubTitle
             title="루틴 이름"
             titleStyles={{
-              size: ["text-lg", "max-lg:text-sm"],
+              size: ["text-lg", "max-sm:text-sm"],
             }}
           />
           <label className="label" htmlFor="change-content">
             <input
-              className="input input-bordered w-full"
+              className="input input-bordered w-full max-sm:input-sm"
               id="change-content"
               placeholder="어떤 일을 반복할까요?"
               type="text"
@@ -168,24 +168,24 @@ export default function DetailRoutineForm({ addRoutine, modifyRoutine, removeRou
             />
           </label>
         </section>
-        <section className="mb-5">
+        <section className="mb-5 max-sm:mb-3">
           <SubTitle
             description="무슨 요일에 알려줄까요?"
             title="요일"
             titleStyles={{
-              size: ["text-lg", "max-lg:text-sm"],
+              size: ["text-lg", "max-sm:text-sm"],
             }}
           />
           <div className="w-full flex justify-center">
             <DayOfWeekToggleButtonGroup daysOfWeek={daysOfWeek} toggleEvent={toggleDayOfWeek} />
           </div>
         </section>
-        <section className="mb-5">
+        <section className="mb-5 max-sm:mb-3">
           <SubTitle
             description="몇 시에 알려줄까요?"
             title="알람"
             titleStyles={{
-              size: ["text-lg", "max-lg:text-sm"],
+              size: ["text-lg", "max-sm:text-sm"],
             }}
           />
           <div className="w-full flex justify-center">
@@ -198,26 +198,26 @@ export default function DetailRoutineForm({ addRoutine, modifyRoutine, removeRou
             />
           </div>
         </section>
-        <section className="mb-5">
+        <section className="mb-5 max-sm:mb-3">
           <SubTitle
             description="루틴을 기억해요. :)"
             title="색상"
             titleStyles={{
-              size: ["text-lg", "max-lg:text-sm"],
+              size: ["text-lg", "max-sm:text-sm"],
             }}
           />
           <div className="w-full flex justify-center">
             <ColorRadioButtonGroup changeEvent={changeColor} currentColor={color} />
           </div>
         </section>
-        <div className="divider" />
+        <div className="divider max-sm:mt-1 max-sm:mb-1" />
         <div className={`flex ${isAddForm ? "justify-end" : "justify-between"}`}>
           {removeButtonView()}
-          <div className="flex gap-3">
-            <button className="btn max-lg:btn-sm" onClick={_.debounce(resultButtonEvent, 800)} type="button">
+          <div className="flex gap-3 max-sm:gap-1">
+            <button className="btn max-sm:btn-xs" onClick={_.debounce(resultButtonEvent, 800)} type="button">
               {isAddForm ? "추가" : "수정"}
             </button>
-            <button className="btn max-lg:btn-sm" onClick={_.debounce(cancleButtonEvent, 800)} type="button">
+            <button className="btn max-sm:btn-xs" onClick={_.debounce(cancleButtonEvent, 800)} type="button">
               취소
             </button>
           </div>

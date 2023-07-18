@@ -61,7 +61,7 @@ export default function TimePicker({
   );
 
   return (
-    <div className="flex gap-3">
+    <div className="flex gap-3 max-sm:gap-1">
       {isUseHours && <ScrollablePicker data={HOURS} getNewContent={getNewHours} defaultValue={defaultHourValue} />}
       {isUseMinutes && (
         <ScrollablePicker data={MINUTES} getNewContent={getNewMinutes} defaultValue={defaultMinuteValue} />

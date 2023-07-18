@@ -3,22 +3,17 @@ import { useEffect, useRef, useState } from "react";
 import type { UIEvent } from "react";
 import { MdArrowDropUp, MdArrowDropDown } from "react-icons/md";
 
-interface IScrollablePickerStyle {
-  height?: string;
-  width?: string;
-}
-
 interface IScrollPicker {
   data: string[];
   defaultValue: string; // 초기 선택되어야할 값
   getNewContent?: (content: string) => void;
-  styles?: IScrollablePickerStyle;
 }
 
 /**
  * @description 스크롤이 되는 선택 컴포넌트
  */
-export default function ScrollablePicker({ data, defaultValue, getNewContent, styles }: IScrollPicker) {
+export default function ScrollablePicker({ data, defaultValue, getNewContent }: IScrollPicker) {
+  let initElementHeight = window.innerWidth <= 640 ? 20 : 40;
   let initIndex = data.findIndex((item) => item === defaultValue); // 초기값의 index 찾기
 
   if (initIndex < 0) {
@@ -26,13 +21,20 @@ export default function ScrollablePicker({ data, defaultValue, getNewContent, st
     initIndex = 0;
   }
 
-  const { height = "h-32", width = "w-20" } = styles || {};
   const [focusIndex, setFocusIndex] = useState(initIndex);
   const scrollRef = useRef<HTMLDivElement>(null);
   const timeoutRef = useRef<number>(0); // 부모로 업데이트되는 처리를 위한 ref
   const initScrollRef = useRef<boolean>(false); // 초기 데이터로 스크롤을 이동하기 위한 ref
 
-  const wrapperClassName = `w-full overflow-auto scrollbar-hide ${height}`;
+  const onResizeEvent = _.throttle(() => {
+    const fullWidth = window.innerWidth;
+
+    if (fullWidth <= 640) {
+      initElementHeight = 20;
+    } else {
+      initElementHeight = 40;
+    }
+  }, 1500);
 
   /**
    * @description data list 부분 스크롤 이벤트
@@ -40,8 +42,8 @@ export default function ScrollablePicker({ data, defaultValue, getNewContent, st
    */
   const onScrollEvent = (e: UIEvent<HTMLDivElement>) => {
     const target = e.target as HTMLDivElement;
-    const index = Math.round(target.scrollTop / 40);
-    const moveScrollTop = index * 40;
+    const index = Math.round(target.scrollTop / initElementHeight);
+    const moveScrollTop = index * initElementHeight;
 
     target.scrollTo({
       top: moveScrollTop,
@@ -64,8 +66,8 @@ export default function ScrollablePicker({ data, defaultValue, getNewContent, st
 
     const { scrollTop } = scrollRef.current;
 
-    const index = Math.round(scrollTop / 40);
-    const moveScrollTop = index * 40 + blockHeight;
+    const index = Math.round(scrollTop / initElementHeight);
+    const moveScrollTop = index * initElementHeight + blockHeight;
 
     scrollRef.current.scrollTo({
       top: moveScrollTop,
@@ -78,7 +80,7 @@ export default function ScrollablePicker({ data, defaultValue, getNewContent, st
    * @description 한 블럭 위로 이동하기
    */
   const moveUpOneBlock = () => {
-    const index = moveScroll(-40);
+    const index = moveScroll(-initElementHeight);
 
     if (index > -1) {
       setFocusIndex(index);
@@ -89,7 +91,7 @@ export default function ScrollablePicker({ data, defaultValue, getNewContent, st
    * @description 한 블럭 아래로 이동하기
    */
   const moveDownOneBlock = () => {
-    const index = moveScroll(40);
+    const index = moveScroll(initElementHeight);
 
     if (index > -1) {
       setFocusIndex(index);
@@ -120,26 +122,39 @@ export default function ScrollablePicker({ data, defaultValue, getNewContent, st
    */
   useEffect(() => {
     if (!initScrollRef.current) {
-      moveScroll(focusIndex * 40);
+      moveScroll(focusIndex * initElementHeight);
       initScrollRef.current = true;
     }
-  }, [focusIndex]);
+  }, [focusIndex, initElementHeight, moveScroll]);
+
+  useEffect(() => {
+    // resize 이벤트 리스너 추가
+    window?.addEventListener("resize", onResizeEvent);
+
+    return () => {
+      window?.removeEventListener("resize", onResizeEvent);
+    };
+  }, [onResizeEvent]);
 
   return (
-    <div className={`${width} flex flex-col max-lg:flex-row`}>
+    <div className="flex flex-col w-20 max-lg:flex-row max-lg:w-40 max-sm:text-sm max-sm:w-32">
       <div className="self-center">
         <button className="btn btn-ghost btn-circle btn-sm" onClick={moveUpOneBlock} type="button">
           <MdArrowDropUp className="h-5 w-5" />
         </button>
       </div>
-      <div className={wrapperClassName} onScroll={_.throttle(onScrollEvent, 800)} ref={scrollRef}>
+      <div
+        className="w-full h-32 overflow-auto scrollbar-hide max-sm:h-16"
+        onScroll={_.throttle(onScrollEvent, 800)}
+        ref={scrollRef}
+      >
         <div className="relative w-full">
-          <div className="w-full h-10 sticky top-10 rounded-md bg-accent overflow-hidden" />
+          <div className="w-full h-10 sticky top-10 rounded-md bg-accent overflow-hidden max-sm:h-5 max-sm:top-5" />
           <ul className="w-full h-full flex flex-col items-center">
             {data.map((content, index) => {
               const isFocus = focusIndex === index;
 
-              const contentClassName = `h-10 flex justify-center items-center z-10 ${
+              const contentClassName = `h-10 flex justify-center items-center z-10 max-sm:h-5 ${
                 isFocus ? "font-bold text-white" : "opacity-50"
               }`;
 
@@ -150,7 +165,7 @@ export default function ScrollablePicker({ data, defaultValue, getNewContent, st
               );
             })}
           </ul>
-          <div className="w-full h-12 rounded-md" />
+          <div className="w-full h-12 rounded-md max-sm:h-8" />
         </div>
       </div>
       <div className="self-center">
