@@ -6,6 +6,6 @@ export default {
   title: "todo/ToDoAdd",
 } as ComponentMeta<typeof ToDoAdd>;
 
-const Template: ComponentStory<typeof ToDoAdd> = (args) => <ToDoAdd />;
+const Template: ComponentStory<typeof ToDoAdd> = (args) => <ToDoAdd {...args} />;
 
 export const Default = Template.bind({});

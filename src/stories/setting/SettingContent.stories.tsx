@@ -6,6 +6,6 @@ export default {
   title: "setting/SettingContent",
 } as ComponentMeta<typeof SettingContent>;
 
-const Template: ComponentStory<typeof SettingContent> = (args) => <SettingContent />;
+const Template: ComponentStory<typeof SettingContent> = (args) => <SettingContent {...args} />;
 
 export const Default = Template.bind({});

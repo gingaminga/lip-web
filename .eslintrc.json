@@ -81,6 +81,8 @@
       {
         "allowForLoopAfterthoughts": true
       }
-    ] // 반복문의 경우는 증감연산자 사용 가능
+    ], // 반복문의 경우는 증감연산자 사용 가능
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": "error"
   }
 }

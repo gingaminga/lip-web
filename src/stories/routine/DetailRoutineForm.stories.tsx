@@ -6,6 +6,6 @@ export default {
   title: "routine/DetailRoutineForm",
 } as ComponentMeta<typeof DetailRoutineForm>;
 
-const Template: ComponentStory<typeof DetailRoutineForm> = (args) => <DetailRoutineForm />;
+const Template: ComponentStory<typeof DetailRoutineForm> = (args) => <DetailRoutineForm {...args} />;
 
 export const Default = Template.bind({});
