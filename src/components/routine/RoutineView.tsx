@@ -37,7 +37,7 @@ export default function RoutineView() {
       return (
         <div className="w-full h-full flex justify-center items-center">
           <Link className="btn btn-lg animate-bounce" href="/routine/add">
-            루틴 추가하러가기👉
+            루틴 추가하러가기🎊
           </Link>
         </div>
       );
