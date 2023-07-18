@@ -1,5 +1,5 @@
 import { getDayString, getYYYYMMDD } from "@/utils/date";
-import { useCallback } from "react";
+import { CSSProperties, useCallback } from "react";
 
 interface IToDoHeader {
   date: Date;
@@ -58,10 +58,12 @@ export default function ToDoHeader({ date, successCount, totalCount }: IToDoHead
         </div>
         <div
           className={`radial-progress ${achievementRateTextColor} mt-2 max-xs:hidden`}
-          style={{
-            "--value": achievementRate,
-            "--size": "3rem",
-          }}
+          style={
+            {
+              "--value": achievementRate,
+              "--size": "3rem",
+            } as CSSProperties
+          }
         >
           <span className="text-xs">{achievementRate}%</span>
         </div>
