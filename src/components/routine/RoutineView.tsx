@@ -35,7 +35,7 @@ export default function RoutineView() {
   const RoutineListView = useMemo(() => {
     if (isFetchedGetRoutines && routines.length < 1) {
       return (
-        <div className="hero-content h-full">
+        <div className="w-full h-full flex justify-center items-center">
           <Link className="btn btn-lg animate-bounce" href="/routine/add">
             루틴 추가하러가기👉
           </Link>
