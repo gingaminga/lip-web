@@ -76,7 +76,7 @@ export default function GlobalNavigationBar({ isLogin, projectName = constants.P
 
       return (
         <li key={`menu-item-${route}-${text}`}>
-          <button className={`${className}`} type="button">
+          <button className={className} onClick={logout} type="button">
             {text}
           </button>
         </li>
