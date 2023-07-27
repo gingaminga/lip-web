@@ -8,6 +8,21 @@ import { IoMdAddCircleOutline } from "react-icons/io";
 import { MdEventRepeat, MdSettings } from "react-icons/md";
 import { RiTodoLine } from "react-icons/ri";
 
+export const ROUTER_PATH = {
+  CALLABCK: {
+    OAUTH: "/callback/[oauth]",
+  },
+  LOGIN: "/login",
+  ROUTINE: {
+    ADD: "/routine/add,",
+    MAIN: "/routine",
+  },
+  SETTING: "/setting",
+  TODO: "/todo",
+};
+
+export const NOT_LOGIN_PATH_COFNIG = [ROUTER_PATH.LOGIN, ROUTER_PATH.CALLABCK.OAUTH]; // 로그인되지 않아도 접근 가능한 경로
+
 export const OAUTH_LOGIN_CONFIG = [
   {
     className: "btn-kakao btn-block gap-2.5",
@@ -34,15 +49,15 @@ export const ROUTE_CONFIG = [
     query: {
       date: getYYYYMMDD(""),
     },
-    route: "/todo",
+    route: ROUTER_PATH.TODO,
     text: "투두 관리",
   },
   {
-    route: "/routine",
+    route: ROUTER_PATH.ROUTINE.MAIN,
     text: "루틴 관리",
   },
   {
-    route: "/setting",
+    route: ROUTER_PATH.SETTING,
     text: "설정",
   },
   {
@@ -52,32 +67,32 @@ export const ROUTE_CONFIG = [
 
 export const LOCAL_TODO_ROUTE_CONFIG = [
   {
-    route: "/todo",
+    route: ROUTER_PATH.TODO,
     query: {
       date: getYYYYMMDD(""),
     },
     IconComponent: RiTodoLine,
   },
   {
-    route: "/todo",
+    route: ROUTER_PATH.TODO,
     IconComponent: BsCalendarHeart,
   },
 ];
 
 export const LOCAL_ROUTINE_ROUTE_CONFIG = [
   {
-    route: "/routine",
+    route: ROUTER_PATH.ROUTINE.MAIN,
     IconComponent: MdEventRepeat,
   },
   {
-    route: "/routine/add",
+    route: ROUTER_PATH.ROUTINE.ADD,
     IconComponent: IoMdAddCircleOutline,
   },
 ];
 
 export const LOCAL_SETTING_ROUTE_CONFIG = [
   {
-    route: "/setting",
+    route: ROUTER_PATH.SETTING,
     IconComponent: MdSettings,
   },
 ];

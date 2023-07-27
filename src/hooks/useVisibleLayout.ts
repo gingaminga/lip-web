@@ -1,5 +1,5 @@
 import useUser from "@/hooks/useUser";
-import { NOT_LOGIN_PATH_NAME } from "@/utils/constants";
+import { NOT_LOGIN_PATH_COFNIG, ROUTER_PATH } from "@/utils/config";
 import Cookie from "@/utils/cookie";
 import Router, { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -18,7 +18,7 @@ export default function useVisibleLayout() {
   useEffect(() => {
     const refreshToken = Cookie.getCookie("refresh_token");
 
-    if (NOT_LOGIN_PATH_NAME.includes(pathname)) {
+    if (NOT_LOGIN_PATH_COFNIG.includes(pathname)) {
       // 로그인이 되지 않아야 하는 페이지
       if (!isLogin && !refreshToken) {
         setRenderLoadingOverlay(false);
@@ -29,7 +29,7 @@ export default function useVisibleLayout() {
 
     // 로그인이 되어야하는 페이지
     if (!refreshToken) {
-      Router.push("/login");
+      Router.push(ROUTER_PATH.LOGIN);
 
       return;
     }

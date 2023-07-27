@@ -2,6 +2,7 @@ import ArticleTemplate from "@/components/common/templates/ArticleTemplate";
 import RoutineCard from "@/components/routine/RoutineCard";
 import useRoutinesInfiniteQuery from "@/hooks/queries/useRoutinesInfiniteQuery";
 import { IRoutineData } from "@/types/routine";
+import { ROUTER_PATH } from "@/utils/config";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { useInView } from "react-intersection-observer";
@@ -36,7 +37,7 @@ export default function RoutineView() {
     if (isFetchedGetRoutines && routines.length < 1) {
       return (
         <div className="w-full h-full flex justify-center items-center">
-          <Link className="btn btn-lg animate-bounce" href="/routine/add">
+          <Link className="btn btn-lg animate-bounce" href={ROUTER_PATH.ROUTINE.ADD}>
             루틴 추가하러가기🎊
           </Link>
         </div>
@@ -59,13 +60,15 @@ export default function RoutineView() {
             wed: wednesday,
           };
 
+          const path = `${ROUTER_PATH.ROUTINE.MAIN}/${id}`;
+
           return (
             <RoutineCard
               alarmHour={hour}
               alarmMinute={minute}
               days={days}
               innerRef={ref}
-              path={`routine/${id}`}
+              path={path}
               key={`routine-card-${id}-${content}`}
               styles={{
                 themeColor: color,

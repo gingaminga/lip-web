@@ -2,7 +2,7 @@ import LoadingOverlay from "@/components/common/organisms/LoadingOverlay";
 import useLoginMutation from "@/hooks/queries/useLoginMutation";
 import useUser from "@/hooks/useUser";
 import { checkOAuthType } from "@/types/guard";
-import { OAUTH_LOGIN_CONFIG } from "@/utils/config";
+import { OAUTH_LOGIN_CONFIG, ROUTER_PATH } from "@/utils/config";
 import { getYYYYMMDD } from "@/utils/date";
 import Router from "next/router";
 import { useEffect, useState } from "react";
@@ -40,7 +40,7 @@ export default function OAuthCallbackPage() {
       saveUserInfo(userInfo);
 
       Router.push({
-        pathname: "/todo",
+        pathname: ROUTER_PATH.TODO,
         query: {
           date: getYYYYMMDD(""),
         },

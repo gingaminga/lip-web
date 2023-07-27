@@ -4,6 +4,7 @@ import useChangeNicknameMutation from "@/hooks/queries/useChangeNicknameMutation
 import useDuplicateNicknameQuery from "@/hooks/queries/useDuplicateNicknameQuery";
 import useUser from "@/hooks/useUser";
 import useValidation from "@/hooks/useValidation";
+import { ROUTER_PATH } from "@/utils/config";
 import Cookie, { REFRESH_TOKEN_COOKIE_OPTION } from "@/utils/cookie";
 import { validateNickname } from "@/utils/validator";
 import Router from "next/router";
@@ -32,7 +33,7 @@ export default function NicknameChanger({ currentNickname, onCancleEvent }: INic
   const { mutate: fetchChangeNickname } = useChangeNicknameMutation({
     onSuccess: async (isSuccess) => {
       if (isSuccess) {
-        await Router.push("/login");
+        await Router.push(ROUTER_PATH.LOGIN);
         Cookie.removeCookie("refresh_token", REFRESH_TOKEN_COOKIE_OPTION);
 
         Router.reload();

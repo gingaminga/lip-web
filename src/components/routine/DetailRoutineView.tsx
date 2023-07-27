@@ -5,6 +5,7 @@ import useDetailRoutineQuery from "@/hooks/queries/useDetailRoutineQuery";
 import useModifyRoutineMutation from "@/hooks/queries/useModifyRoutineMutation";
 import useRemoveRoutineMutation from "@/hooks/queries/useRemoveRoutineMutation";
 import { TRoutineColor } from "@/types/color";
+import { ROUTER_PATH } from "@/utils/config";
 import Router from "next/router";
 
 interface IDetailRoutineView {
@@ -18,17 +19,17 @@ export default function DetailRoutineView({ routineID = -1 }: IDetailRoutineView
   });
   const { mutate: fetchAddRoutine } = useAddRoutineMutation({
     onSuccess: () => {
-      Router.push("/routine");
+      Router.push(ROUTER_PATH.ROUTINE.MAIN);
     },
   });
   const { mutate: fetchModifyRoutine } = useModifyRoutineMutation({
     onSuccess: () => {
-      Router.push("/routine");
+      Router.push(ROUTER_PATH.ROUTINE.MAIN);
     },
   });
   const { mutate: fetchRemoveRoutine } = useRemoveRoutineMutation({
     onSuccess: () => {
-      Router.push("/routine");
+      Router.push(ROUTER_PATH.ROUTINE.MAIN);
     },
   });
 

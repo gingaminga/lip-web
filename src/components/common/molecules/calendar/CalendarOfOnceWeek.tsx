@@ -1,4 +1,5 @@
 import { ICalendarToDoData } from "@/types/todo";
+import { ROUTER_PATH } from "@/utils/config";
 import { IDateOption, getYYYYMMDD } from "@/utils/date";
 import Link from "next/link";
 import { useMemo } from "react";
@@ -79,7 +80,7 @@ function Day({ achievementRate, date, month, styles, year }: IDay) {
       <Link
         className={`block w-full h-full font-semibold ${textColor}`}
         href={{
-          pathname: "/todo",
+          pathname: ROUTER_PATH.TODO,
           query,
         }}
       >

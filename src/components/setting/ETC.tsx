@@ -1,6 +1,7 @@
 import ConfirmModal from "@/components/common/organisms/ConfirmModal";
 import useWithdrawalMutation from "@/hooks/queries/useWithdrawalMutation";
 import useModal from "@/hooks/useModal";
+import { ROUTER_PATH } from "@/utils/config";
 import Router from "next/router";
 
 /**
@@ -9,7 +10,7 @@ import Router from "next/router";
 export default function ETC() {
   const { mutate } = useWithdrawalMutation({
     onSuccess: async () => {
-      await Router.push("/login");
+      await Router.push(ROUTER_PATH.LOGIN);
 
       Router.reload();
     },

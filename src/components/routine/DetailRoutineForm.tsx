@@ -10,6 +10,7 @@ import useTimePicker from "@/hooks/useTimePicker";
 import { IRoutineData } from "@/types/routine";
 import { TRoutineColor } from "@/types/color";
 import { checkRoutineColor } from "@/types/guard";
+import { ROUTER_PATH } from "@/utils/config";
 import { getNumberDaysFromActiveByDay } from "@/utils/date";
 import _ from "lodash";
 import { useRouter } from "next/router";
@@ -110,7 +111,7 @@ export default function DetailRoutineForm({ addRoutine, modifyRoutine, removeRou
    * @description 취소 버튼 이벤트
    */
   const cancleButtonEvent = () => {
-    push("/routine");
+    push(ROUTER_PATH.ROUTINE.MAIN);
   };
 
   /**

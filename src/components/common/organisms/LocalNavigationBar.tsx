@@ -1,4 +1,9 @@
-import { LOCAL_ROUTINE_ROUTE_CONFIG, LOCAL_SETTING_ROUTE_CONFIG, LOCAL_TODO_ROUTE_CONFIG } from "@/utils/config";
+import {
+  LOCAL_ROUTINE_ROUTE_CONFIG,
+  LOCAL_SETTING_ROUTE_CONFIG,
+  LOCAL_TODO_ROUTE_CONFIG,
+  ROUTER_PATH,
+} from "@/utils/config";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useCallback } from "react";
@@ -10,7 +15,7 @@ export default function LocalNavigationBar() {
   const { pathname } = useRouter();
 
   const MenuListView = useCallback(() => {
-    if (pathname.startsWith("/todo")) {
+    if (pathname.startsWith(ROUTER_PATH.TODO)) {
       return LOCAL_TODO_ROUTE_CONFIG.map((config) => {
         const { IconComponent, route, query } = config;
 
@@ -30,7 +35,7 @@ export default function LocalNavigationBar() {
       });
     }
 
-    if (pathname.startsWith("/routine")) {
+    if (pathname.startsWith(ROUTER_PATH.ROUTINE.MAIN)) {
       return LOCAL_ROUTINE_ROUTE_CONFIG.map((config) => {
         const { IconComponent, route } = config;
 
@@ -49,7 +54,7 @@ export default function LocalNavigationBar() {
       });
     }
 
-    if (pathname.startsWith("/setting")) {
+    if (pathname.startsWith(ROUTER_PATH.SETTING)) {
       return LOCAL_SETTING_ROUTE_CONFIG.map((config) => {
         const { IconComponent, route } = config;
 

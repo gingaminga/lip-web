@@ -1,6 +1,6 @@
 import useReissueTokenMutation from "@/hooks/queries/useReissueTokenMutation";
 import useUser from "@/hooks/useUser";
-import { NOT_LOGIN_PATH_NAME } from "@/utils/constants";
+import { NOT_LOGIN_PATH_COFNIG, ROUTER_PATH } from "@/utils/config";
 import Cookie from "@/utils/cookie";
 import Router, { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -16,7 +16,7 @@ export default function useRegisterToken() {
     onSuccess: (users) => {
       saveUserInfo(users);
 
-      const path = NOT_LOGIN_PATH_NAME.includes(pathname) ? "/todo" : pathname;
+      const path = NOT_LOGIN_PATH_COFNIG.includes(pathname) ? ROUTER_PATH.TODO : pathname;
       Router.push({
         pathname: path,
         query,
