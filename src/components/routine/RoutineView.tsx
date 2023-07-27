@@ -45,7 +45,7 @@ export default function RoutineView() {
     }
 
     return (
-      <div className="grid grid-cols-[repeat(auto-fill,_15rem)] grid-rows-[repeat(auto-fill,_13rem)] justify-center gap-x-5 gap-y-20 overflow-auto h-full">
+      <div className="grid grid-cols-[repeat(auto-fill,_15rem)] grid-rows-[repeat(auto-fill,_15rem)] justify-center gap-x-5 gap-y-10 overflow-auto h-full max-sm:grid-cols-1 max-md:grid-cols-2 max-lg:grid-cols-3 max-lg:grid-rows-[repeat(auto-fill,_10rem)]">
         {routines.map((routine) => {
           const { alarm, color, content, friday, id, monday, saturday, sunday, thursday, tuesday, wednesday } = routine;
           const { hour, minute } = alarm;

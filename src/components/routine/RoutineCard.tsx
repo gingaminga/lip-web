@@ -2,6 +2,7 @@ import Card from "@/components/common/atoms/Card";
 import { TRoutineColor } from "@/types/color";
 import { TElementRefItem } from "@/types/common";
 import { TActvieStatusByDay } from "@/types/date";
+import { cutString } from "@/utils";
 import { getDayOfText } from "@/utils/date";
 import Link from "next/link";
 
@@ -29,18 +30,19 @@ export default function RoutineCard({ alarmHour, alarmMinute, days, innerRef, pa
   const alarmInfo = `${alarmHour}시${!alarmMinute ? "" : ` ${alarmMinute}분`}`;
 
   return (
-    <Link href={path}>
+    <Link className="w-60 h-60 max-lg:w-full max-lg:h-40" href={path}>
       <Card
         innerRef={innerRef}
         styles={{
-          width: "w-52",
-          height: "h-60",
+          height: "h-full",
+          shadow: "shadow-lg",
+          width: "w-full",
         }}
       >
         <div className={colorClassName} />
         <div className="card-body h-2/3">
-          <h2 className="card-title">{title}</h2>
-          <p className="flex items-center">
+          <h2 className="card-title max-lg:text-base">{cutString(title)}</h2>
+          <p className="flex items-end">
             <span className="font-semibold">
               {daysOfText} <span className="underline font-thin">{alarmInfo}</span>
             </span>
