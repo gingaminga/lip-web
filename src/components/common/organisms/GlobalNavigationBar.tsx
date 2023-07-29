@@ -47,41 +47,44 @@ export default function GlobalNavigationBar({ isLogin, projectName = constants.P
    * 0 - PC(default)
    * 1 - Mobile
    */
-  const MenuListView = (type = 0) =>
-    ROUTE_CONFIG.map((config) => {
-      const { route, text, query } = config;
-      let className = "normal-case text-md";
+  const MenuListView = useCallback(
+    (type = 0) =>
+      ROUTE_CONFIG.map((config) => {
+        const { route, text, query } = config;
+        let className = "normal-case text-md";
 
-      className += type === 1 ? "" : "btn btn-ghost";
+        className += type === 1 ? "" : "btn btn-ghost";
 
-      if (route) {
+        if (route) {
+          return (
+            <li key={`menu-item-${route}-${text}`}>
+              <Link
+                className={`${className}`}
+                href={{
+                  pathname: route,
+                  query,
+                }}
+              >
+                {text}
+              </Link>
+            </li>
+          );
+        }
+
+        if (type === 1) {
+          return null;
+        }
+
         return (
           <li key={`menu-item-${route}-${text}`}>
-            <Link
-              className={`${className}`}
-              href={{
-                pathname: route,
-                query,
-              }}
-            >
+            <button className={className} onClick={logout} type="button">
               {text}
-            </Link>
+            </button>
           </li>
         );
-      }
-
-      if (type === 1) {
-        return null;
-      }
-
-      return (
-        <li key={`menu-item-${route}-${text}`}>
-          <button className={className} onClick={logout} type="button">
-            {text}
-          </button>
-        </li>
-      );
-    });
+      }),
+    [logout],
+  );
 
   const NavigationStartView = useCallback(() => {
     const hiddenWhenNotLogin = isLogin ? "" : "hidden";
@@ -104,7 +107,7 @@ export default function GlobalNavigationBar({ isLogin, projectName = constants.P
         </div>
       </>
     );
-  }, [ProjectTitleView, isLogin]);
+  }, [MenuListView, ProjectTitleView, isLogin]);
 
   const NavigationCenterView = useCallback(() => {
     const hiddenWhenNotLogin = isLogin ? "" : "hidden";
@@ -117,7 +120,7 @@ export default function GlobalNavigationBar({ isLogin, projectName = constants.P
         <div className="navbar-center lg:hidden">{ProjectTitleView}</div>
       </>
     );
-  }, [ProjectTitleView, isLogin]);
+  }, [MenuListView, ProjectTitleView, isLogin]);
 
   const NavigationEndView = useCallback(() => {
     const hiddenWhenNotLogin = isLogin ? "" : "hidden";
