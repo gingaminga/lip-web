@@ -1,5 +1,6 @@
 import { useAppSelector, useAppDispatch } from "@/store/hooks";
 import { setTheme } from "@/store/theme/reducer";
+import Cookie from "@/utils/cookie";
 import { ChangeEvent, useEffect } from "react";
 
 /**
@@ -16,7 +17,10 @@ export default function useThemeChanger() {
   const toggleHandler = (event: ChangeEvent<HTMLInputElement>) => {
     const changedTheme = event.target.checked ? "dark" : "light";
 
-    localStorage.setItem("theme", changedTheme); // 테마값 저장
+    if (Cookie.isEnabledCookie()) {
+      localStorage.setItem("theme", changedTheme); // 테마값 저장
+    }
+
     document.documentElement.setAttribute("data-theme", changedTheme); // html에 theme 설정
     dispatch(setTheme(changedTheme)); // redux에 테마 상태 저장
   };
@@ -26,7 +30,11 @@ export default function useThemeChanger() {
    */
   useEffect(() => {
     const defaultTheme = "light";
-    let currentTheme = localStorage.getItem("theme") || defaultTheme;
+    let currentTheme = defaultTheme;
+
+    if (Cookie.isEnabledCookie()) {
+      currentTheme = localStorage.getItem("theme") || defaultTheme;
+    }
 
     if (currentTheme !== "dark" && currentTheme !== "light") {
       // localstorage에 저장된 테마가 dark/light 테마가 아닌 경우 강제로 변경

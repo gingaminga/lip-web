@@ -44,4 +44,11 @@ export default class Cookie {
 
     return true;
   }
+
+  /**
+   * @description 쿠키 차단여부
+   */
+  static isEnabledCookie() {
+    return navigator.cookieEnabled;
+  }
 }

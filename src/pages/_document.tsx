@@ -7,13 +7,17 @@ export default function Document() {
         <script
           dangerouslySetInnerHTML={{
             __html: `
-              function getThemeMode() {
-                const theme = window.localStorage.getItem('theme')
-                return theme ? theme : 'dark'
-              }
+                function getThemeMode() {
+                  if (navigator.cookieEnabled) {
+                    const theme = window.localStorage.getItem('theme');
+                    return theme ? theme : 'dark';
+                  }
 
-              document.documentElement.setAttribute("data-theme", getThemeMode());
-            `, // html을 처리하기 위함
+                  return 'light';
+                }
+
+                document.documentElement.setAttribute("data-theme", getThemeMode());
+              `, // html을 처리하기 위함
           }}
         />
       </Head>
