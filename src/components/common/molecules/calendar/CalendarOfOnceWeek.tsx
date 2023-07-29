@@ -62,8 +62,10 @@ function Day({ achievementRate, date, month, styles, year }: IDay) {
       <>
         <div className="w-full h-1/2">{date}</div>
         <div className="flex flex-col justify-end w-full h-1/2">
-          <div className="flex w-full justify-center">
-            <span className={`text-xs text-center ${achievementRateTextColor}`}>{achievementRate}%</span>
+          <div className="flex w-full justify-center max-sm:justify-start">
+            <span className={`text-xs text-center max-sm:font-normal ${achievementRateTextColor}`}>
+              {achievementRate}%
+            </span>
           </div>
           <progress
             className={`progress ${progressBarColor} ${progressBacgroundColor} h-2 max-sm:hidden`}
@@ -76,7 +78,7 @@ function Day({ achievementRate, date, month, styles, year }: IDay) {
   }, [achievementRate, date]);
 
   return (
-    <td className="hover:bg-base-300 hover:cursor-pointer">
+    <td className="hover:bg-base-300 hover:cursor-pointer max-sm:p-2">
       <Link
         className={`block w-full h-full font-semibold ${textColor}`}
         href={{
