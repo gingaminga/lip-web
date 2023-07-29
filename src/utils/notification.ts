@@ -4,9 +4,13 @@
  */
 export const requestNotificationPermission = async () => {
   try {
-    const result = await Notification.requestPermission();
+    if ("Notification" in window) {
+      const result = await Notification.requestPermission();
 
-    return result === "granted";
+      return result === "granted";
+    }
+
+    return false;
   } catch (error) {
     console.error(error);
     return false;

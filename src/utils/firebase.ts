@@ -22,7 +22,9 @@ export const recieveFirebaseMessage = (messaging: Messaging) => {
       icon,
     };
 
-    const notification = new Notification(title, options);
+    if ("Notification" in window) {
+      const notification = new Notification(title, options);
+    }
   });
 };
 

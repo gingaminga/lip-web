@@ -6,7 +6,9 @@ import { ChangeEvent, useState } from "react";
  * @description 내 상태 컴포넌트
  */
 export default function MyStatus() {
-  const [isPermitNotification, setPersmitNotification] = useState(Notification.permission === "granted");
+  const [isPermitNotification, setPersmitNotification] = useState(
+    window.Notification && Notification.permission === "granted",
+  );
   const toggleHandler = async (e: ChangeEvent<HTMLInputElement>) => {
     const isChecked = e.target.checked;
 
