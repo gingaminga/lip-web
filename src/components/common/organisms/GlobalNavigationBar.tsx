@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import ThemeToggle from "@/components/common/organisms/ThemeToggle";
 import useLogoutMutation from "@/hooks/queries/useLogoutMutation";
 import useUser from "@/hooks/useUser";
@@ -97,9 +99,11 @@ export default function GlobalNavigationBar({ isLogin, projectName = constants.P
         </div>
         <div className="navbar-start lg:hidden">
           <div className={`dropdown ${hiddenWhenNotLogin}`}>
-            <button className="btn btn-ghost btn-circle" tabIndex={0} type="button">
+            {/* label로 button을 구성 후 tabIndex 설정을 해야 dropdown style이 모바일 chrome, safari에서 동작함 */}
+            {/* daisyUI에 설명되어있음 */}
+            <label className="btn btn-ghost btn-circle" tabIndex={0}>
               <HiMenuAlt2 className="h-5 w-5" />
-            </button>
+            </label>
             <ul className="menu menu-compact dropdown-content p-3 shadow bg-base-200 rounded-box w-40">
               {MenuListView()}
             </ul>
