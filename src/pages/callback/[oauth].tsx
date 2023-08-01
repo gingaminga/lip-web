@@ -1,4 +1,5 @@
 import LoadingOverlay from "@/components/common/organisms/LoadingOverlay";
+import HeaderTemplate from "@/components/common/templates/HeaderTemplate";
 import useLoginMutation from "@/hooks/queries/useLoginMutation";
 import useUser from "@/hooks/useUser";
 import { checkOAuthType } from "@/types/guard";
@@ -74,5 +75,10 @@ export default function OAuthCallbackPage() {
     }
   }, [mutate, oAuthInfo]);
 
-  return <LoadingOverlay />;
+  return (
+    <>
+      <HeaderTemplate title="로딩 중.." url={window.location.href} />
+      <LoadingOverlay />
+    </>
+  );
 }

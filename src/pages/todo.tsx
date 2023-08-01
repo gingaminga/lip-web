@@ -1,9 +1,9 @@
+import HeaderTemplate from "@/components/common/templates/HeaderTemplate";
 import MainTemplate from "@/components/common/templates/MainTemplate";
 import CalendarView from "@/components/todo/CalendarView";
 import ToDoView from "@/components/todo/ToDoView";
 import type { ICommonProps } from "@/types/common";
 import { getYYYYMMDD } from "@/utils/date";
-import Head from "next/head";
 import { useRouter } from "next/router";
 import { useCallback } from "react";
 
@@ -36,9 +36,7 @@ export default function TodoPage({ isLogin }: TTodoPage) {
 
   return (
     <>
-      <Head>
-        <title>life is plan</title>
-      </Head>
+      <HeaderTemplate title="차근차근 계획해보기" url={window.location.href} />
       <MainTemplate isLogin={isLogin}>{TodoView()}</MainTemplate>
     </>
   );

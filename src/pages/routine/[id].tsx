@@ -1,7 +1,7 @@
+import HeaderTemplate from "@/components/common/templates/HeaderTemplate";
 import MainTemplate from "@/components/common/templates/MainTemplate";
 import DetailRoutineView from "@/components/routine/DetailRoutineView";
 import type { ICommonProps } from "@/types/common";
-import Head from "next/head";
 import { useRouter } from "next/router";
 
 type TDetailRoutinePage = ICommonProps;
@@ -13,9 +13,7 @@ export default function DetailRoutinePage({ isLogin }: TDetailRoutinePage) {
 
   return (
     <>
-      <Head>
-        <title>life is plan</title>
-      </Head>
+      <HeaderTemplate title="규칙적인 습관만들기" url={window.location.href} />
       <MainTemplate isLogin={isLogin}>
         <DetailRoutineView routineID={Number(id)} />
       </MainTemplate>

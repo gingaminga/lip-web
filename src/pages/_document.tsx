@@ -4,6 +4,9 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
+        <meta charSet="utf-8" />
+        <link rel="icon" href="/images/favicon.ico" />
+        <link rel="apple-touch-icon" href="/images/life-is-plan-logo-128.png" />
         <script
           dangerouslySetInnerHTML={{
             __html: `

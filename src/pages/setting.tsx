@@ -1,16 +1,14 @@
+import HeaderTemplate from "@/components/common/templates/HeaderTemplate";
 import MainTemplate from "@/components/common/templates/MainTemplate";
 import SettingView from "@/components/setting/SettingView";
 import type { ICommonProps } from "@/types/common";
-import Head from "next/head";
 
 type TSettingPage = ICommonProps;
 
 export default function SettingPage({ isLogin }: TSettingPage) {
   return (
     <>
-      <Head>
-        <title>life is plan</title>
-      </Head>
+      <HeaderTemplate title="내 설정" url={window.location.href} />
       <MainTemplate isLogin={isLogin}>
         <SettingView />
       </MainTemplate>

@@ -1,8 +1,9 @@
 import CommonTemplate from "@/components/common/templates/CommonTemplate";
+import HeaderTemplate from "@/components/common/templates/HeaderTemplate";
 import OAuthLoginForm from "@/components/login/OAuthLoginForm";
 import useOAuthURLQuery from "@/hooks/queries/useOAuthURLQuery";
 import type { ICommonProps } from "@/types/common";
-import Head from "next/head";
+import constants from "@/utils/constants";
 import { useState } from "react";
 
 export type TChangeOAuthType = (type: string) => void;
@@ -28,9 +29,7 @@ export default function LoginPage({ isLogin }: TLoginPage) {
 
   return (
     <>
-      <Head>
-        <title>life is plan</title>
-      </Head>
+      <HeaderTemplate title={`${constants.PROJECT_NAME}, 계획적인 삶`} url={window.location.href} />
       <CommonTemplate isLogin={isLogin}>
         <div className="hero-content flex-col w-full">
           <OAuthLoginForm onClick={changeOAuthType} />

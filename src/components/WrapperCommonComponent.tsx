@@ -1,3 +1,4 @@
+import HeaderTemplate from "@/components/common/templates/HeaderTemplate";
 import LoadingOverlay from "@/components/common/organisms/LoadingOverlay";
 import useFirebase from "@/hooks/useFirebase";
 import useRegisterToken from "@/hooks/useRegisterToken";
@@ -15,7 +16,12 @@ export default function WrapperCommonComponent({ Component, pageProps }: AppProp
 
   const ComponentView = useMemo(() => {
     if (isRenderLoadingOverlay || isLoadingReissueToken) {
-      return <LoadingOverlay />;
+      return (
+        <>
+          <HeaderTemplate title="로딩 중.." />
+          <LoadingOverlay />
+        </>
+      );
     }
 
     return <Component {...pageProps} isLogin={isLogin} />;
