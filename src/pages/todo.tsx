@@ -9,7 +9,7 @@ import { useCallback } from "react";
 
 type TTodoPage = ICommonProps;
 
-export default function TodoPage({ isLogin }: TTodoPage) {
+export default function TodoPage({ isLoadingReissueToken, isLogin, isRenderLoadingOverlay }: TTodoPage) {
   const { query } = useRouter();
 
   const TodoView = useCallback(() => {
@@ -36,8 +36,14 @@ export default function TodoPage({ isLogin }: TTodoPage) {
 
   return (
     <>
-      <HeaderTemplate title="차근차근 계획해보기" url={window.location.href} />
-      <MainTemplate isLogin={isLogin}>{TodoView()}</MainTemplate>
+      <HeaderTemplate title="차근차근 계획해보기" />
+      <MainTemplate
+        isLoadingReissueToken={isLoadingReissueToken}
+        isLogin={isLogin}
+        isRenderLoadingOverlay={isRenderLoadingOverlay}
+      >
+        {TodoView()}
+      </MainTemplate>
     </>
   );
 }

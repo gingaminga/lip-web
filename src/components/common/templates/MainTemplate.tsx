@@ -7,9 +7,18 @@ interface IMainTemplate extends ICommonProps {
   children: ReactNode;
 }
 
-export default function MainTemplate({ children, isLogin }: IMainTemplate) {
+export default function MainTemplate({
+  children,
+  isLoadingReissueToken,
+  isLogin,
+  isRenderLoadingOverlay,
+}: IMainTemplate) {
   return (
-    <CommonTemplate isLogin={isLogin}>
+    <CommonTemplate
+      isLoadingReissueToken={isLoadingReissueToken}
+      isLogin={isLogin}
+      isRenderLoadingOverlay={isRenderLoadingOverlay}
+    >
       <div className="flex justify-start h-full w-full max-w-full border border-base-200 shadow-inset rounded-2xl max-lg:bg-base-100 max-lg:rounded-none max-lg:flex-col-reverse max-lg:border-none">
         <div className="hero-content basis-5 w-full h-full rounded-l-[inherit] bg-base-300">
           <LocalNavigationBar />

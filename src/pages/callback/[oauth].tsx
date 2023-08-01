@@ -77,7 +77,7 @@ export default function OAuthCallbackPage() {
 
   return (
     <>
-      <HeaderTemplate title="로딩 중.." url={window.location.href} />
+      <HeaderTemplate title="로딩 중.." />
       <LoadingOverlay />
     </>
   );

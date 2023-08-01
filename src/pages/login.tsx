@@ -10,7 +10,7 @@ export type TChangeOAuthType = (type: string) => void;
 
 type TLoginPage = ICommonProps;
 
-export default function LoginPage({ isLogin }: TLoginPage) {
+export default function LoginPage({ isLoadingReissueToken, isLogin, isRenderLoadingOverlay }: TLoginPage) {
   const [oAuthType, setOAuthType] = useState<string>("");
   useOAuthURLQuery(oAuthType, {
     enabled: !!oAuthType,
@@ -29,8 +29,12 @@ export default function LoginPage({ isLogin }: TLoginPage) {
 
   return (
     <>
-      <HeaderTemplate title={`${constants.PROJECT_NAME}, 계획적인 삶`} url={window.location.href} />
-      <CommonTemplate isLogin={isLogin}>
+      <HeaderTemplate title={`${constants.PROJECT_NAME}, 계획적인 삶`} />
+      <CommonTemplate
+        isLoadingReissueToken={isLoadingReissueToken}
+        isLogin={isLogin}
+        isRenderLoadingOverlay={isRenderLoadingOverlay}
+      >
         <div className="hero-content flex-col w-full">
           <OAuthLoginForm onClick={changeOAuthType} />
         </div>

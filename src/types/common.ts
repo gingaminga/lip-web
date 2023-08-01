@@ -7,7 +7,9 @@ export interface IResponseLIPFormat<T> {
 }
 
 export interface ICommonProps {
+  isLoadingReissueToken: boolean;
   isLogin: boolean;
+  isRenderLoadingOverlay: boolean;
 }
 
 export type TElementRefItem<T> = ((instance: T | null) => void) | RefObject<T>;

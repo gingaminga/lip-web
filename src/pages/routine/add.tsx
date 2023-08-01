@@ -5,11 +5,15 @@ import type { ICommonProps } from "@/types/common";
 
 type TRoutinePage = ICommonProps;
 
-export default function RoutinePage({ isLogin }: TRoutinePage) {
+export default function RoutinePage({ isLoadingReissueToken, isLogin, isRenderLoadingOverlay }: TRoutinePage) {
   return (
     <>
-      <HeaderTemplate title="규칙적인 습관만들기" url={window.location.href} />
-      <MainTemplate isLogin={isLogin}>
+      <HeaderTemplate title="규칙적인 습관만들기" />
+      <MainTemplate
+        isLoadingReissueToken={isLoadingReissueToken}
+        isLogin={isLogin}
+        isRenderLoadingOverlay={isRenderLoadingOverlay}
+      >
         <DetailRoutineView />
       </MainTemplate>
     </>

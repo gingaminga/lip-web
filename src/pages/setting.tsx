@@ -5,11 +5,15 @@ import type { ICommonProps } from "@/types/common";
 
 type TSettingPage = ICommonProps;
 
-export default function SettingPage({ isLogin }: TSettingPage) {
+export default function SettingPage({ isLoadingReissueToken, isLogin, isRenderLoadingOverlay }: TSettingPage) {
   return (
     <>
-      <HeaderTemplate title="내 설정" url={window.location.href} />
-      <MainTemplate isLogin={isLogin}>
+      <HeaderTemplate title="내 설정" />
+      <MainTemplate
+        isLoadingReissueToken={isLoadingReissueToken}
+        isLogin={isLogin}
+        isRenderLoadingOverlay={isRenderLoadingOverlay}
+      >
         <SettingView />
       </MainTemplate>
     </>
