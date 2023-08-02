@@ -3,10 +3,11 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const INIT_USER_INFO: IUserData = {
   createdAt: "",
+  email: "",
   id: -1,
   nickname: "",
-  oauthKey: -1,
-  oauthType: "",
+  socialKey: -1,
+  socialType: "",
   updatedAt: "",
 };
 
