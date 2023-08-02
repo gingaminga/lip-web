@@ -1,8 +1,9 @@
 export interface IUserData {
   createdAt: string;
+  email?: string;
   id: number;
   nickname: string;
-  oauthKey: number;
-  oauthType: string;
+  socialKey: number;
+  socialType: string;
   updatedAt: string;
 }
