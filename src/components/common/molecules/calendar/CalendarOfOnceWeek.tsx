@@ -28,7 +28,7 @@ function Day({ achievementRate, date, month, styles, year }: IDay) {
   const { textColor } = styles || {};
 
   const query = {
-    date: getYYYYMMDD("", new Date(year, month, date)),
+    date: getYYYYMMDD("", new Date(year, month - 1, date)),
   };
 
   const InfoView = useMemo(() => {
