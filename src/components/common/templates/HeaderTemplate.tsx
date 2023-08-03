@@ -22,7 +22,7 @@ export default function HeaderTemplate({
       <meta name="description" content={description} />
       <title>{title}</title>
       <meta property="og:description" content={description} />
-      <meta property="og:image" content="/images/life-is-plan-logo-text-310.png" />
+      <meta property="og:image" content="/images/life-is-plan-logo-text-310x310.png" />
       <meta property="og:site_name" content={projectName} />
       <meta property="og:title" content={title} />
       <meta property="og:type" content="website" />
