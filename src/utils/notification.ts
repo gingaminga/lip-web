@@ -4,13 +4,17 @@
  */
 export const requestNotificationPermission = async () => {
   try {
-    if ("Notification" in window) {
-      const result = await Notification.requestPermission();
-
-      return result === "granted";
+    if (!("Notification" in window)) {
+      throw new Error("Not used Notification API");
     }
 
-    return false;
+    if (Notification.permission === "granted") {
+      return true;
+    }
+
+    const result = await Notification.requestPermission();
+
+    return result === "granted";
   } catch (error) {
     console.error(error);
     return false;
