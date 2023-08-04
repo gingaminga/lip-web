@@ -32,8 +32,10 @@ export default function useFirebase() {
   const setFirebase = useCallback(async () => {
     const token = await processFirebaseCloudMessaging();
 
-    dispatch(setDeviceToken(token));
-    addFCMToken(token);
+    if (token) {
+      dispatch(setDeviceToken(token));
+      addFCMToken(token);
+    }
   }, [addFCMToken, dispatch]);
 
   /**
