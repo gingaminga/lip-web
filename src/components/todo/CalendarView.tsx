@@ -9,7 +9,9 @@ import { getCalendarInfo } from "@/utils/todo";
 export default function CalendarView() {
   const { calendarDate, changeNextMonth, changePrevMonth, changeToday } = useToDo();
   const currentDate = getYYYYMM("", calendarDate);
-  const { data: allToDos } = useToDosQuery(currentDate);
+  const { data: allToDos } = useToDosQuery(currentDate, {
+    cacheTime: 0,
+  });
 
   const { final, first } = getFirstAndLastDay(currentDate, "0");
   const startDate = `${currentDate}${first}`;
