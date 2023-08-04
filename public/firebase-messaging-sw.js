@@ -16,9 +16,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const messaging = firebase.messaging();
 
-self.addEventListener("push", (event) => {
-  const payload = event.data.json();
-
+messaging.onBackgroundMessage((payload) => {
   const { title = "", body = "", icon } = payload.notification || {};
 
   const options = {
