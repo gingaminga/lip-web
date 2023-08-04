@@ -15,3 +15,16 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 const messaging = firebase.messaging();
+
+self.addEventListener("push", (event) => {
+  const payload = event.data.json();
+
+  const { title = "", body = "", icon } = payload.notification || {};
+
+  const options = {
+    body,
+    icon,
+  };
+
+  event.waitUntil(self.registration.showNotification(title, options));
+});
