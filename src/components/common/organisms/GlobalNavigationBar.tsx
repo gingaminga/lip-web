@@ -104,7 +104,7 @@ export default function GlobalNavigationBar({ isLogin, projectName = constants.P
             <label className="btn btn-ghost btn-circle" tabIndex={0}>
               <HiMenuAlt2 className="h-5 w-5" />
             </label>
-            <ul className="menu menu-compact dropdown-content p-3 shadow bg-base-200 rounded-box w-40">
+            <ul className="menu menu-compact dropdown-content p-3 shadow bg-base-200 rounded-box w-40" tabIndex={0}>
               {MenuListView()}
             </ul>
           </div>
