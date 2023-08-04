@@ -24,5 +24,5 @@ messaging.onBackgroundMessage((payload) => {
     icon,
   };
 
-  event.waitUntil(self.registration.showNotification(title, options));
+  // self.registration.showNotification(title, options)
 });
