@@ -33,12 +33,12 @@ function Day({ achievementRate, date, isToday, month, styles, year }: IDay) {
   };
 
   const InfoView = useMemo(() => {
-    const todayClassName = isToday ? "bg-base-300" : "";
+    const todayClassName = isToday ? "w-6 h-6 text-center rounded-xl bg-base-300" : "";
 
     if (achievementRate === undefined) {
       return (
         <div className="w-full h-full">
-          <h6 className={`w-6 h-6 text-center rounded-xl ${todayClassName}`}>{date}</h6>
+          <h6 className={todayClassName}>{date}</h6>
         </div>
       );
     }
@@ -68,7 +68,7 @@ function Day({ achievementRate, date, isToday, month, styles, year }: IDay) {
     return (
       <>
         <div className="w-full h-1/2">
-          <h6 className={`w-6 h-6 text-center rounded-xl ${todayClassName}`}>{date}</h6>
+          <h6 className={todayClassName}>{date}</h6>
         </div>
         <div className="flex flex-col justify-end w-full h-1/2">
           <div className="flex w-full justify-center max-sm:justify-start">
