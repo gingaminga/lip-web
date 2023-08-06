@@ -87,7 +87,7 @@ function Day({ achievementRate, date, isToday, month, styles, year }: IDay) {
   }, [achievementRate, date, isToday]);
 
   return (
-    <td className="w-[14%] hover:bg-base-300 hover:cursor-pointer max-sm:p-2">
+    <td className="w-[14%] h-[16%] hover:bg-base-300 hover:cursor-pointer max-sm:p-2">
       <Link
         className={`block w-full h-full font-semibold ${textColor}`}
         href={{
