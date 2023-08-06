@@ -16,6 +16,7 @@ interface IDayStlye {
 interface IDay {
   achievementRate?: number; // 달성률
   date: number;
+  isToday: boolean;
   month: number;
   styles?: IDayStlye;
   year: number;
@@ -24,7 +25,7 @@ interface IDay {
 /**
  * @description 일 컴포넌트
  */
-function Day({ achievementRate, date, month, styles, year }: IDay) {
+function Day({ achievementRate, date, isToday, month, styles, year }: IDay) {
   const { textColor } = styles || {};
 
   const query = {
@@ -32,8 +33,14 @@ function Day({ achievementRate, date, month, styles, year }: IDay) {
   };
 
   const InfoView = useMemo(() => {
+    const todayClassName = isToday ? "bg-base-300" : "";
+
     if (achievementRate === undefined) {
-      return <div className="w-full h-full">{date}</div>;
+      return (
+        <div className="w-full h-full">
+          <h6 className={`w-6 h-6 text-center rounded-xl ${todayClassName}`}>{date}</h6>
+        </div>
+      );
     }
 
     let achievementRateTextColor = "text-success";
@@ -60,7 +67,9 @@ function Day({ achievementRate, date, month, styles, year }: IDay) {
 
     return (
       <>
-        <div className="w-full h-1/2">{date}</div>
+        <div className="w-full h-1/2">
+          <h6 className={`w-6 h-6 text-center rounded-xl ${todayClassName}`}>{date}</h6>
+        </div>
         <div className="flex flex-col justify-end w-full h-1/2">
           <div className="flex w-full justify-center max-sm:justify-start">
             <span className={`text-xs text-center max-sm:font-normal ${achievementRateTextColor}`}>
@@ -75,7 +84,7 @@ function Day({ achievementRate, date, month, styles, year }: IDay) {
         </div>
       </>
     );
-  }, [achievementRate, date]);
+  }, [achievementRate, date, isToday]);
 
   return (
     <td className="w-[14%] hover:bg-base-300 hover:cursor-pointer max-sm:p-2">
@@ -96,6 +105,8 @@ function Day({ achievementRate, date, month, styles, year }: IDay) {
  * @description 달력의 한 주 컴포넌트
  */
 export default function CalendarOfOnceWeek({ days, items }: ICalendarOfOnceWeek) {
+  const currentDate = new Date();
+
   return (
     <>
       {days.map((option) => {
@@ -116,10 +127,17 @@ export default function CalendarOfOnceWeek({ days, items }: ICalendarOfOnceWeek)
           textColor = "text-red-400";
         }
 
+        let isToday = false;
+
+        if (currentDate.getMonth() + 1 === month && currentDate.getDate() === date && isSameMonth) {
+          isToday = true;
+        }
+
         return (
           <Day
             achievementRate={myItem?.achievementRate}
             date={date}
+            isToday={isToday}
             key={`calendar-of-week-${date}-${day}`}
             month={month}
             styles={{
