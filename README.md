@@ -9,17 +9,12 @@ Backend Repository : [lip-api-server](https://github.com/gingaminga/lip-api-serv
 
 ###### Language & Environment
 
-<img src="https://shields.io/badge/typescript-3178C6?logo=typescript&logoColor=FFF&style=for-the-badge"/>
-<img src="https://shields.io/badge/node.js-339933?logo=nodedotjs&logoColor=FFF&style=for-the-badge"/>
+<img src="https://shields.io/badge/typescript-3178C6?logo=typescript&logoColor=FFF&style=for-the-badge"/> <img src="https://shields.io/badge/node.js-339933?logo=nodedotjs&logoColor=FFF&style=for-the-badge"/>
 
 ###### Library & Framework
 
-<img src="https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white"/>
-<img src="https://img.shields.io/badge/redux-764ABC?style=for-the-badge&logo=redux&logoColor=white"/>
-<img src="https://img.shields.io/badge/react_query-FF4154?style=for-the-badge&logo=reactquery&logoColor=white"/>
-<img src="https://img.shields.io/badge/tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white"/>
-<img src="https://img.shields.io/badge/firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white"/>
-<img src="https://img.shields.io/badge/pwa-5A0FC8?style=for-the-badge&logo=pwa&logoColor=white"/>
+<img src="https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white"/> <img src="https://img.shields.io/badge/redux-764ABC?style=for-the-badge&logo=redux&logoColor=white"/>
+<img src="https://img.shields.io/badge/react_query-FF4154?style=for-the-badge&logo=reactquery&logoColor=white"/> <img src="https://img.shields.io/badge/tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white"/> <img src="https://img.shields.io/badge/firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white"/> <img src="https://img.shields.io/badge/pwa-5A0FC8?style=for-the-badge&logo=pwa&logoColor=white"/>
 
 ###### Test
 
