@@ -48,4 +48,8 @@ export default function useFirebase() {
       isInit = true;
     }
   }, [isLogin, setFirebase]);
+
+  return {
+    setFirebase,
+  };
 }

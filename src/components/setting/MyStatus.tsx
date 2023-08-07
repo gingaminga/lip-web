@@ -1,4 +1,5 @@
 import SubTitle from "@/components/common/molecules/SubTitle";
+import useFirebase from "@/hooks/useFirebase";
 import { requestNotificationPermission } from "@/utils/notification";
 import { ChangeEvent, useState } from "react";
 
@@ -9,6 +10,8 @@ export default function MyStatus() {
   const [isPermitNotification, setPersmitNotification] = useState(
     window.Notification && Notification.permission === "granted",
   );
+  const { setFirebase } = useFirebase();
+
   const toggleHandler = async (e: ChangeEvent<HTMLInputElement>) => {
     const isChecked = e.target.checked;
 
@@ -16,6 +19,7 @@ export default function MyStatus() {
       const isPermit = await requestNotificationPermission();
 
       setPersmitNotification(isPermit);
+      setFirebase();
     }
   };
 
