@@ -3,7 +3,7 @@
 > 계획적으로 삶을 살 수 있게 도와주는 것이 이 앱의 취지입니다. :)<br/>
 
 Website : https://lifeisplan.me<br/>
-Frontend Repository : [lip-web](https://github.com/gingaminga/lip-web#readme)
+Backend Repository : [lip-api-server](https://github.com/gingaminga/lip-api-server#readme)
 
 ## 👨‍💻 기술 스택
 
