@@ -6,6 +6,7 @@ export default function Document() {
       <Head>
         <meta charSet="utf-8" />
         <meta name="theme-color" content="#F28963" />
+        <meta name="google" content="notranslate" />
         <link rel="manifest" href="/manifest.json" />
         <link rel="icon" href="/images/favicon.ico" />
         <link rel="apple-touch-icon" href="/images/life-is-plan-logo-128x128.png" />
